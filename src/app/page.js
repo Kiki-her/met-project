@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>Hi, World.</p>
+        <p>Welcome to public museum.</p>
       </div>
-      <ShowImage></ShowImage>
+      <ShowImage />
     </main>
   );
 }
