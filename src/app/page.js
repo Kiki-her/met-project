@@ -2,7 +2,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import ShowImage from "./showImage";
-import CsvToJson from "./csvToJson";
 
 export default function Home() {
   return (
