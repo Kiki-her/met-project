@@ -34,19 +34,14 @@ export default function ShowImage() {
       const infoObj = await res.json();
       if (infoObj.primaryImageSmall !== "") {
         setData(infoObj);
-        addDoc(collection(db, "info"), {
+        await addDoc(collection(db, "info"), {
           artId: id,
           src: infoObj.primaryImageSmall,
           title: infoObj.title,
           artist: infoObj.artistDisplayName,
           bio: infoObj.artistDisplayBio,
-        })
-          .then(() => {
-            console.log("ADD NEW DATA");
-          })
-          .catch(err => {
-            console.error(err);
-          });
+        });
+        console.log("THER");
       } else {
         id = Math.floor(Math.random() * ids.length);
         getData();
