@@ -22,16 +22,16 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
 // collection ref
-const colRef = collection(db, "data");
+// const docRef = collection(db, "datas");
 
-getDoc(colRef).then(snapshot => {
-  console.log(snapshot);
-});
+// getDoc(colRef).then(snapshot => {
+//   console.log(snapshot);
+// });
 
-export {db, colRef};
+export {db};

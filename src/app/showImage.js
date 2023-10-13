@@ -10,7 +10,9 @@ import {
   getDocs,
   addDoc,
   collection,
+  setDoc,
   onSnapshot,
+  doc,
 } from "firebase/firestore";
 import {db, colRef} from "@/db/fbdbinit";
 
@@ -30,9 +32,9 @@ export default function ShowImage() {
         `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
       );
       const infoObj = await res.json();
-      if (infoObj.primaryImageSmall !== undefined) {
+      if (infoObj.primaryImageSmall !== "") {
         setData(infoObj);
-        addDoc(colRef, {
+        addDoc(collection(db, "info"), {
           artId: id,
           src: infoObj.primaryImageSmall,
           title: infoObj.title,
@@ -52,22 +54,20 @@ export default function ShowImage() {
     };
     const searchData = async function () {
       // すでにDBに入ったデータかどうか調べる
-      const q = query(colRef, where("artId", "==", id));
+      const q = query(collection(db, "info"), where("artId", "==", id));
       onSnapshot(q, snapshot => {
         snapshot.docs.forEach(doc => {
           setTarget([{...doc.data(), id: doc.id}]);
         });
-      }).catch(err => {
-        console.log(err.message);
       });
     };
     const targetData = async function () {
       // すでにDBにあったデータを持ってきてsetDataする
-      const q = query(colRef, where("artId", "==", id));
-      // const querySnapshot = await getDocs(q);
-      // querySnapshot.forEach(doc => {
-      //   setData({...doc.data()});
-      // });
+      const q = query(collection(db, "info"), where("artId", "==", id));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(doc => {
+        setData({...doc.data()});
+      });
       onSnapshot(q, snapshot => {
         snapshot.docs.forEach(doc => {
           setData({...doc.data()});
@@ -79,13 +79,14 @@ export default function ShowImage() {
     searchData(); // DBにあるか？返り値がわからん
     console.log(target);
     if (target.length === 0) {
-      // DBになかったからAPIから取得
+      // DBになかったからAPIから取得;
       getData();
     } else {
       // DBにあったからDBから取得
       targetData();
     }
   }, []);
+  console.log(data);
 
   return (
     <>
