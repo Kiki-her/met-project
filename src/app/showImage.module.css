@@ -19,7 +19,6 @@
 
 .description {
     margin: 0;
-    padding: 1rem;
     background-color: mediumturquoise;
     border: 1px solid rgba(var(--callout-border-rgb), 0.3);
 }

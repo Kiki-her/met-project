@@ -91,7 +91,11 @@ export default function ShowImage() {
                 <Popup
                   trigger={
                     // <SwiperSlide>
-                    <img src={obj.primaryImageSmall} fill alt={obj.title} />
+                    <img
+                      src={obj.primaryImageSmall}
+                      alt={obj.title}
+                      className={style.img}
+                    />
                     // </SwiperSlide>
                   }
                   position="canter center"

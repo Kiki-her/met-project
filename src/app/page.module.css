@@ -5,24 +5,25 @@
   align-items: center;
   padding: 10rem;
   width: 100vw;
-  height: auto;
+  height: 100vh;
 }
 
 
 .description {
-  position: absolute;
-  top: 50px;
-  margin: 0;
-  padding: 1rem;
-  background-color:mediumturquoise;
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
+  position: relative;
+  /* background-color:#48d1cc; */
+  /* border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius); */
+  color: #48d1cc;
 }
 
 .container {
   width: 70vw;
-  background-color: bisque;
+  height: auto;
+  background-color: #ffe4c4;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
