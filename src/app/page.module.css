@@ -1,25 +1,17 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:center;
   align-items: center;
   padding: 10rem;
-  min-height: 100vh;
+  width: 100vw;
+  height: auto;
 }
+
 
 .description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 1rem;
-  max-width: var(--max-width);
-  width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
-}
-
-.description p {
-  position: relative;
+  position: absolute;
+  top: 50px;
   margin: 0;
   padding: 1rem;
   background-color:mediumturquoise;
@@ -27,3 +19,10 @@
   border-radius: var(--border-radius);
 }
 
+.container {
+  width: 70vw;
+  background-color: bisque;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 0;
+}

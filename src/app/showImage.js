@@ -1,105 +1,122 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import ids from "@/data/openIds";
 import Popup from "reactjs-popup";
+import style from "./showImage.module.css";
 import "reactjs-popup/dist/index.css";
-import {
-  query,
-  where,
-  getDocsdoc,
-  getDocs,
-  addDoc,
-  collection,
-  setDoc,
-  onSnapshot,
-  doc,
-} from "firebase/firestore";
-import {db, colRef} from "@/db/fbdbinit";
-
-/*
- Internal error: FirebaseError: Expected type 'DocumentReference', but it was: a custom CollectionReference object
-*/
+import infomation from "@/db/fetchedData";
+import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import {Autoplay, Pagination, Navigation} from "swiper/modules";
 
 export default function ShowImage() {
-  const [data, setData] = useState("");
-  const [target, setTarget] = useState([]);
-  let id = Math.floor(Math.random() * ids.length);
+  const [data, setData] = useState([]);
+  const [isFrag, setFrag] = useState(false);
+  const dataCount = infomation.length;
 
   useEffect(() => {
-    const getData = async () => {
-      // fetchでデータをとって、DBに保存する
-      const res = await fetch(
-        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
-      );
-      const infoObj = await res.json();
-      if (infoObj.primaryImageSmall !== "") {
-        setData(infoObj);
-        await addDoc(collection(db, "info"), {
-          artId: id,
-          src: infoObj.primaryImageSmall,
-          title: infoObj.title,
-          artist: infoObj.artistDisplayName,
-          bio: infoObj.artistDisplayBio,
-        });
-        console.log("THER");
-      } else {
-        id = Math.floor(Math.random() * ids.length);
-        getData();
-      }
-    };
-    const searchData = async function () {
-      // すでにDBに入ったデータかどうか調べる
-      const q = query(collection(db, "info"), where("artId", "==", id));
-      onSnapshot(q, snapshot => {
-        snapshot.docs.forEach(doc => {
-          setTarget([{...doc.data(), id: doc.id}]);
-        });
-      });
-    };
-    const targetData = async function () {
-      // すでにDBにあったデータを持ってきてsetDataする
-      const q = query(collection(db, "info"), where("artId", "==", id));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach(doc => {
-        setData({...doc.data()});
-      });
-      onSnapshot(q, snapshot => {
-        snapshot.docs.forEach(doc => {
-          setData({...doc.data()});
-        });
-      }).catch(err => {
-        console.log(err.message);
-      });
-    };
-    searchData(); // DBにあるか？返り値がわからん
-    console.log(target);
-    if (target.length === 0) {
-      // DBになかったからAPIから取得;
-      getData();
-    } else {
-      // DBにあったからDBから取得
-      targetData();
+    const idsArr = getRandomNumbersArr(20);
+    const stock = [];
+    for (const i of idsArr) {
+      const obj = {
+        accessionYear: infomation[i].accessionYear,
+        primaryImageSmall: infomation[i].primaryImageSmall,
+        title: infomation[i].title,
+        artistDisplayName: infomation[i].artistDisplayName,
+        artistDisplayBio: infomation[i].artistDisplayBio,
+        objectURL: infomation[i].objectURL,
+      };
+      stock.push(obj);
     }
+    setData(stock);
   }, []);
-  console.log(data);
 
+  useEffect(() => {
+    const idsArr = getRandomNumbersArr(20);
+    const stock = [];
+    for (const i of idsArr) {
+      const obj = {
+        accessionYear: infomation[i].accessionYear,
+        primaryImageSmall: infomation[i].primaryImageSmall,
+        title: infomation[i].title,
+        artistDisplayName: infomation[i].artistDisplayName,
+        artistDisplayBio: infomation[i].artistDisplayBio,
+        objectURL: infomation[i].objectURL,
+      };
+      stock.push(obj);
+    }
+    setData(stock);
+  }, [isFrag]);
+
+  // utils
+  function getRandomNumbersArr(num) {
+    const uniqueArray = [];
+    while (uniqueArray.length < num) {
+      const randomNum = Math.floor(Math.random() * dataCount);
+      if (!uniqueArray.includes(randomNum)) {
+        uniqueArray.push(randomNum);
+      }
+    }
+    return uniqueArray;
+  }
   return (
     <>
-      <Popup
-        trigger={
-          <Image
-            src={data.primaryImageSmall}
-            width={500}
-            height={500}
-            alt={data.title}
-          />
-        }
-        position="canter center"
+      <Swiper
+        slidesPerView={1}
+        style={{
+          "--swiper-navigation-color": "#fff",
+        }}
+        lazy="true"
+        spaceBetween={30}
+        centeredSlides={true}
+        centeredSlidesBounds={true}
+        updateOnWindowResize={true}
+        autoplay={{
+          delay: 10000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
       >
-        <div style={{color: "black"}}>{data.title}</div>
-        <div style={{color: "black"}}>{data.artistDisplayName}</div>
-        <div style={{color: "black"}}>{data.artistDisplayBio}</div>
-      </Popup>
+        {data.map(obj => {
+          return (
+            <>
+              <SwiperSlide style={{margin: "0 auto"}}>
+                <Popup
+                  trigger={
+                    // <SwiperSlide>
+                    <img src={obj.primaryImageSmall} fill alt={obj.title} />
+                    // </SwiperSlide>
+                  }
+                  position="canter center"
+                >
+                  <div className={style.text}>{obj.title}</div>
+                  <div className={style.text}>{obj.artistDisplayName}</div>
+                  <div className={style.text}>{obj.artistDisplayBio}</div>
+                  <div className={style.url}>
+                    <a href={obj.objectURL}>The Met page</a>
+                  </div>
+                </Popup>
+              </SwiperSlide>
+            </>
+          );
+        })}
+      </Swiper>
+      <div
+        className={style.description}
+        onClick={() => {
+          let nextFrag = !isFrag;
+          setFrag(nextFrag);
+        }}
+      >
+        Show more arts.
+      </div>
     </>
   );
 }

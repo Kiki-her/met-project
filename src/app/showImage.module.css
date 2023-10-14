@@ -1,0 +1,25 @@
+.url a {
+    text-decoration: underline;
+    text-decoration-color: #E4012B;
+    color: #E4012B;
+}
+
+.text {
+    color: black;
+}
+
+
+
+.img {
+    margin: 0 auto;
+    object-fit: contain;
+    position: relative !important;
+    width: auto !important;
+}
+
+.description {
+    margin: 0;
+    padding: 1rem;
+    background-color: mediumturquoise;
+    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+}
