@@ -1,4 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  webpack5: true,
+  webpack: config => {
+    config.resolve.fallback = {
+      fs: false,
+    };
 
-module.exports = nextConfig
+    return config;
+  },
+  images: {
+    domains: ["images.metmuseum.org"],
+  },
+};
+
+module.exports = nextConfig;
