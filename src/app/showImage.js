@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {useEffect, useState} from "react";
 import Popup from "reactjs-popup";
 import style from "./showImage.module.css";
@@ -9,14 +8,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import {Autoplay, Pagination, Navigation} from "swiper/modules";
+import {onSnapshot, colRef, addDoc, q, getDoc, doc, db} from "../db/firebase";
+import ShareIds from "./shareIds";
 
-export default function ShowImage() {
-  const [data, setData] = useState([]);
-  const [isFrag, setFrag] = useState(false);
-  const dataCount = infomation.length;
-
+export default function ShowImage({
+  data,
+  setData,
+  isFrag,
+  setFrag,
+  targetId,
+  dataCount,
+  setId,
+}) {
   useEffect(() => {
-    const idsArr = getRandomNumbersArr(20);
+    const idsArr = getRandomNumbersArr(15);
+
     const stock = [];
     for (const i of idsArr) {
       const obj = {
@@ -30,26 +36,20 @@ export default function ShowImage() {
       stock.push(obj);
     }
     setData(stock);
-  }, []);
+    addDoc(colRef, {
+      groups: JSON.stringify(stock),
+      createdAt: new Date(),
+    });
 
-  useEffect(() => {
-    const idsArr = getRandomNumbersArr(20);
-    const stock = [];
-    for (const i of idsArr) {
-      const obj = {
-        accessionYear: infomation[i].accessionYear,
-        primaryImageSmall: infomation[i].primaryImageSmall,
-        title: infomation[i].title,
-        artistDisplayName: infomation[i].artistDisplayName,
-        artistDisplayBio: infomation[i].artistDisplayBio,
-        objectURL: infomation[i].objectURL,
-      };
-      stock.push(obj);
-    }
-    setData(stock);
+    onSnapshot(q, snapshot => {
+      let arts = [];
+      snapshot.docs.forEach(doc => {
+        arts.push({...doc.data(), id: doc.id});
+      });
+
+      setId(arts.at(-1)["id"]);
+    });
   }, [isFrag]);
-
-  // utils
   function getRandomNumbersArr(num) {
     const uniqueArray = [];
     while (uniqueArray.length < num) {
@@ -60,7 +60,8 @@ export default function ShowImage() {
     }
     return uniqueArray;
   }
-  return (
+
+  return data ? (
     <>
       <Swiper
         slidesPerView={1}
@@ -90,13 +91,11 @@ export default function ShowImage() {
               <SwiperSlide style={{margin: "0 auto"}}>
                 <Popup
                   trigger={
-                    // <SwiperSlide>
                     <img
                       src={obj.primaryImageSmall}
                       alt={obj.title}
                       className={style.img}
                     />
-                    // </SwiperSlide>
                   }
                   position="canter center"
                 >
@@ -121,6 +120,9 @@ export default function ShowImage() {
       >
         Show more arts.
       </div>
+      <ShareIds targetId={targetId} />
     </>
+  ) : (
+    <div>Now Loading...</div>
   );
 }
