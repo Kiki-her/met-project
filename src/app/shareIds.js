@@ -5,9 +5,10 @@ export default function GetIds({targetId}) {
     <Popup
       trigger={
         <>
-          <div>IDを発行</div>
+          <button>IDを発行</button>
         </>
       }
+      position="canter center"
     >
       <>
         <div>ギャラリーのID</div>

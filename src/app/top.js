@@ -1,4 +1,3 @@
-import styles from "./page.module.css";
 import {useState, useEffect} from "react";
 import {onSnapshot, colRef, addDoc, q} from "../db/firebase";
 import infomation from "@/db/fetchedData";
@@ -66,14 +65,18 @@ export default function Top() {
     />
   ) : (
     <>
-      <button
-        onClick={() => {
-          setSolo(true);
-        }}
-      >
-        ひとりで楽しむ
-      </button>
-      <GetIds taegetId={taegetId} setId={setId} />
+      <div>
+        <button
+          onClick={() => {
+            setSolo(true);
+          }}
+        >
+          ひとりで楽しむ
+        </button>
+      </div>
+      <div>
+        <GetIds taegetId={taegetId} setId={setId} setData={setData} />
+      </div>
     </>
   );
 }

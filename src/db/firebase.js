@@ -45,7 +45,6 @@ onSnapshot(colRef, snapshot => {
   snapshot.docs.forEach(doc => {
     arts.push({...doc.data(), id: doc.id});
   });
-  console.log(arts);
 });
 // Initialize Realtime Database and get a reference to the service
 

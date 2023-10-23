@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import {Autoplay, Pagination, Navigation} from "swiper/modules";
 import {onSnapshot, colRef, addDoc, q, getDoc, doc, db} from "../db/firebase";
+import ShareIds from "./shareIds";
 
 export default function ShowImage({
   data,
@@ -19,17 +20,6 @@ export default function ShowImage({
   dataCount,
   setId,
 }) {
-  useEffect(() => {
-    if (targetId) {
-      const docRef = doc(db, "arts", targetId);
-      getDoc(docRef).then(() => {
-        const targetData = doc.data();
-        const obj = JSON.parse(targetData.groups);
-        setData(obj);
-      });
-    }
-  }, []);
-
   useEffect(() => {
     const idsArr = getRandomNumbersArr(15);
 
@@ -130,6 +120,7 @@ export default function ShowImage({
       >
         Show more arts.
       </div>
+      <ShareIds targetId={targetId} />
     </>
   ) : (
     <div>Now Loading...</div>
