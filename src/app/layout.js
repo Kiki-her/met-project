@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         {/* 初回描画のちらつきを避けるため、保存済み設定を先に反映する */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('night-museum.settings')||'{}');var r=document.documentElement;if(s.motion==='reduced')r.dataset.motion='reduced';var m={s:0.94,m:1,l:1.1};r.style.setProperty('--fs-scale',String(m[s.textSize]||1));var l=localStorage.getItem('night-museum.lang');if(l==='en'||l==='ja'){r.lang=l;}}catch(e){}})();`,
+            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('night-museum.settings')||'{}');var r=document.documentElement;if(s.motion==='reduced')r.dataset.motion='reduced';var m={s:0.94,m:1,l:1.1};r.style.setProperty('--fs-scale',String(m[s.textSize]||1));var l=localStorage.getItem('night-museum.lang');if(l==='en'||l==='ja'){r.lang=l;}if(localStorage.getItem('night-museum.entered')==='1')r.dataset.entered='1';}catch(e){}})();`,
           }}
         />
       </head>

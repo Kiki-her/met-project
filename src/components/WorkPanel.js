@@ -12,6 +12,7 @@ export default function WorkPanel({
   onClose,
   onPrev,
   onNext,
+  onShare,
   chapterTitle,
   chapterNote,
   hasPrev = true,
@@ -23,6 +24,8 @@ export default function WorkPanel({
   const [speechErr, setSpeechErr] = useState(false);
   const [loadedFull, setLoadedFull] = useState(false);
   const [fullFailed, setFullFailed] = useState(false);
+  /** 背丈のシルエットを並べて、実寸を感じる表示 */
+  const [showScale, setShowScale] = useState(false);
   const panelRef = useRef(null);
   const closeRef = useRef(null);
 
@@ -33,6 +36,7 @@ export default function WorkPanel({
     setPaused(false);
     setLoadedFull(false);
     setFullFailed(false);
+    setShowScale(false);
   }, [work?.id]);
 
   useEffect(() => {
@@ -79,6 +83,17 @@ export default function WorkPanel({
   if (!work) return null;
 
   const hiSrc = loadedFull && !fullFailed ? work.imgFull : work.img;
+
+  /**
+   * 実寸くらべ用の換算。
+   * 背丈 170cm が 190px に収まるように縮尺を決め、作品も同じ比率で並べる。
+   * 同じ縮尺で並べないと「絵のほうが大きい」という比較の意味が無くなる。
+   */
+  const PERSON_CM = 170;
+  const STAGE_PX = 190;
+  const hasSize = !!(work.h && work.h > 3);
+  const scaleRatio = hasSize ? Math.min(STAGE_PX / Math.max(PERSON_CM, work.h), 0.62) : 1;
+
 
   const toggleAudio = () => {
     if (!speechSupported()) {
@@ -175,6 +190,59 @@ export default function WorkPanel({
           ) : null}
         </figure>
 
+        {/*
+          実寸くらべ。
+          数字だけでは「思ったより大きい」が伝わらないので、人の背丈（約170cm）と
+          並べて見せる。図版はモバイルでは隠しているが、この比較は寸法の話なので
+          図版の外に出して、どの画面幅でも使えるようにしている。
+        */}
+        {hasSize ? (
+          <div className={styles.scaleSection}>
+            <button
+              type="button"
+              className={styles.scaleBtn}
+              onClick={() => setShowScale(v => !v)}
+              aria-expanded={showScale}
+              tabIndex={open ? 0 : -1}
+            >
+              {showScale ? t("work.scaleHide") : t("work.scaleShow")}
+              <span className={styles.scaleChevron} data-open={showScale ? "on" : "off"} aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.4">
+                  <path d="M2.5 4.5L6 8l3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </button>
+
+            {showScale ? (
+              <figure className={styles.scaleBox}>
+                <div className={styles.scaleStage}>
+                  <span
+                    className={styles.scaleWork}
+                    style={{
+                      height: `${Math.round(work.h * scaleRatio)}px`,
+                      width: work.w ? `${Math.round(work.w * scaleRatio)}px` : undefined,
+                    }}
+                  >
+                    {work.w ? null : <span className={styles.scaleWorkBlank} />}
+                  </span>
+                  <span className={styles.scalePerson} style={{ height: `${Math.round(170 * scaleRatio)}px` }}>
+                    <svg viewBox="0 0 24 76" fill="currentColor" aria-hidden="true">
+                      <circle cx="12" cy="6.5" r="5.2" />
+                      <path d="M6.4 14h11.2a2.6 2.6 0 0 1 2.6 2.6v16.2h-4.4v19.4h-3.2V32.8h-1.2v19.4H8.2V32.8H3.8V16.6A2.6 2.6 0 0 1 6.4 14z" />
+                    </svg>
+                  </span>
+                </div>
+                <figcaption className={styles.scaleNote}>
+                  {t("work.scaleNote", {
+                    h: Math.round(work.h),
+                    w: Math.round(work.w || 0),
+                  })}
+                </figcaption>
+              </figure>
+            ) : null}
+          </div>
+        ) : null}
+
         <h2 className={styles.title}>{T(work) || t("work.untitled")}</h2>
         <p className={styles.artist}>
           {work.artist || t("work.unknownArtist")}
@@ -241,6 +309,25 @@ export default function WorkPanel({
             {t("work.source")}
             <span aria-hidden="true">↗</span>
           </a>
+
+          {onShare ? (
+            <button
+              type="button"
+              className={styles.shareBtn}
+              onClick={() => onShare(work)}
+              tabIndex={open ? 0 : -1}
+            >
+              <span aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3">
+                  <circle cx="15" cy="5" r="2.1" />
+                  <circle cx="5" cy="10" r="2.1" />
+                  <circle cx="15" cy="15" r="2.1" />
+                  <path d="M7 9l6-3M7 11l6 3" strokeLinecap="round" />
+                </svg>
+              </span>
+              {t("work.share")}
+            </button>
+          ) : null}
         </div>
 
         {speechErr ? <p className={styles.speechErr}>{t("work.audioUnsupported")}</p> : null}

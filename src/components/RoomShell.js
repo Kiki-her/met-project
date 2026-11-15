@@ -59,9 +59,18 @@ export default function RoomShell({ room, neighbours }) {
   const [soundOn, setSoundOn] = useState(false);
   const [askSound, setAskSound] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  /** 共有シートが作品1点を指しているか（false なら展示室まるごと） */
+  const [shareWork, setShareWork] = useState(false);
   const [hiRes, setHiRes] = useState(false);
   /** 展示室を移るときの暗転 — entering | off | leaving */
   const [veil, setVeil] = useState("entering");
+
+  /** 触れている指（ピンチ用）。pointerId → 位置 */
+  const pointers = useRef(new Map());
+  /** 2本指の拡大開始時の状態 */
+  const pinch = useRef(null);
+  /** URL の ?work= を一度だけ処理するための番人 */
+  const openedFromUrl = useRef(false);
 
   const lastIndex = useRef(-1);
   const totalRef = useRef(0);
@@ -147,6 +156,28 @@ export default function RoomShell({ room, neighbours }) {
     }
     return undefined;
   }, [layout, works, apply, room.id]);
+
+  /* ---------- 共有された作品（?work=<id>）から開く ---------- */
+  useEffect(() => {
+    if (!works.length || openedFromUrl.current) return;
+    let id = null;
+    try {
+      id = new URLSearchParams(window.location.search).get("work");
+    } catch {
+      id = null;
+    }
+    openedFromUrl.current = true;
+    if (!id) return;
+    const item = works.find(w => String(w.work.id) === String(id));
+    if (item) {
+      // 幕が上がるのを待ってから、その作品の前に立つ
+      const timer = window.setTimeout(() => openWork(item), 420);
+      return () => window.clearTimeout(timer);
+    }
+    return undefined;
+    // openWork は毎回作り直されるが、URL の処理は一度きりなので依存に入れない
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [works]);
 
   /* 画面サイズが変わったら、視点があらぬ方向を向かないよう壁の中に収め直す */
   useEffect(() => {
@@ -394,6 +425,22 @@ export default function RoomShell({ room, neighbours }) {
     if (e.pointerType === "mouse" && e.button !== 0) return;
     bump();
     const s = cam.current;
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    // 2本目の指が触れたら、ドラッグをやめてピンチに切り替える
+    if (pointers.current.size === 2) {
+      const [a, b] = [...pointers.current.values()];
+      s.dragging = false;
+      pinch.current = {
+        dist: Math.hypot(a.x - b.x, a.y - b.y) || 1,
+        z: s.tz,
+        // 2本の指の中点を、画面上のどこで拡大するか
+        midX: (a.x + b.x) / 2,
+      };
+      if (settleTimer.current) window.clearTimeout(settleTimer.current);
+      return;
+    }
+
     s.dragging = true;
     s.startX = e.clientX;
     s.startY = e.clientY;
@@ -406,6 +453,22 @@ export default function RoomShell({ room, neighbours }) {
     e => {
       const s = cam.current;
       const { w } = size;
+
+      if (pointers.current.has(e.pointerId)) {
+        pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      }
+
+      // ---- ピンチ拡大（2本指）----
+      if (pinch.current && pointers.current.size >= 2) {
+        const [a, b] = [...pointers.current.values()];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y) || 1;
+        const scale = dist / pinch.current.dist;
+        const maxZ = focus ? geometry(focus).z * 2.6 : 3.2;
+        s.tz = Math.min(maxZ, Math.max(1, pinch.current.z * scale));
+        if (s.tz > 1.9) setHiRes(true);
+        bump();
+        return;
+      }
 
       // 視点の傾き（マウスの位置でわずかに首を振る）
       if (!focus && tiltRef.current && w) {
@@ -422,21 +485,49 @@ export default function RoomShell({ room, neighbours }) {
       s.moved = Math.max(s.moved, Math.abs(dx), Math.abs(dy));
       s.tx = clampX(s.startCam - dx, s.z);
     },
-    [focus, size, settings.motion, clampX, bump]
+    [focus, size, settings.motion, clampX, bump, geometry]
   );
 
-  const onPointerUp = useCallback(() => {
-    bump();
-    const s = cam.current;
-    if (!s.dragging) return;
-    s.dragging = false;
-    if (s.moved < 8) return;
-    const near = nearestWork(works, s.tx);
-    if (near) {
-      const g = focus && focus.work.id === near.work.id ? geometry(near) : null;
-      s.tx = clampX(g ? g.x : centerOf(near), g ? g.z : 1);
-    }
-  }, [works, focus, geometry, clampX, bump]);
+  const onPointerUp = useCallback(
+    e => {
+      bump();
+      const s = cam.current;
+      if (e && e.pointerId != null) pointers.current.delete(e.pointerId);
+
+      // ピンチの指が離れたら、その拡大率で確定して終わる
+      if (pinch.current && pointers.current.size < 2) {
+        pinch.current = null;
+        // 拡大したまま指を離したら、寄った状態として扱う
+        if (s.tz > 1.6 && !focus) {
+          const near = nearestWork(works, s.x);
+          if (near) openWork(near, { keepHiRes: true });
+        } else if (s.tz <= 1.05 && focus) {
+          closeWork();
+        }
+        s.moved = 0;
+        return;
+      }
+
+      if (!s.dragging) return;
+      s.dragging = false;
+      if (s.moved < 8) return;
+      const near = nearestWork(works, s.tx);
+      if (near) {
+        const g = focus && focus.work.id === near.work.id ? geometry(near) : null;
+        s.tx = clampX(g ? g.x : centerOf(near), g ? g.z : 1);
+      }
+    },
+    [works, focus, geometry, clampX, bump, openWork, closeWork]
+  );
+
+  const onPointerCancel = useCallback(
+    e => {
+      if (e && e.pointerId != null) pointers.current.delete(e.pointerId);
+      pinch.current = null;
+      cam.current.dragging = false;
+    },
+    []
+  );
 
   /** ドラッグ直後のクリックで作品が開いてしまうのを防ぐ */
   const onClickCapture = useCallback(
@@ -561,7 +652,7 @@ export default function RoomShell({ room, neighbours }) {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
+        onPointerCancel={onPointerCancel}
         onClickCapture={onClickCapture}
         data-focus={focus ? "on" : "off"}
       >
@@ -691,7 +782,11 @@ export default function RoomShell({ room, neighbours }) {
           <button
             type="button"
             className={styles.iconBtn}
-            onClick={() => setShareOpen(true)}
+            onClick={() => {
+              // ヘッダーの共有は展示室まるごと
+              setShareWork(false);
+              setShareOpen(true);
+            }}
             aria-label={t("room.shareCta")}
           >
             <IconShare />
@@ -757,13 +852,22 @@ export default function RoomShell({ room, neighbours }) {
         onClose={closeWork}
         onPrev={() => step(-1)}
         onNext={() => step(1)}
+        onShare={() => {
+          setShareWork(true);
+          setShareOpen(true);
+        }}
         chapterTitle={focus ? L(focus.chapter.title) : ""}
         chapterNote={focus ? L(focus.chapter.note) : ""}
         hasPrev={hud.index > 0}
         hasNext={hud.index < works.length - 1}
       />
 
-      <ShareSheet open={shareOpen} onClose={() => setShareOpen(false)} exhibition={room} />
+      <ShareSheet
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        exhibition={room}
+        work={shareWork && focus ? focus.work : null}
+      />
 
       {askSound ? <SoundPrompt onAccept={acceptSound} onDecline={declineSound} /> : null}
     </div>
