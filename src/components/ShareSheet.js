@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import qrcode from "qrcode-generator";
 import { useI18n } from "@/lib/i18n";
-import { copyText, exhibitionUrl, lineShare, workUrl, xIntent } from "@/lib/shareUrl";
+import { copyText, exhibitionUrl, lineShare, withLang, workUrl, xIntent } from "@/lib/shareUrl";
 import styles from "./ShareSheet.module.css";
 
 /** SVG path に変換したQRコード */
@@ -34,8 +34,20 @@ function useQrPath(text) {
  * 作品を渡すと ?work=<id> 付きの URL を組み立てるので、
  * 受け取った人はその作品の前に立った状態から始められる。
  * 言語は URL に載せる（?lang=）。相手の端末に localStorage は無いため。
+ *
+ * 書庫の作品のように「展示室に属さない1点」を共有したい場合は、
+ * directUrl とタイトルを渡す。URL の組み立てだけを差し替え、
+ * 言語の切り替え・X / LINE / URLコピー・QR はそのまま使える。
  */
-export default function ShareSheet({ open, onClose, exhibition, work }) {
+export default function ShareSheet({
+  open,
+  onClose,
+  exhibition,
+  work,
+  directUrl = "",
+  directTitle = "",
+  directArtist = "",
+}) {
   const { t, T, lang } = useI18n();
   const [shareLang, setShareLang] = useState(lang);
   const [copied, setCopied] = useState(false);
@@ -62,15 +74,21 @@ export default function ShareSheet({ open, onClose, exhibition, work }) {
   }, [open, onClose]);
 
   const url = useMemo(() => {
+    if (directUrl) return withLang(directUrl, shareLang);
     if (!exhibition) return "";
     if (work) return workUrl(exhibition.id, work.id, shareLang);
     return exhibitionUrl(exhibition.id, shareLang);
-  }, [exhibition, work, shareLang]);
+  }, [directUrl, exhibition, work, shareLang]);
 
   const qr = useQrPath(url);
 
   /** 共有文（題名と作者）。言語の選択に合わせる */
   const message = useMemo(() => {
+    if (directTitle) {
+      const artist = directArtist ? ` — ${directArtist}` : "";
+      const sep = shareLang === "ja" ? "｜" : " | ";
+      return `${directTitle}${artist}${sep}${t("share.workBy")}`;
+    }
     if (!exhibition) return "";
     if (work) {
       const title = shareLang === "ja" && work.titleJa ? work.titleJa : work.title;
@@ -81,12 +99,16 @@ export default function ShareSheet({ open, onClose, exhibition, work }) {
     }
     const ex = shareLang === "ja" ? exhibition.title?.ja : exhibition.title?.en;
     return `${ex}｜${t("share.galleryBy")}`;
-  }, [exhibition, work, shareLang, t]);
+  }, [directTitle, directArtist, exhibition, work, shareLang, t]);
 
   // titleJa は WorkPanel と同じ規則で選ぶ
   const workTitle = work ? (shareLang === "ja" && work.titleJa ? work.titleJa : work.title) : "";
 
-  if (!open || !exhibition) return null;
+  const heading = directTitle || workTitle || exhibition?.title?.[shareLang] || "";
+  const eyebrow = directTitle || work ? t("share.workTitle") : t("share.title");
+  const byline = directTitle ? directArtist : work?.artist;
+
+  if (!open || !url) return null;
 
   const onCopy = async () => {
     const ok = await copyText(url);
@@ -103,15 +125,15 @@ export default function ShareSheet({ open, onClose, exhibition, work }) {
       className={styles.overlay}
       role="dialog"
       aria-modal="true"
-      aria-label={work ? t("share.workTitle") : t("share.title")}
+      aria-label={eyebrow}
     >
       <button type="button" className={styles.backdrop} onClick={onClose} aria-hidden="true" tabIndex={-1} />
       <div className={styles.sheet}>
         <div className={styles.head}>
           <div className={styles.headText}>
-            <p className={styles.eyebrow}>{work ? t("share.workTitle") : t("share.title")}</p>
-            <h2 className={styles.title}>{work ? workTitle : exhibition.title?.[shareLang]}</h2>
-            {work && work.artist ? <p className={styles.byline}>{work.artist}</p> : null}
+            <p className={styles.eyebrow}>{eyebrow}</p>
+            <h2 className={styles.title}>{heading}</h2>
+            {byline ? <p className={styles.byline}>{byline}</p> : null}
           </div>
           <button
             type="button"
@@ -149,7 +171,9 @@ export default function ShareSheet({ open, onClose, exhibition, work }) {
           </div>
         </div>
 
-        <p className={styles.body}>{work ? t("share.workBody") : t("share.body")}</p>
+        <p className={styles.body}>
+          {directTitle || work ? t("share.workBody") : t("share.body")}
+        </p>
 
         {/* X / LINE / URLコピー */}
         <div className={styles.targets}>

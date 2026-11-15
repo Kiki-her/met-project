@@ -14,12 +14,22 @@ export function siteBase() {
   return `${window.location.origin}`;
 }
 
-/** いまの言語を URL に載せる（対応言語のみ） */
+/**
+ * いまの言語を URL に載せる（対応言語のみ）。
+ * すでに lang が付いている URL を渡されても二重にならないよう、置き換える。
+ */
 export function withLang(url, lang) {
   if (!url) return url;
   const l = lang === "en" ? "en" : "ja";
-  const sep = url.includes("?") ? "&" : "?";
-  return `${url}${sep}lang=${l}`;
+  try {
+    const base = typeof window !== "undefined" ? window.location.origin : "http://localhost";
+    const u = new URL(url, base);
+    u.searchParams.set("lang", l);
+    return u.toString();
+  } catch {
+    const sep = url.includes("?") ? "&" : "?";
+    return `${url}${sep}lang=${l}`;
+  }
 }
 
 /** 展覧会の共有URL */
@@ -33,6 +43,17 @@ export function exhibitionUrl(id, lang) {
  */
 export function workUrl(exhibitionId, workId, lang) {
   const base = `${siteBase()}/g/${exhibitionId}/?work=${encodeURIComponent(workId)}`;
+  const l = lang === "en" ? "en" : "ja";
+  return `${base}&lang=${l}`;
+}
+
+/**
+ * 書庫の作品1点の共有URL。
+ * ?work=<id> を付けると、書庫を開いたときにその作品の詳細が開いた状態から始まる。
+ * 展示室の作品とは別のページなので、パスも別に持つ。
+ */
+export function libraryWorkUrl(workId, lang) {
+  const base = `${siteBase()}/library/?work=${encodeURIComponent(workId)}`;
   const l = lang === "en" ? "en" : "ja";
   return `${base}&lang=${l}`;
 }

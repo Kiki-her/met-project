@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import { markEntered } from "@/lib/visit";
+import { libraryWorkUrl } from "@/lib/shareUrl";
+import ShareSheet from "./ShareSheet";
 import styles from "./Library.module.css";
 
 const PAGE = 48;
@@ -38,6 +40,10 @@ export default function Library() {
   const [highlightOnly, setHighlightOnly] = useState(false);
   const [limit, setLimit] = useState(PAGE);
   const [selected, setSelected] = useState(null);
+  /** 共有シートを開いているか */
+  const [shareOpen, setShareOpen] = useState(false);
+  /** 共有リンク（?work=）を開いたとき、一覧の読み込みを待って開くための保留分 */
+  const pendingWork = useRef(null);
 
   const inputRef = useRef(null);
 
@@ -64,6 +70,25 @@ export default function Library() {
       alive = false;
     };
   }, []);
+
+  /*
+   * 共有リンク（?work=<id>）から開く。
+   * 書庫の一覧は JSON を後から取りに行くので、読み込みが終わるまで作品を
+   * 特定できない。読めた時点で一度だけ該当作品を探して詳細を開く。
+   */
+  useEffect(() => {
+    if (!works || !works.length || pendingWork.current !== null) return;
+    let id = null;
+    try {
+      id = new URLSearchParams(window.location.search).get("work");
+    } catch {
+      id = null;
+    }
+    pendingWork.current = id ? false : true; // 一度きりにする目印
+    if (!id) return;
+    const hit = works.find(w => String(w.i) === String(id));
+    if (hit) setSelected(hit);
+  }, [works]);
 
   /** 部門の一覧（作品数の多い順） */
   const depts = useMemo(() => {
@@ -332,7 +357,26 @@ export default function Library() {
       </main>
 
       {selected ? (
-        <Detail work={selected} onClose={() => setSelected(null)} />
+        <Detail
+          work={selected}
+          onClose={() => setSelected(null)}
+          onShare={() => setShareOpen(true)}
+        />
+      ) : null}
+
+      {/*
+        書庫の作品1点の共有。
+        ?work=<id> を付けた URL を作るので、受け取った人は書庫を開いたときに
+        その作品が引き出された状態から始まる。
+      */}
+      {selected ? (
+        <ShareSheet
+          open={shareOpen}
+          onClose={() => setShareOpen(false)}
+          directUrl={libraryWorkUrl(selected.i, lang)}
+          directTitle={lang === "ja" && selected.j ? selected.j : selected.t}
+          directArtist={selected.a || t("library.noArtist")}
+        />
       ) : null}
     </div>
   );
@@ -341,7 +385,7 @@ export default function Library() {
 /* ============================================================
    作品の詳細（書庫から一枚だけ引き出した状態）
    ============================================================ */
-function Detail({ work, onClose }) {
+function Detail({ work, onClose, onShare }) {
   const { t, lang } = useI18n();
   const closeRef = useRef(null);
 
@@ -401,17 +445,33 @@ function Detail({ work, onClose }) {
             ))}
           </dl>
 
-          {work.u ? (
-            <a
-              href={work.u}
-              className={styles.source}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("library.detailSource")}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ) : null}
+          <div className={styles.sheetLinks}>
+            {work.u ? (
+              <a
+                href={work.u}
+                className={styles.source}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("library.detailSource")}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ) : null}
+
+            {onShare ? (
+              <button type="button" className={styles.share} onClick={onShare}>
+                <span aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3">
+                    <circle cx="15" cy="5" r="2.1" />
+                    <circle cx="5" cy="10" r="2.1" />
+                    <circle cx="15" cy="15" r="2.1" />
+                    <path d="M7 9l6-3M7 11l6 3" strokeLinecap="round" />
+                  </svg>
+                </span>
+                {t("work.share")}
+              </button>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

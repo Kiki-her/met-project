@@ -389,11 +389,10 @@
 }
 
 .libraryCard {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 320px);
+  align-items: end;
+  gap: clamp(20px, 4vw, 48px);
   padding: clamp(24px, 3.4vw, 40px);
   border: 1px solid rgba(240, 233, 221, 0.07);
   background:
@@ -402,6 +401,13 @@
   transition:
     border-color 0.5s var(--ease),
     background 0.5s var(--ease);
+}
+
+/* 狭い画面では挿絵を下に落とし、説明のほうを先に読ませる */
+@media (max-width: 720px) {
+  .libraryCard {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .libraryCard:hover,
@@ -434,11 +440,145 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
   padding-bottom: 3px;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
   color: var(--gold-soft);
   border-bottom: 1px solid var(--gold-dim);
+  white-space: nowrap;
+  transition: gap 0.35s var(--ease);
+}
+
+.libraryCard:hover .libraryCta {
+  gap: 16px;
+}
+
+/* ============================================================
+   書庫の挿絵（奥の書架）
+   画像を持たず、箱と背表紙だけで組む。灯りを落とした収蔵庫に
+   棚だけが浮かんでいる、という見え方にしたい。
+   ============================================================ */
+
+.shelfScene {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: 210px;
+  padding-bottom: 26px;
+}
+
+/* 棚の後ろに落ちる弱い灯り */
+.shelfGlow {
+  position: absolute;
+  inset: auto 0 8% 0;
+  height: 78%;
+  background: radial-gradient(
+    58% 70% at 50% 78%,
+    rgba(200, 163, 74, 0.13),
+    rgba(200, 163, 74, 0.04) 46%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.shelfUnit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0;
+  width: 100%;
+  max-width: 300px;
+  opacity: 0.92;
+}
+
+/* 1段ぶん（背表紙の並び + 棚板） */
+.shelfStack {
+  display: flex;
+  flex-direction: column;
+}
+
+.shelfRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: stretch;
+  gap: 2px;
+  height: 46px;
+  padding: 0 2px;
+}
+
+/* 棚板 */
+.shelfBoard {
+  display: block;
+  height: 3px;
+  border-radius: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(240, 233, 221, 0.16),
+    rgba(240, 233, 221, 0.05) 60%,
+    rgba(0, 0, 0, 0.4)
+  );
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.45);
+}
+
+/*
+  背表紙。
+  flex-grow を 1 にして、段ごとに冊数が違っても棚の幅いっぱいに並ぶようにする
+  （固定幅のままだと、冊数の少ない段だけ本が中央に固まって棚板が余る）。
+  太さは inline の width を初期値として、余りを冊数で分ける。
+*/
+.spine {
+  position: relative;
+  display: block;
+  flex: 1 1 auto;
+  min-width: 4px;
+  border-radius: 1px 1px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.45);
+  transition: transform 0.5s var(--ease);
+}
+
+.spine[data-tone="0"] {
+  background: linear-gradient(180deg, #3b2a1e, #261a12);
+}
+.spine[data-tone="1"] {
+  background: linear-gradient(180deg, #2b2320, #191310);
+}
+.spine[data-tone="2"] {
+  background: linear-gradient(180deg, #33281a, #1f170f);
+}
+.spine[data-tone="3"] {
+  background: linear-gradient(180deg, #402b23, #2a1a14);
+}
+
+/* 背の金の帯 */
+.spineBand {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 26%;
+  height: 2px;
+  background: rgba(200, 163, 74, 0.5);
+  opacity: 0.75;
+}
+
+/* 全体を少しだけ持ち上げる（寄ってくる感じを出す） */
+.libraryCard:hover .spine {
+  transform: translateY(-2px);
+}
+
+/* 棚の名板 */
+.shelfPlaque {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  padding: 2px 10px;
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  color: var(--muted-2);
+  border: 1px solid rgba(200, 163, 74, 0.24);
+  background: rgba(10, 9, 8, 0.6);
   white-space: nowrap;
 }
 

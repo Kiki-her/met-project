@@ -10,6 +10,43 @@ import Door from "./Door";
 import SettingsPanel from "./SettingsPanel";
 import styles from "./Entry.module.css";
 
+/**
+ * 書庫の入口に描く本棚の背表紙。
+ *
+ * render 中に Math.random() を使うとサーバーとクライアントで高さが食い違い、
+ * ハイドレーションが壊れるので、固定の並びから描く。
+ *   h: 棚の高さに対する割合(%) / w: 太さ(px) / t: 色の種類 / b: 金の帯を入れるか
+ */
+const SHELF_ROWS = [
+  [
+    { h: 74, w: 9, t: 0, b: 1 },
+    { h: 88, w: 12, t: 1, b: 0 },
+    { h: 66, w: 8, t: 2, b: 0 },
+    { h: 92, w: 14, t: 3, b: 1 },
+    { h: 80, w: 10, t: 0, b: 0 },
+    { h: 58, w: 7, t: 1, b: 0 },
+    { h: 86, w: 11, t: 2, b: 1 },
+  ],
+  [
+    { h: 90, w: 11, t: 2, b: 0 },
+    { h: 62, w: 8, t: 0, b: 0 },
+    { h: 96, w: 13, t: 1, b: 1 },
+    { h: 72, w: 9, t: 3, b: 0 },
+    { h: 84, w: 10, t: 2, b: 1 },
+    { h: 54, w: 7, t: 1, b: 0 },
+    { h: 78, w: 12, t: 0, b: 0 },
+    { h: 68, w: 8, t: 3, b: 1 },
+  ],
+  [
+    { h: 70, w: 10, t: 1, b: 0 },
+    { h: 86, w: 12, t: 3, b: 1 },
+    { h: 58, w: 7, t: 0, b: 0 },
+    { h: 94, w: 14, t: 2, b: 0 },
+    { h: 76, w: 9, t: 1, b: 1 },
+    { h: 64, w: 8, t: 0, b: 0 },
+  ],
+];
+
 /** 日替わりの展示（日付から決まるので、同じ日は同じ展示になる） */
 function todayIndex(count) {
   const d = new Date();
@@ -225,17 +262,47 @@ export default function Entry({ exhibitions }) {
           </ul>
         </section>
 
+        {/*
+          書庫への入口。
+          扉と同じく「文字だけの案内」で終わらせず、奥の書架を挿絵として置く。
+          灯りを落とした収蔵庫に棚だけが浮かんでいる、という見え方にしたいので
+          画像ではなく CSS で組む（読み込みも著作権の確認も要らない）。
+        */}
         <section className={styles.librarySection}>
           <Link href="/library/" className={styles.libraryCard}>
             <div className={styles.libraryText}>
               <span className={styles.eyebrow}>{t("library.eyebrow")}</span>
               <h2 className={styles.libraryTitle}>{t("library.title")}</h2>
               <p className={styles.libraryLede}>{t("library.lede")}</p>
+              <span className={styles.libraryCta}>
+                {t("library.open")}
+                <span aria-hidden="true">→</span>
+              </span>
             </div>
-            <span className={styles.libraryCta}>
-              {t("library.open")}
-              <span aria-hidden="true">→</span>
-            </span>
+
+            <div className={styles.shelfScene} aria-hidden="true">
+              <span className={styles.shelfGlow} />
+              <div className={styles.shelfUnit}>
+                {SHELF_ROWS.map((row, r) => (
+                  <div className={styles.shelfStack} key={r}>
+                    <div className={styles.shelfRow}>
+                      {row.map((b, i) => (
+                        <span
+                          key={i}
+                          className={styles.spine}
+                          data-tone={b.t}
+                          style={{ width: `${b.w}px`, height: `${b.h}%` }}
+                        >
+                          {b.b ? <span className={styles.spineBand} /> : null}
+                        </span>
+                      ))}
+                    </div>
+                    <span className={styles.shelfBoard} />
+                  </div>
+                ))}
+              </div>
+              <span className={styles.shelfPlaque}>{t("library.plaque")}</span>
+            </div>
           </Link>
         </section>
       </main>
