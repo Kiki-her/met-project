@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
+import { markEntered } from "@/lib/visit";
 import styles from "./Library.module.css";
 
 const PAGE = 48;
@@ -39,6 +40,11 @@ export default function Library() {
   const [selected, setSelected] = useState(null);
 
   const inputRef = useRef(null);
+
+  // 書庫にいるということは、もう館の中にいる（受付に戻っても扉は出さない）
+  useEffect(() => {
+    markEntered();
+  }, []);
 
   // 書庫の取得（1回だけ）
   useEffect(() => {

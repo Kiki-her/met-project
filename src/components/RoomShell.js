@@ -8,7 +8,7 @@ import { useSettings } from "@/components/Providers";
 import { buildRoom, centerOf, clampCam, frameKind, nearestWork } from "@/lib/room";
 import { DEFAULTS, saveProgress } from "@/lib/settings";
 import { setAmbienceVolume, startAmbience, stopAmbience } from "@/lib/sound";
-import { isSpeaking } from "@/lib/speech";
+import { markEntered } from "@/lib/visit";
 import WorkPanel from "./WorkPanel";
 import ShareSheet from "./ShareSheet";
 import SoundPrompt from "./SoundPrompt";
@@ -223,8 +223,7 @@ export default function RoomShell({ room, neighbours }) {
           !a.on ||
           blockRef.current || // 共有シート・音の確認中は止める
           veilRef.current !== "off" || // 暗転中は動かさない
-          s.dragging ||
-          isSpeaking(); // 音声ガイドの途中で切り替えない
+          s.dragging;
         if (gated) {
           autoAt.current = now; // 止まっている間は数えない
         } else if (indexRef.current >= lenRef.current - 1) {
@@ -249,6 +248,13 @@ export default function RoomShell({ room, neighbours }) {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [apply, works]);
+
+  /* ---------- 入館の記録 ---------- */
+  // 共有リンクから展示室へ直接来た場合も「もう館の中にいる」とみなす。
+  // そうしないと、受付へ戻ったときに扉が出てしまう。
+  useEffect(() => {
+    markEntered();
+  }, []);
 
   /* ---------- 進捗 ---------- */
   useEffect(() => {

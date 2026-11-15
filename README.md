@@ -78,7 +78,6 @@ npm run verify-images              # API から最新URLを取得し data/image-
 - 作品データはページ単位のチャンクに分割。初期 JS は約 95KB、展示室 約 109KB
   （旧実装は 8.8MB のデータをクライアントで import していた）
 - 環境音は Web Audio API で生成（ブラウン／帯域ノイズ＋コンボリューション残響＋時折の館のきしみ）
-- 音声ガイドは SpeechSynthesis。原稿は作品メタデータから組み立てるため音声ファイル不要
 - カメラは `requestAnimationFrame` で `transform` を直接更新（React の再描画を挟まない）
 - 設定は localStorage、初回描画前にインラインスクリプトで適用（ちらつき防止）
 

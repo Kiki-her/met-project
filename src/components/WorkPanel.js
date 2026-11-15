@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { buildScript, pauseSpeaking, resumeSpeaking, speak, speechSupported, stopSpeaking } from "@/lib/speech";
 import styles from "./WorkPanel.module.css";
 
 export default function WorkPanel({
@@ -18,10 +17,7 @@ export default function WorkPanel({
   hasPrev = true,
   hasNext = true,
 }) {
-  const { t, L, T, lang } = useI18n();
-  const [speaking, setSpeaking] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const [speechErr, setSpeechErr] = useState(false);
+  const { t, L, T } = useI18n();
   const [loadedFull, setLoadedFull] = useState(false);
   const [fullFailed, setFullFailed] = useState(false);
   /** 背丈のシルエットを並べて、実寸を感じる表示 */
@@ -29,23 +25,12 @@ export default function WorkPanel({
   const panelRef = useRef(null);
   const closeRef = useRef(null);
 
-  // 作品が変わったら読み上げを止める
+  // 作品が変わったら、高精細画像と実寸表示の状態を戻す
   useEffect(() => {
-    stopSpeaking();
-    setSpeaking(false);
-    setPaused(false);
     setLoadedFull(false);
     setFullFailed(false);
     setShowScale(false);
   }, [work?.id]);
-
-  useEffect(() => {
-    if (!open) {
-      stopSpeaking();
-      setSpeaking(false);
-      setPaused(false);
-    }
-  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -94,45 +79,6 @@ export default function WorkPanel({
   const hasSize = !!(work.h && work.h > 3);
   const scaleRatio = hasSize ? Math.min(STAGE_PX / Math.max(PERSON_CM, work.h), 0.62) : 1;
 
-
-  const toggleAudio = () => {
-    if (!speechSupported()) {
-      setSpeechErr(true);
-      return;
-    }
-    if (speaking && !paused) {
-      pauseSpeaking();
-      setPaused(true);
-      return;
-    }
-    if (speaking && paused) {
-      resumeSpeaking();
-      setPaused(false);
-      return;
-    }
-    const script = buildScript(work, {
-      lang,
-      chapterTitle,
-      chapterNote,
-      museumName: "The Metropolitan Museum of Art",
-    });
-    const ok = speak(script, lang, {
-      onEnd: () => {
-        setSpeaking(false);
-        setPaused(false);
-      },
-      onError: () => {
-        setSpeaking(false);
-        setPaused(false);
-        setSpeechErr(true);
-      },
-    });
-    if (ok) {
-      setSpeaking(true);
-      setPaused(false);
-      setSpeechErr(false);
-    }
-  };
 
   const rows = [
     work.artist && [t("work.artist"), `${work.artist}`],
@@ -285,28 +231,6 @@ export default function WorkPanel({
         ) : null}
 
         <div className={styles.actions}>
-          <button
-            type="button"
-            className={styles.audioBtn}
-            onClick={toggleAudio}
-            aria-pressed={speaking && !paused}
-            tabIndex={open ? 0 : -1}
-          >
-            <span className={styles.audioIcon} aria-hidden="true">
-              {speaking && !paused ? (
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="currentColor">
-                  <rect x="2" y="1.5" width="3.4" height="11" rx="0.6" />
-                  <rect x="8.6" y="1.5" width="3.4" height="11" rx="0.6" />
-                </svg>
-              ) : (
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="currentColor">
-                  <path d="M3 1.6l9 5.4-9 5.4z" />
-                </svg>
-              )}
-            </span>
-            {speaking ? (paused ? t("work.audioPlay") : t("work.audioPause")) : t("work.audio")}
-          </button>
-
           <a
             className={styles.sourceLink}
             href={work.url}
@@ -337,8 +261,6 @@ export default function WorkPanel({
             </button>
           ) : null}
         </div>
-
-        {speechErr ? <p className={styles.speechErr}>{t("work.audioUnsupported")}</p> : null}
       </div>
 
       <div className={styles.nav}>

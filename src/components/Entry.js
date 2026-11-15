@@ -5,11 +5,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { useSettings } from "@/components/Providers";
 import { loadProgress } from "@/lib/settings";
+import { hasEntered, markEntered } from "@/lib/visit";
 import Door from "./Door";
 import SettingsPanel from "./SettingsPanel";
 import styles from "./Entry.module.css";
-
-const SEEN_KEY = "night-museum.entered";
 
 /** 日替わりの展示（日付から決まるので、同じ日は同じ展示になる） */
 function todayIndex(count) {
@@ -25,26 +24,48 @@ export default function Entry({ exhibitions }) {
   const [progress, setProgress] = useState(null);
   /** 扉の状態。サーバー側では必ず閉じた状態で描く */
   const [doorOpen, setDoorOpen] = useState(false);
+  /** このタブでは既に入館しているので、扉は描かない */
+  const [skipDoor, setSkipDoor] = useState(false);
 
   useEffect(() => {
     setProgress(loadProgress());
   }, []);
 
   /*
-   * 扉は毎回出す。
-   * 一度きりにすると「また来た人には邪魔」ではあるが、ここは作品を見る前の
-   * 一度きりの切り替え（夜の館に入る合図）なので、回数で削らない。
-   * 前回の来館記録は残すが、扉の表示には使わない。
+   * 扉を出すのは「外から来たとき」だけ。
+   *
+   * 新しくタブを開いて来た人・前回から時間をおいて来た人には扉を出すが、
+   * 展示を終えて別の展示へ移った・受付に戻った・再読み込みした、という
+   * サイトから離れていない移動では出さない。判定は sessionStorage の記録で行う
+   * （閉じれば消えるので、次の訪問ではまた扉が出る）。
    */
+  useEffect(() => {
+    if (hasEntered()) {
+      setSkipDoor(true);
+      setDoorOpen(true);
+    }
+  }, []);
 
   const openDoor = useCallback(() => {
     setDoorOpen(true);
-    try {
-      window.localStorage.setItem(SEEN_KEY, "1");
-    } catch {
-      /* private mode */
-    }
+    markEntered();
   }, []);
+
+  /*
+   * 開いたあと html に印を付けておく。
+   * これがあると、サイト内を移動して受付に戻ってきたときに扉が一瞬も描かれない
+   * （CSS 側で消している）。開くアニメーションの途中で付けると扉が途中で
+   * 消えてしまうので、開き終わるのを待ってから付ける。
+   */
+  useEffect(() => {
+    if (!doorOpen) return;
+    if (typeof document === "undefined") return;
+    if (document.documentElement.dataset.entered === "1") return;
+    const t = window.setTimeout(() => {
+      document.documentElement.dataset.entered = "1";
+    }, 1200);
+    return () => window.clearTimeout(t);
+  }, [doorOpen]);
 
   const today = useMemo(
     () => (exhibitions.length ? exhibitions[todayIndex(exhibitions.length)] : null),
@@ -62,8 +83,12 @@ export default function Entry({ exhibitions }) {
     <div className={styles.page} data-door={doorOpen ? "off" : "on"}>
       <div className={styles.glow} aria-hidden="true" />
 
-      {/* 初回だけの扉。中身はこの下に最初から描かれている */}
-      <Door open={doorOpen} onOpen={openDoor} />
+      {/*
+        扉。中身はこの下に最初から描かれている。
+        このタブで既に入館している場合は描かない（隠すのではなく描かない）ので、
+        見えないボタンにフォーカスが飛ぶこともない。
+      */}
+      {skipDoor ? null : <Door open={doorOpen} onOpen={openDoor} />}
 
       <header className={styles.topbar}>
         <div className={styles.brand}>
