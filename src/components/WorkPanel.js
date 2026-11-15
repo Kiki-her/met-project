@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { buildScript, pauseSpeaking, resumeSpeaking, speak, speechSupported, stopSpeaking } from "@/lib/speech";
 import styles from "./WorkPanel.module.css";
 
 export default function WorkPanel({
@@ -12,36 +11,26 @@ export default function WorkPanel({
   onClose,
   onPrev,
   onNext,
+  onShare,
   chapterTitle,
   chapterNote,
   hasPrev = true,
   hasNext = true,
 }) {
-  const { t, L, T, lang } = useI18n();
-  const [speaking, setSpeaking] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const [speechErr, setSpeechErr] = useState(false);
+  const { t, L, T } = useI18n();
   const [loadedFull, setLoadedFull] = useState(false);
   const [fullFailed, setFullFailed] = useState(false);
+  /** 背丈のシルエットを並べて、実寸を感じる表示 */
+  const [showScale, setShowScale] = useState(false);
   const panelRef = useRef(null);
   const closeRef = useRef(null);
 
-  // 作品が変わったら読み上げを止める
+  // 作品が変わったら、高精細画像と実寸表示の状態を戻す
   useEffect(() => {
-    stopSpeaking();
-    setSpeaking(false);
-    setPaused(false);
     setLoadedFull(false);
     setFullFailed(false);
+    setShowScale(false);
   }, [work?.id]);
-
-  useEffect(() => {
-    if (!open) {
-      stopSpeaking();
-      setSpeaking(false);
-      setPaused(false);
-    }
-  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -80,44 +69,16 @@ export default function WorkPanel({
 
   const hiSrc = loadedFull && !fullFailed ? work.imgFull : work.img;
 
-  const toggleAudio = () => {
-    if (!speechSupported()) {
-      setSpeechErr(true);
-      return;
-    }
-    if (speaking && !paused) {
-      pauseSpeaking();
-      setPaused(true);
-      return;
-    }
-    if (speaking && paused) {
-      resumeSpeaking();
-      setPaused(false);
-      return;
-    }
-    const script = buildScript(work, {
-      lang,
-      chapterTitle,
-      chapterNote,
-      museumName: "The Metropolitan Museum of Art",
-    });
-    const ok = speak(script, lang, {
-      onEnd: () => {
-        setSpeaking(false);
-        setPaused(false);
-      },
-      onError: () => {
-        setSpeaking(false);
-        setPaused(false);
-        setSpeechErr(true);
-      },
-    });
-    if (ok) {
-      setSpeaking(true);
-      setPaused(false);
-      setSpeechErr(false);
-    }
-  };
+  /**
+   * 実寸くらべ用の換算。
+   * 背丈 170cm が 190px に収まるように縮尺を決め、作品も同じ比率で並べる。
+   * 同じ縮尺で並べないと「絵のほうが大きい」という比較の意味が無くなる。
+   */
+  const PERSON_CM = 170;
+  const STAGE_PX = 190;
+  const hasSize = !!(work.h && work.h > 3);
+  const scaleRatio = hasSize ? Math.min(STAGE_PX / Math.max(PERSON_CM, work.h), 0.62) : 1;
+
 
   const rows = [
     work.artist && [t("work.artist"), `${work.artist}`],
@@ -175,6 +136,67 @@ export default function WorkPanel({
           ) : null}
         </figure>
 
+        {/*
+          実寸くらべ。
+          数字だけでは「思ったより大きい」が伝わらないので、人の背丈（約170cm）と
+          並べて見せる。図版はモバイルでは隠しているが、この比較は寸法の話なので
+          図版の外に出して、どの画面幅でも使えるようにしている。
+        */}
+        {hasSize ? (
+          <div className={styles.scaleSection}>
+            <button
+              type="button"
+              className={styles.scaleBtn}
+              onClick={() => setShowScale(v => !v)}
+              aria-expanded={showScale}
+              tabIndex={open ? 0 : -1}
+            >
+              {showScale ? t("work.scaleHide") : t("work.scaleShow")}
+              <span className={styles.scaleChevron} data-open={showScale ? "on" : "off"} aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.4">
+                  <path d="M2.5 4.5L6 8l3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </button>
+
+            {showScale ? (
+              <figure className={styles.scaleBox}>
+                <div className={styles.scaleStage}>
+                  <span
+                    className={styles.scaleWork}
+                    style={{
+                      height: `${Math.round(work.h * scaleRatio)}px`,
+                      width: work.w ? `${Math.round(work.w * scaleRatio)}px` : undefined,
+                    }}
+                  >
+                    {work.w ? null : <span className={styles.scaleWorkBlank} />}
+                  </span>
+                  <span className={styles.scalePerson} style={{ height: `${Math.round(170 * scaleRatio)}px` }}>
+                    {/*
+                      人物は「頭のてっぺん＝viewBox の上端」「足の裏＝下端」に
+                      ぴったり合わせて描く。ここが揃っていないと、作品の下端と
+                      人の足元がずれて、実寸の比較として意味をなさない。
+                      高さの合計が 96 になるよう座標を置いている。
+                    */}
+                    <svg viewBox="0 0 20 96" preserveAspectRatio="xMidYMax meet" fill="currentColor" aria-hidden="true">
+                      <circle cx="10" cy="6.6" r="6.6" />
+                      <rect x="4.4" y="13.2" width="11.2" height="29.8" rx="3.2" />
+                      <rect x="6.1" y="43" width="3.5" height="53" />
+                      <rect x="10.4" y="43" width="3.5" height="53" />
+                    </svg>
+                  </span>
+                </div>
+                <figcaption className={styles.scaleNote}>
+                  {t("work.scaleNote", {
+                    h: Math.round(work.h),
+                    w: Math.round(work.w || 0),
+                  })}
+                </figcaption>
+              </figure>
+            ) : null}
+          </div>
+        ) : null}
+
         <h2 className={styles.title}>{T(work) || t("work.untitled")}</h2>
         <p className={styles.artist}>
           {work.artist || t("work.unknownArtist")}
@@ -209,28 +231,6 @@ export default function WorkPanel({
         ) : null}
 
         <div className={styles.actions}>
-          <button
-            type="button"
-            className={styles.audioBtn}
-            onClick={toggleAudio}
-            aria-pressed={speaking && !paused}
-            tabIndex={open ? 0 : -1}
-          >
-            <span className={styles.audioIcon} aria-hidden="true">
-              {speaking && !paused ? (
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="currentColor">
-                  <rect x="2" y="1.5" width="3.4" height="11" rx="0.6" />
-                  <rect x="8.6" y="1.5" width="3.4" height="11" rx="0.6" />
-                </svg>
-              ) : (
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="currentColor">
-                  <path d="M3 1.6l9 5.4-9 5.4z" />
-                </svg>
-              )}
-            </span>
-            {speaking ? (paused ? t("work.audioPlay") : t("work.audioPause")) : t("work.audio")}
-          </button>
-
           <a
             className={styles.sourceLink}
             href={work.url}
@@ -241,9 +241,26 @@ export default function WorkPanel({
             {t("work.source")}
             <span aria-hidden="true">↗</span>
           </a>
-        </div>
 
-        {speechErr ? <p className={styles.speechErr}>{t("work.audioUnsupported")}</p> : null}
+          {onShare ? (
+            <button
+              type="button"
+              className={styles.shareBtn}
+              onClick={() => onShare(work)}
+              tabIndex={open ? 0 : -1}
+            >
+              <span aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3">
+                  <circle cx="15" cy="5" r="2.1" />
+                  <circle cx="5" cy="10" r="2.1" />
+                  <circle cx="15" cy="15" r="2.1" />
+                  <path d="M7 9l6-3M7 11l6 3" strokeLinecap="round" />
+                </svg>
+              </span>
+              {t("work.share")}
+            </button>
+          ) : null}
+        </div>
       </div>
 
       <div className={styles.nav}>

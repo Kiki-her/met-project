@@ -13,6 +13,10 @@ const ja = {
   },
   brand: "夜の美術館",
   brandEn: "THE NIGHT MUSEUM",
+  door: {
+    open: "扉をひらく",
+    hint: "お好きなときに、どうぞ。音は切り替えられます。",
+  },
   entry: {
     lede: "灯りを落とした展示室を、あなたのペースで。",
     sub: "The Metropolitan Museum of Art のオープンアクセス作品による、5つの小展覧会。",
@@ -47,6 +51,7 @@ const ja = {
     title: "書庫",
     lede: "展示室で紹介していない作品も、館の奥にしまわれています。3,000点あまりを、ここから引き出せます。",
     open: "書庫をひらく",
+    plaque: "書庫",
     search: "題名・作者で探す",
     clear: "消す",
     dept: "部門",
@@ -95,6 +100,8 @@ const ja = {
     chapterTitle: "章",
     endOfRoom: "展示室の終わり",
     seeNext: "次の展覧会へ",
+    zoomIn: "拡大する",
+    zoomOut: "縮小する",
   },
   work: {
     artist: "作者",
@@ -105,11 +112,6 @@ const ja = {
     dept: "部門",
     tags: "タグ",
     source: "The Met で見る",
-    audio: "音声ガイド",
-    audioPlay: "再生",
-    audioPause: "一時停止",
-    audioStop: "停止",
-    audioUnsupported: "この端末は読み上げに対応していません。",
     zoomIn: "拡大",
     close: "閉じる",
     share: "この作品を共有",
@@ -117,10 +119,20 @@ const ja = {
     unknownArtist: "作者不詳",
     openFull: "高精細で見る",
     loadingHi: "高精細画像を読み込み中…",
+    scaleShow: "実寸で見る",
+    scaleHide: "実寸をとじる",
+    scaleNote: "約 {h} × {w} cm（人の背丈は約170cm）",
   },
   share: {
     title: "この展示室を共有",
+    workTitle: "この作品を共有",
     body: "リンクを受け取った人は、同じ展示室を最初から見ることができます。",
+    workBody: "リンクを開くと、この作品の前に立った状態から始まります。",
+    lang: "送る言語",
+    workBy: "夜の美術館",
+    galleryBy: "夜の美術館",
+    x: "X で共有",
+    line: "LINE で送る",
     copy: "リンクをコピー",
     copied: "コピーしました",
     qr: "QRコード",
@@ -151,6 +163,10 @@ const en = {
   },
   brand: "The Night Museum",
   brandEn: "THE NIGHT MUSEUM",
+  door: {
+    open: "Open the door",
+    hint: "Whenever you are ready. Sound can be turned off at any time.",
+  },
   entry: {
     lede: "A gallery after dark, at your own pace.",
     sub: "Five small exhibitions drawn from the open-access collection of The Metropolitan Museum of Art.",
@@ -185,6 +201,7 @@ const en = {
     title: "The Storeroom",
     lede: "Not every work is on the walls. Some three thousand more are kept in the dark, and you may call any of them up.",
     open: "Open the storeroom",
+    plaque: "STOREROOM",
     search: "Search by title or artist",
     clear: "Clear",
     dept: "Department",
@@ -233,6 +250,8 @@ const en = {
     chapterTitle: "Chapter",
     endOfRoom: "End of the gallery",
     seeNext: "Next exhibition",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   work: {
     artist: "Artist",
@@ -243,11 +262,6 @@ const en = {
     dept: "Department",
     tags: "Tags",
     source: "View at The Met",
-    audio: "Audio guide",
-    audioPlay: "Play",
-    audioPause: "Pause",
-    audioStop: "Stop",
-    audioUnsupported: "Speech is not available on this device.",
     zoomIn: "Zoom",
     close: "Close",
     share: "Share this work",
@@ -255,10 +269,20 @@ const en = {
     unknownArtist: "Unknown artist",
     openFull: "View in high resolution",
     loadingHi: "Loading high-resolution image…",
+    scaleShow: "See actual size",
+    scaleHide: "Hide scale",
+    scaleNote: "About {h} × {w} cm (a person is roughly 170 cm)",
   },
   share: {
     title: "Share this gallery",
+    workTitle: "Share this work",
     body: "Anyone with the link can walk the same gallery from the beginning.",
+    workBody: "The link opens with this work already in front of you.",
+    lang: "Language for the link",
+    workBy: "The Night Museum",
+    galleryBy: "The Night Museum",
+    x: "Share on X",
+    line: "Send via LINE",
     copy: "Copy link",
     copied: "Copied",
     qr: "QR code",
@@ -295,6 +319,22 @@ function readStoredLang() {
   }
 }
 
+/**
+ * URL の ?lang= を読む。
+ * 共有リンクは ?lang=en を持っているので、受け取った人は
+ * 自分の保存設定に関係なく、送り主が選んだ言語で読める。
+ * 保存設定より優先する（リンクを開いた意図のほうが強い）。
+ */
+function readUrlLang() {
+  if (typeof window === "undefined") return null;
+  try {
+    const v = new URLSearchParams(window.location.search).get("lang");
+    return LANGS.includes(v) ? v : null;
+  } catch {
+    return null;
+  }
+}
+
 /** 端末の言語から初期値を推定（ブラウザのja以外は英語） */
 function detectLang() {
   if (typeof navigator === "undefined") return "ja";
@@ -308,8 +348,8 @@ export function I18nProvider({ children }) {
   const [lang, setLang] = useState("ja");
 
   useEffect(() => {
-    const stored = readStoredLang();
-    const next = stored || detectLang();
+    // 共有リンクの ?lang= が最優先。無ければ保存値、それも無ければ端末言語
+    const next = readUrlLang() || readStoredLang() || detectLang();
     if (next !== lang) setLang(next);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

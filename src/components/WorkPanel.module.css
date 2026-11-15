@@ -131,6 +131,96 @@
   text-align: center;
 }
 
+/* ---------- 実寸くらべ（背丈のシルエット） ---------- */
+.scaleSection {
+  margin: 0 0 18px;
+}
+
+.scaleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.scaleBtn:hover {
+  color: var(--paper);
+  border-color: rgba(240, 233, 221, 0.28);
+  background: rgba(240, 233, 221, 0.04);
+}
+
+.scaleChevron {
+  display: grid;
+  place-items: center;
+  transition: transform 0.35s var(--ease);
+}
+
+.scaleChevron[data-open="on"] {
+  transform: rotate(180deg);
+}
+
+.scaleBox {
+  margin: 14px 0 0;
+  padding: 18px 16px 14px;
+  background: linear-gradient(180deg, rgba(240, 233, 221, 0.035), transparent 70%);
+  border: 1px solid rgba(240, 233, 221, 0.06);
+}
+
+/* 作品と人の足元を揃えて並べる */
+.scaleStage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(18px, 5vw, 40px);
+  min-height: 190px;
+}
+
+/* 作品は実寸比の枠。中は壁の色で塗り、寸法の比較だけを見せる */
+.scaleWork {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  background: linear-gradient(160deg, rgba(200, 163, 74, 0.16), rgba(200, 163, 74, 0.06));
+  border: 1px solid rgba(200, 163, 74, 0.42);
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.9);
+}
+
+.scaleWorkBlank {
+  position: absolute;
+  inset: 0;
+}
+
+.scalePerson {
+  display: block;
+  width: auto;
+  color: rgba(240, 233, 221, 0.3);
+  flex-shrink: 0;
+}
+
+.scalePerson svg {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+.scaleNote {
+  margin: 14px 0 0;
+  font-size: 0.62rem;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--muted-2);
+}
+
 .title {
   font-size: clamp(1.24rem, 2.4vw, 1.5rem);
   line-height: 1.3;
@@ -225,33 +315,6 @@
   border-top: 1px solid rgba(240, 233, 221, 0.07);
 }
 
-.audioBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 10px 16px;
-  border: 1px solid rgba(200, 163, 74, 0.4);
-  color: var(--gold-soft);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  border-radius: 99px;
-  transition:
-    background 0.3s,
-    border-color 0.3s;
-}
-
-.audioBtn:hover {
-  background: rgba(200, 163, 74, 0.1);
-  border-color: rgba(200, 163, 74, 0.7);
-}
-
-.audioIcon {
-  display: grid;
-  place-items: center;
-  width: 15px;
-  height: 15px;
-}
-
 .sourceLink {
   display: inline-flex;
   align-items: center;
@@ -268,10 +331,27 @@
   color: var(--paper);
 }
 
-.speechErr {
-  font-size: 0.66rem;
-  color: var(--muted-2);
-  margin: 0 0 12px;
+/* 作品1点の共有（X / LINE / URL）*/
+.shareBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 15px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.shareBtn:hover {
+  color: var(--paper);
+  border-color: rgba(240, 233, 221, 0.3);
+  background: rgba(240, 233, 221, 0.05);
 }
 
 .nav {

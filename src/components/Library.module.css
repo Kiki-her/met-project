@@ -291,17 +291,22 @@
 
 .thumb {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #0d0b0a;
+  /* 実寸比で並べるので、小さい作品はマスの上寄せで小さく置く */
+  padding: 0;
 }
 
 .thumbImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: 100%;
+  /* 作品を切らない。形は style の aspect-ratio と width で決まる */
+  object-fit: contain;
   /* 夜の館なので、初期は沈ませておき、触れると灯りが当たる */
   filter: brightness(0.62) saturate(0.9);
   transition:
@@ -511,6 +516,42 @@
 
 .source:hover {
   background: rgba(200, 163, 74, 0.1);
+}
+
+/* 外部リンクと共有ボタンを横に並べる */
+.sheetLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 共有。The Met へのリンクと同じ重さにせず、控えめな枠線だけにする */
+.share {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.share:hover {
+  color: var(--paper);
+  border-color: rgba(200, 163, 74, 0.44);
+  background: rgba(200, 163, 74, 0.08);
+}
+
+.share span {
+  display: grid;
+  place-items: center;
 }
 
 @keyframes fade {

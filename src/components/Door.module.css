@@ -1,0 +1,325 @@
+/* ============================================================
+   入口の扉
+   閉じているあいだ、画面全体を覆う。開くと左右に分かれて奥へ消える。
+   ============================================================ */
+
+.wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  overflow: hidden;
+  transition:
+    opacity 0.9s var(--ease),
+    visibility 0.9s;
+}
+
+.wrap[data-open="on"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/*
+  このタブで既に館に入っている場合は、扉を描かない。
+  layout.js の先読みスクリプトが html に data-entered="1" を立てるので、
+  React の初期化を待たずに消える（ちらつかない）。
+  展示を終えて別の展示へ移った・受付に戻った・再読み込みした、という
+  サイトから離れていない移動で扉が出ないのは、この規則による。
+*/
+:global(html[data-entered="1"]) .wrap {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hit {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background:
+    radial-gradient(90% 55% at 50% 34%, rgba(200, 163, 74, 0.1), transparent 62%),
+    radial-gradient(70% 50% at 50% 100%, rgba(200, 163, 74, 0.05), transparent 70%),
+    var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hit:focus-visible {
+  outline: none;
+}
+
+.hit:focus-visible .arch {
+  box-shadow:
+    0 0 0 1px rgba(240, 233, 221, 0.35),
+    0 40px 90px -30px rgba(0, 0, 0, 0.95);
+}
+
+/* 扉の上から落ちる灯り */
+.lamp {
+  position: absolute;
+  top: -18vh;
+  left: 50%;
+  width: 78vw;
+  height: 62vh;
+  transform: translateX(-50%);
+  background: radial-gradient(60% 100% at 50% 0%, rgba(226, 196, 128, 0.15), transparent 72%);
+  opacity: 0;
+  transition: opacity 1.6s var(--ease) 0.25s;
+  pointer-events: none;
+}
+
+.wrap[data-open="off"] .lamp {
+  opacity: 1;
+}
+
+/* ---------- 扉そのもの ---------- */
+.arch {
+  position: relative;
+  width: min(34vw, 300px);
+  aspect-ratio: 0.56;
+  /* 扉の奥に灯りが灯っている（開いたときに見える） */
+  background: radial-gradient(70% 45% at 50% 46%, #4a3520, #150f0a 72%);
+  box-shadow:
+    0 0 0 1px rgba(240, 233, 221, 0.11),
+    0 44px 96px -34px rgba(0, 0, 0, 0.96),
+    inset 0 0 60px rgba(0, 0, 0, 0.7);
+  transition: box-shadow 0.6s var(--ease);
+}
+
+/* 框（扉のまわりの石の縁） */
+.arch::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border: 1px solid rgba(240, 233, 221, 0.07);
+  pointer-events: none;
+}
+
+/* 開いたときの隙間から漏れる光 */
+.ajar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 34%,
+    rgba(236, 205, 140, 0.42) 49%,
+    rgba(255, 244, 210, 0.5) 50%,
+    rgba(236, 205, 140, 0.42) 51%,
+    transparent 66%
+  );
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.hit:hover .ajar,
+.hit:focus-visible .ajar {
+  opacity: 1;
+}
+
+/* 左右の扉。3D で手前に開く */
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #241a12 0%, #1b130d 44%, #120c09 100%);
+  transition: transform 1.15s var(--ease-out);
+  backface-visibility: hidden;
+}
+
+.panelL {
+  left: 0;
+  transform-origin: left center;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.8);
+}
+
+.panelR {
+  right: 0;
+  transform-origin: right center;
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.8);
+}
+
+/* 閉じているあいだ、触れるとほんの少しだけ開く */
+.hit:hover .panelL,
+.hit:focus-visible .panelL {
+  transform: perspective(1400px) rotateY(-7deg);
+}
+
+.hit:hover .panelR,
+.hit:focus-visible .panelR {
+  transform: perspective(1400px) rotateY(7deg);
+}
+
+/* 開いたら奥へ消える */
+.wrap[data-open="on"] .panelL {
+  transform: perspective(1400px) rotateY(-96deg);
+}
+
+.wrap[data-open="on"] .panelR {
+  transform: perspective(1400px) rotateY(96deg);
+}
+
+/* 板の木目（細い線を重ねるだけ。画像は使わない） */
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.014) 0px,
+      rgba(255, 255, 255, 0.014) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.16) 0px,
+      rgba(0, 0, 0, 0.16) 1px,
+      transparent 1px,
+      transparent 26px
+    );
+  pointer-events: none;
+}
+
+/* 取っ手 */
+.handles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  gap: 14px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.handle {
+  width: 5px;
+  height: 26px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #d8b866, #8a6a26 58%, #c6a352);
+  box-shadow:
+    0 0 10px rgba(216, 184, 102, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- 題字 ---------- */
+.caption {
+  position: absolute;
+  bottom: clamp(52px, 11vh, 108px);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3.4vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+}
+
+.cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+  transition: color 0.5s var(--ease);
+}
+
+.ctaRule {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  transform: scaleX(0.7);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.hit:hover .cta,
+.hit:focus-visible .cta {
+  color: var(--paper);
+}
+
+.hit:hover .ctaRule,
+.hit:focus-visible .ctaRule {
+  transform: scaleX(1);
+}
+
+.hint {
+  font-size: 0.62rem;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+  color: var(--muted-2);
+  max-width: 34em;
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 620px) {
+  .arch {
+    width: min(62vw, 240px);
+  }
+
+  .caption {
+    bottom: clamp(40px, 8vh, 72px);
+    gap: 10px;
+  }
+
+  .hint {
+    font-size: 0.58rem;
+  }
+}
+
+/* 画面が低い横向き（スマホ横）では扉を小さく */
+@media (max-height: 480px) {
+  .arch {
+    width: min(20vh, 150px);
+  }
+
+  .caption {
+    bottom: 18px;
+    gap: 5px;
+  }
+
+  .hint {
+    display: none;
+  }
+}
+
+/* 動きを控えめにする設定、または OS の reduced-motion では扉を開かずに消す */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .hit:hover .panelL,
+  .hit:hover .panelR,
+  .wrap[data-open="on"] .panelL,
+  .wrap[data-open="on"] .panelR {
+    transform: none;
+  }
+
+  .wrap {
+    transition: opacity 0.25s linear;
+  }
+}

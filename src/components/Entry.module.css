@@ -389,11 +389,10 @@
 }
 
 .libraryCard {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 320px);
+  align-items: end;
+  gap: clamp(20px, 4vw, 48px);
   padding: clamp(24px, 3.4vw, 40px);
   border: 1px solid rgba(240, 233, 221, 0.07);
   background:
@@ -402,6 +401,13 @@
   transition:
     border-color 0.5s var(--ease),
     background 0.5s var(--ease);
+}
+
+/* 狭い画面では挿絵を下に落とし、説明のほうを先に読ませる */
+@media (max-width: 720px) {
+  .libraryCard {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .libraryCard:hover,
@@ -434,11 +440,214 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
   padding-bottom: 3px;
   font-size: 0.78rem;
   letter-spacing: 0.12em;
   color: var(--gold-soft);
   border-bottom: 1px solid var(--gold-dim);
+  white-space: nowrap;
+  transition: gap 0.35s var(--ease);
+}
+
+.libraryCard:hover .libraryCta {
+  gap: 16px;
+}
+
+/* ============================================================
+   書庫の挿絵（壁に並ぶ空の額縁）
+   画像を持たず、框（かまち）とガラス面だけで組む。
+   中身の空いた額装だけが壁に掛かっている——という見え方にしたい。
+
+   構図の要点:
+   - 高さも幅もばらばらに、しかし天井からの吊り位置は揃えない（下端が揃わない）
+   - 両端の額は挿絵の箱の外へはみ出させ、画面外で切れているように見せる
+   - 壁の下端に幅木を1本入れて「壁」であることを示す
+   ============================================================ */
+
+.wallScene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 210px;
+  padding-bottom: 26px;
+  /* はみ出した両端の額を切る。切らないと隣の段落に重なる */
+  overflow: hidden;
+  /*
+    壁の質感。ごく薄い縦縞（壁紙）と、下へ落ちる暗さ。
+    これが無いと「暗い背景に箱が並んでいる」だけに見えてしまう。
+  */
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(240, 233, 221, 0.022) 0 1px,
+      transparent 1px 10px
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.5));
+}
+
+/* 額の後ろに落ちる弱い灯り（スポットライト） */
+.wallGlow {
+  position: absolute;
+  inset: auto 0 8% 0;
+  height: 78%;
+  background: radial-gradient(
+    58% 70% at 50% 76%,
+    rgba(200, 163, 74, 0.13),
+    rgba(200, 163, 74, 0.04) 46%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+/*
+  吊られた額の列。
+  上端を壁の天井に合わせ（align-items: flex-start）、各額を --y だけ下げる。
+  額の大きさが違えば下端も自然にずれる（下端を揃えない）。
+  合計幅は親より広いので、両端の額は自然に外へはみ出して切れる。
+*/
+.wallHang {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  /* 親より広く取って、両端の額を画面外へはみ出させる（写真の構図に寄せる） */
+  width: 128%;
+  max-width: 418px;
+  height: 100%;
+  padding: 0;
+  opacity: 0.94;
+}
+
+/* 壁の下端の幅木。これがあると「棚」ではなく「壁」に見える */
+.wallScene::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  height: 3px;
+  background: linear-gradient(
+    180deg,
+    rgba(240, 233, 221, 0.12),
+    rgba(240, 233, 221, 0.03) 60%,
+    rgba(0, 0, 0, 0.45)
+  );
+  pointer-events: none;
+}
+
+/*
+  額縁1つ。
+  実物の額は「外側の框 → 内側へ落ちる段差 → 空のマット」の3層。
+  ただの箱に見えないよう、框には左上から光が当たる前提で
+  ハイライトと陰を入れ、壁には右斜め下へ影を落とす。
+*/
+.frame {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  /* 吊り位置（inline の --y は「天井から何 px 下げるか」） */
+  transform: translateY(var(--y, 0px));
+  transition: transform 0.6s var(--ease);
+  /* 框の立ち上がり：外周1pxの陰 → 内側の段差 → 壁に落ちる影 */
+  box-shadow:
+    inset 0 1px 0 rgba(240, 233, 221, 0.16),
+    inset 1px 0 0 rgba(240, 233, 221, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    inset -1px 0 0 rgba(0, 0, 0, 0.5),
+    1px 2px 3px rgba(0, 0, 0, 0.55),
+    4px 8px 18px rgba(0, 0, 0, 0.42);
+}
+
+/* 框の色（tone ごとに木の色を変える）。上が明るく下が暗い＝上から光 */
+.frame[data-tone="0"] {
+  background: linear-gradient(168deg, #5a4029 0%, #3b2a1e 42%, #241811 100%);
+}
+.frame[data-tone="1"] {
+  background: linear-gradient(168deg, #4a3c33 0%, #2f2723 44%, #17110f 100%);
+}
+.frame[data-tone="2"] {
+  background: linear-gradient(168deg, #6b5330 0%, #483722 42%, #1f170f 100%);
+}
+.frame[data-tone="3"] {
+  background: linear-gradient(168deg, #6d4536 0%, #452a22 44%, #281912 100%);
+}
+
+/*
+  彫り物のある框（data-carved）。
+  古い額装によくある、内側へ段になった金泥の縁。
+  画像を持てないので、内側に金の細い線を2本入れて段差を表す。
+*/
+.frame[data-carved="1"] {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 3px rgba(200, 163, 74, 0.34),
+    inset 0 0 0 4px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(240, 233, 221, 0.14),
+    1px 2px 3px rgba(0, 0, 0, 0.55),
+    4px 8px 18px rgba(0, 0, 0, 0.42);
+}
+
+/*
+  ガラス面＝まだ絵が入っていない空のマット。
+  ここを暗くすると「黒い箱」に見えてしまうので、灯りを受けた紙の色を敷く。
+  夜の書庫で、空のマットだけがぼんやり明るい——という見え方にしたい。
+  左上から斜めに照り返しを1本入れ、下へ向けて落とす。
+*/
+.frameGlass {
+  position: absolute;
+  inset: 6px;
+  display: block;
+  background:
+    linear-gradient(
+      158deg,
+      rgba(246, 238, 224, 0.3) 0%,
+      rgba(228, 216, 196, 0.16) 26%,
+      rgba(196, 180, 156, 0.08) 52%,
+      rgba(120, 106, 88, 0.05) 78%,
+      transparent 100%
+    ),
+    linear-gradient(180deg, #2a241d 0%, #201b16 58%, #17130f 100%);
+  /* 框の内側から落ちる影：内側であることを伝える */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.6),
+    inset 0 3px 10px rgba(0, 0, 0, 0.55),
+    inset 0 -1px 0 rgba(240, 233, 221, 0.07);
+}
+
+.frame[data-carved="1"] .frameGlass {
+  inset: 11px;
+}
+
+/* 小さな作品票（キャプション）。額の右脇に貼る */
+.framePlate {
+  position: absolute;
+  right: -11px;
+  bottom: 24%;
+  width: 8px;
+  height: 12px;
+  background: linear-gradient(180deg, rgba(240, 233, 221, 0.34), rgba(240, 233, 221, 0.16));
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* 全体を少しだけ持ち上げる（寄ってくる感じを出す） */
+.libraryCard:hover .frame {
+  transform: translateY(calc(var(--y, 0px) - 3px));
+}
+
+/* 壁の名板 */
+.wallPlaque {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  padding: 2px 10px;
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  color: var(--muted-2);
+  border: 1px solid rgba(200, 163, 74, 0.24);
+  background: rgba(10, 9, 8, 0.6);
   white-space: nowrap;
 }
 

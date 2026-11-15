@@ -543,6 +543,41 @@
   color: rgba(240, 233, 221, 0.72);
 }
 
+/* 拡大／縮小。前後ボタンの少し上に置く */
+.zoomBtns {
+  position: absolute;
+  right: clamp(12px, 3vw, 30px);
+  bottom: calc(130px + env(safe-area-inset-bottom));
+  z-index: 14;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: opacity 0.6s var(--ease);
+}
+
+.zoomBtn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  background: rgba(10, 9, 8, 0.55);
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.zoomBtn:hover {
+  color: var(--paper);
+  border-color: rgba(200, 163, 74, 0.44);
+  background: rgba(20, 17, 14, 0.8);
+}
+
 /* 前後ボタン */
 .stepBtns {
   position: absolute;

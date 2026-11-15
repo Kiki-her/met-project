@@ -3,6 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
+import { markEntered } from "@/lib/visit";
+import { libraryWorkUrl } from "@/lib/shareUrl";
+import ShareSheet from "./ShareSheet";
 import styles from "./Library.module.css";
 
 const PAGE = 48;
@@ -22,7 +25,7 @@ function norm(s) {
 /**
  * 書庫 — 全収蔵品（3,116点）の一覧と検索。
  *
- * 展示室が「企画展」だとすると、こちらは収蔵庫。
+ * 展示室が「企画展」だとすると、こちらは書庫。
  * データは静的JSON（public/data/library.json）を初回に一度だけ取得し、
  * 絞り込み・並べ替えはブラウザ内で行う。サーバーは不要。
  */
@@ -37,8 +40,17 @@ export default function Library() {
   const [highlightOnly, setHighlightOnly] = useState(false);
   const [limit, setLimit] = useState(PAGE);
   const [selected, setSelected] = useState(null);
+  /** 共有シートを開いているか */
+  const [shareOpen, setShareOpen] = useState(false);
+  /** 共有リンク（?work=）を開いたとき、一覧の読み込みを待って開くための保留分 */
+  const pendingWork = useRef(null);
 
   const inputRef = useRef(null);
+
+  // 書庫にいるということは、もう館の中にいる（受付に戻っても扉は出さない）
+  useEffect(() => {
+    markEntered();
+  }, []);
 
   // 書庫の取得（1回だけ）
   useEffect(() => {
@@ -58,6 +70,25 @@ export default function Library() {
       alive = false;
     };
   }, []);
+
+  /*
+   * 共有リンク（?work=<id>）から開く。
+   * 書庫の一覧は JSON を後から取りに行くので、読み込みが終わるまで作品を
+   * 特定できない。読めた時点で一度だけ該当作品を探して詳細を開く。
+   */
+  useEffect(() => {
+    if (!works || !works.length || pendingWork.current !== null) return;
+    let id = null;
+    try {
+      id = new URLSearchParams(window.location.search).get("work");
+    } catch {
+      id = null;
+    }
+    pendingWork.current = id ? false : true; // 一度きりにする目印
+    if (!id) return;
+    const hit = works.find(w => String(w.i) === String(id));
+    if (hit) setSelected(hit);
+  }, [works]);
 
   /** 部門の一覧（作品数の多い順） */
   const depts = useMemo(() => {
@@ -119,6 +150,39 @@ export default function Library() {
   const titleOf = w => (lang === "ja" && w.j ? w.j : w.t);
   const artistOf = w => w.a || t("library.noArtist");
   const dateOf = w => w.d || t("library.noDate");
+
+  /**
+   * 作品の縦横比。書庫は「壁のように」並べたいので、
+   * 4:5 で切り揃えず、その作品の本来の形のまま置く。
+   * 実寸（cm）が無い作品だけ 4:5 に落とす。
+   */
+  const shapeOf = w => {
+    if (w.w && w.h && w.w > 2 && w.h > 2) return `${w.w} / ${w.h}`;
+    return "4 / 5";
+  };
+
+  /**
+   * 実寸比の基準。並んでいる作品の幅の 95% 点を「マスいっぱい」とし、
+   * それより小さい作品はマスの中で小さく置く。こうすると
+   * 手のひら大の素描と、壁を占める大作が、同じ一覧の中で
+   * 実際の大きさの違いのまま並ぶ。
+   * 外れ値（1点だけ巨大な作品）で全部が小さくならないよう 95% 点を使う。
+   */
+  const scaleRef = useMemo(() => {
+    if (!filtered || !filtered.length) return 250;
+    const widths = filtered
+      .map(w => (w.w && w.w > 2 ? w.w : null))
+      .filter(Boolean)
+      .sort((a, b) => a - b);
+    if (!widths.length) return 250;
+    return widths[Math.floor((widths.length - 1) * 0.95)] || widths[widths.length - 1];
+  }, [filtered]);
+
+  /** マスに対する相対的な大きさ（0.4〜1） */
+  const relOf = w => {
+    if (!w.w || w.w < 2) return 1;
+    return Math.min(1, Math.max(0.4, w.w / scaleRef));
+  };
 
   return (
     <div className={styles.page}>
@@ -249,7 +313,7 @@ export default function Library() {
                         onClick={() => setSelected(w)}
                         aria-label={`${titleOf(w)} — ${artistOf(w)}`}
                       >
-                        <span className={styles.thumb}>
+                        <span className={styles.thumb} style={{ aspectRatio: shapeOf(w) }}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={w.im}
@@ -257,6 +321,7 @@ export default function Library() {
                             className={styles.thumbImg}
                             loading="lazy"
                             decoding="async"
+                            style={{ width: `${Math.round(relOf(w) * 100)}%` }}
                           />
                         </span>
                         <span className={styles.cardBody}>
@@ -292,7 +357,26 @@ export default function Library() {
       </main>
 
       {selected ? (
-        <Detail work={selected} onClose={() => setSelected(null)} />
+        <Detail
+          work={selected}
+          onClose={() => setSelected(null)}
+          onShare={() => setShareOpen(true)}
+        />
+      ) : null}
+
+      {/*
+        書庫の作品1点の共有。
+        ?work=<id> を付けた URL を作るので、受け取った人は書庫を開いたときに
+        その作品が引き出された状態から始まる。
+      */}
+      {selected ? (
+        <ShareSheet
+          open={shareOpen}
+          onClose={() => setShareOpen(false)}
+          directUrl={libraryWorkUrl(selected.i, lang)}
+          directTitle={lang === "ja" && selected.j ? selected.j : selected.t}
+          directArtist={selected.a || t("library.noArtist")}
+        />
       ) : null}
     </div>
   );
@@ -301,7 +385,7 @@ export default function Library() {
 /* ============================================================
    作品の詳細（書庫から一枚だけ引き出した状態）
    ============================================================ */
-function Detail({ work, onClose }) {
+function Detail({ work, onClose, onShare }) {
   const { t, lang } = useI18n();
   const closeRef = useRef(null);
 
@@ -361,17 +445,33 @@ function Detail({ work, onClose }) {
             ))}
           </dl>
 
-          {work.u ? (
-            <a
-              href={work.u}
-              className={styles.source}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("library.detailSource")}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ) : null}
+          <div className={styles.sheetLinks}>
+            {work.u ? (
+              <a
+                href={work.u}
+                className={styles.source}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("library.detailSource")}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ) : null}
+
+            {onShare ? (
+              <button type="button" className={styles.share} onClick={onShare}>
+                <span aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3">
+                    <circle cx="15" cy="5" r="2.1" />
+                    <circle cx="5" cy="10" r="2.1" />
+                    <circle cx="15" cy="15" r="2.1" />
+                    <path d="M7 9l6-3M7 11l6 3" strokeLinecap="round" />
+                  </svg>
+                </span>
+                {t("work.share")}
+              </button>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

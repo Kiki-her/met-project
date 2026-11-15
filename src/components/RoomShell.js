@@ -8,7 +8,7 @@ import { useSettings } from "@/components/Providers";
 import { buildRoom, centerOf, clampCam, frameKind, nearestWork } from "@/lib/room";
 import { DEFAULTS, saveProgress } from "@/lib/settings";
 import { setAmbienceVolume, startAmbience, stopAmbience } from "@/lib/sound";
-import { isSpeaking } from "@/lib/speech";
+import { markEntered } from "@/lib/visit";
 import WorkPanel from "./WorkPanel";
 import ShareSheet from "./ShareSheet";
 import SoundPrompt from "./SoundPrompt";
@@ -59,9 +59,18 @@ export default function RoomShell({ room, neighbours }) {
   const [soundOn, setSoundOn] = useState(false);
   const [askSound, setAskSound] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  /** 共有シートが作品1点を指しているか（false なら展示室まるごと） */
+  const [shareWork, setShareWork] = useState(false);
   const [hiRes, setHiRes] = useState(false);
   /** 展示室を移るときの暗転 — entering | off | leaving */
   const [veil, setVeil] = useState("entering");
+
+  /** 触れている指（ピンチ用）。pointerId → 位置 */
+  const pointers = useRef(new Map());
+  /** 2本指の拡大開始時の状態 */
+  const pinch = useRef(null);
+  /** URL の ?work= を一度だけ処理するための番人 */
+  const openedFromUrl = useRef(false);
 
   const lastIndex = useRef(-1);
   const totalRef = useRef(0);
@@ -148,6 +157,28 @@ export default function RoomShell({ room, neighbours }) {
     return undefined;
   }, [layout, works, apply, room.id]);
 
+  /* ---------- 共有された作品（?work=<id>）から開く ---------- */
+  useEffect(() => {
+    if (!works.length || openedFromUrl.current) return;
+    let id = null;
+    try {
+      id = new URLSearchParams(window.location.search).get("work");
+    } catch {
+      id = null;
+    }
+    openedFromUrl.current = true;
+    if (!id) return;
+    const item = works.find(w => String(w.work.id) === String(id));
+    if (item) {
+      // 幕が上がるのを待ってから、その作品の前に立つ
+      const timer = window.setTimeout(() => openWork(item), 420);
+      return () => window.clearTimeout(timer);
+    }
+    return undefined;
+    // openWork は毎回作り直されるが、URL の処理は一度きりなので依存に入れない
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [works]);
+
   /* 画面サイズが変わったら、視点があらぬ方向を向かないよう壁の中に収め直す */
   useEffect(() => {
     if (!cam.current.ready || !size.w) return;
@@ -192,8 +223,7 @@ export default function RoomShell({ room, neighbours }) {
           !a.on ||
           blockRef.current || // 共有シート・音の確認中は止める
           veilRef.current !== "off" || // 暗転中は動かさない
-          s.dragging ||
-          isSpeaking(); // 音声ガイドの途中で切り替えない
+          s.dragging;
         if (gated) {
           autoAt.current = now; // 止まっている間は数えない
         } else if (indexRef.current >= lenRef.current - 1) {
@@ -218,6 +248,13 @@ export default function RoomShell({ room, neighbours }) {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [apply, works]);
+
+  /* ---------- 入館の記録 ---------- */
+  // 共有リンクから展示室へ直接来た場合も「もう館の中にいる」とみなす。
+  // そうしないと、受付へ戻ったときに扉が出てしまう。
+  useEffect(() => {
+    markEntered();
+  }, []);
 
   /* ---------- 進捗 ---------- */
   useEffect(() => {
@@ -361,6 +398,36 @@ export default function RoomShell({ room, neighbours }) {
   // rAF ループ（依存を持たない effect）から最新の step を呼ぶための橋渡し
   stepRef.current = step;
 
+  /**
+   * 拡大／縮小。
+   *
+   * ピンチでも拡大できるが、指を離した瞬間に詳細が開くのが邪魔だったので
+   * 拡大だけを担うボタンを置いた。1回あたり 1.35 倍。
+   * 壁を見ているときは壁ごと、作品に寄っているときは作品をさらに寄る。
+   * 縮小して等倍に戻ったら、寄った状態は解除する。
+   */
+  const zoomBy = useCallback(
+    dir => {
+      const s = cam.current;
+      const maxZ = focus ? geometry(focus).z * 2.6 : 3.2;
+      const next = Math.min(maxZ, Math.max(1, s.tz * (dir > 0 ? 1.35 : 1 / 1.35)));
+      // 等倍まで戻したら、寄った状態は解除して壁に戻す。
+      // そうしないと「縮小したのに作品の前から動けない」ように見える。
+      if (next <= 1.02 && focus) {
+        closeWork();
+        bump();
+        return;
+      }
+      s.tz = next;
+      // 拡大すると見える範囲が狭まるので、壁の外を向かないよう収め直す
+      s.tx = clampX(s.tx, next);
+      if (next > 1.9) setHiRes(true);
+      if (next <= 1.02) setHiRes(false);
+      bump();
+    },
+    [focus, geometry, clampX, bump, closeWork]
+  );
+
   /* ---------- 入力 ---------- */
   const settleTimer = useRef(null);
 
@@ -394,6 +461,22 @@ export default function RoomShell({ room, neighbours }) {
     if (e.pointerType === "mouse" && e.button !== 0) return;
     bump();
     const s = cam.current;
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    // 2本目の指が触れたら、ドラッグをやめてピンチに切り替える
+    if (pointers.current.size === 2) {
+      const [a, b] = [...pointers.current.values()];
+      s.dragging = false;
+      pinch.current = {
+        dist: Math.hypot(a.x - b.x, a.y - b.y) || 1,
+        z: s.tz,
+        // 2本の指の中点を、画面上のどこで拡大するか
+        midX: (a.x + b.x) / 2,
+      };
+      if (settleTimer.current) window.clearTimeout(settleTimer.current);
+      return;
+    }
+
     s.dragging = true;
     s.startX = e.clientX;
     s.startY = e.clientY;
@@ -406,6 +489,22 @@ export default function RoomShell({ room, neighbours }) {
     e => {
       const s = cam.current;
       const { w } = size;
+
+      if (pointers.current.has(e.pointerId)) {
+        pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      }
+
+      // ---- ピンチ拡大（2本指）----
+      if (pinch.current && pointers.current.size >= 2) {
+        const [a, b] = [...pointers.current.values()];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y) || 1;
+        const scale = dist / pinch.current.dist;
+        const maxZ = focus ? geometry(focus).z * 2.6 : 3.2;
+        s.tz = Math.min(maxZ, Math.max(1, pinch.current.z * scale));
+        if (s.tz > 1.9) setHiRes(true);
+        bump();
+        return;
+      }
 
       // 視点の傾き（マウスの位置でわずかに首を振る）
       if (!focus && tiltRef.current && w) {
@@ -422,21 +521,44 @@ export default function RoomShell({ room, neighbours }) {
       s.moved = Math.max(s.moved, Math.abs(dx), Math.abs(dy));
       s.tx = clampX(s.startCam - dx, s.z);
     },
-    [focus, size, settings.motion, clampX, bump]
+    [focus, size, settings.motion, clampX, bump, geometry]
   );
 
-  const onPointerUp = useCallback(() => {
-    bump();
-    const s = cam.current;
-    if (!s.dragging) return;
-    s.dragging = false;
-    if (s.moved < 8) return;
-    const near = nearestWork(works, s.tx);
-    if (near) {
-      const g = focus && focus.work.id === near.work.id ? geometry(near) : null;
-      s.tx = clampX(g ? g.x : centerOf(near), g ? g.z : 1);
-    }
-  }, [works, focus, geometry, clampX, bump]);
+  const onPointerUp = useCallback(
+    e => {
+      bump();
+      const s = cam.current;
+      if (e && e.pointerId != null) pointers.current.delete(e.pointerId);
+
+      // ピンチの指が離れたら、拡大率だけ確定して終わる。
+      // ここで作品を開くと「拡大したら詳細が被さる」ことになり、せっかく寄った絵が
+      // 隠れてしまう。拡大は拡大のまま、開くのは明示的なタップ／クリックに任せる。
+      if (pinch.current && pointers.current.size < 2) {
+        pinch.current = null;
+        s.moved = 0;
+        return;
+      }
+
+      if (!s.dragging) return;
+      s.dragging = false;
+      if (s.moved < 8) return;
+      const near = nearestWork(works, s.tx);
+      if (near) {
+        const g = focus && focus.work.id === near.work.id ? geometry(near) : null;
+        s.tx = clampX(g ? g.x : centerOf(near), g ? g.z : 1);
+      }
+    },
+    [works, focus, geometry, clampX, bump]
+  );
+
+  const onPointerCancel = useCallback(
+    e => {
+      if (e && e.pointerId != null) pointers.current.delete(e.pointerId);
+      pinch.current = null;
+      cam.current.dragging = false;
+    },
+    []
+  );
 
   /** ドラッグ直後のクリックで作品が開いてしまうのを防ぐ */
   const onClickCapture = useCallback(
@@ -561,7 +683,7 @@ export default function RoomShell({ room, neighbours }) {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
+        onPointerCancel={onPointerCancel}
         onClickCapture={onClickCapture}
         data-focus={focus ? "on" : "off"}
       >
@@ -691,7 +813,11 @@ export default function RoomShell({ room, neighbours }) {
           <button
             type="button"
             className={styles.iconBtn}
-            onClick={() => setShareOpen(true)}
+            onClick={() => {
+              // ヘッダーの共有は展示室まるごと
+              setShareWork(false);
+              setShareOpen(true);
+            }}
             aria-label={t("room.shareCta")}
           >
             <IconShare />
@@ -702,6 +828,35 @@ export default function RoomShell({ room, neighbours }) {
       <div className={styles.chapterBadge} data-dim={focus ? "on" : "off"}>
         <span className={styles.chapterBadgeNum}>{t("room.chapter", { n: hud.chapter + 1 })}</span>
         <span className={styles.chapterBadgeName}>{L(chapter?.title)}</span>
+      </div>
+
+      {/*
+        拡大／縮小。
+        ピンチでも拡大できるが、指を離した瞬間に詳細が開くと、せっかく寄った絵が
+        隠れてしまう。拡大だけを担う明示的なボタンを置いて、
+        「寄る」と「開く」を別の操作に分ける。
+      */}
+      <div className={styles.zoomBtns} data-dim={focus ? "on" : "off"}>
+        <button
+          type="button"
+          className={styles.zoomBtn}
+          onClick={() => zoomBy(1)}
+          aria-label={t("room.zoomIn")}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" fill="none">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          className={styles.zoomBtn}
+          onClick={() => zoomBy(-1)}
+          aria-label={t("room.zoomOut")}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" fill="none">
+            <path d="M3 8h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
 
       <div className={styles.stepBtns} data-dim={focus ? "on" : "off"}>
@@ -757,13 +912,22 @@ export default function RoomShell({ room, neighbours }) {
         onClose={closeWork}
         onPrev={() => step(-1)}
         onNext={() => step(1)}
+        onShare={() => {
+          setShareWork(true);
+          setShareOpen(true);
+        }}
         chapterTitle={focus ? L(focus.chapter.title) : ""}
         chapterNote={focus ? L(focus.chapter.note) : ""}
         hasPrev={hud.index > 0}
         hasNext={hud.index < works.length - 1}
       />
 
-      <ShareSheet open={shareOpen} onClose={() => setShareOpen(false)} exhibition={room} />
+      <ShareSheet
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        exhibition={room}
+        work={shareWork && focus ? focus.work : null}
+      />
 
       {askSound ? <SoundPrompt onAccept={acceptSound} onDecline={declineSound} /> : null}
     </div>
