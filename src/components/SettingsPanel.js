@@ -102,6 +102,29 @@ export default function SettingsPanel({ open, onClose, settings, update }) {
 
         <div className={styles.row}>
           <div className={styles.rowLabel}>
+            <span className={styles.label}>{t("entry.volume")}</span>
+          </div>
+          <div className={styles.sliderWrap}>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value={Math.round((settings.volume ?? 0.6) * 100)}
+              onChange={e => update({ volume: Number(e.target.value) / 100 })}
+              className={styles.slider}
+              aria-label={t("entry.volume")}
+              aria-valuetext={`${Math.round((settings.volume ?? 0.6) * 100)}%`}
+              disabled={!settings.sound}
+            />
+            <span className={styles.sliderValue}>
+              {Math.round((settings.volume ?? 0.6) * 100)}
+            </span>
+          </div>
+        </div>
+
+        <div className={styles.row}>
+          <div className={styles.rowLabel}>
             <span className={styles.label}>{t("entry.motion")}</span>
           </div>
           <div className={styles.segmented} role="group" aria-label={t("entry.motion")}>

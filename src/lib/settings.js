@@ -9,6 +9,7 @@ export const DEFAULTS = {
   sound: true,
   motion: "full", // full | reduced
   textSize: "m", // s | m | l
+  volume: 0.6, // 0–1 環境音の音量
 };
 
 const TEXT_SCALE = { s: 0.94, m: 1, l: 1.1 };

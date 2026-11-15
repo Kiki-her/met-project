@@ -86,6 +86,39 @@ npm run verify-images              # API から最新URLを取得し data/image-
 
 `npm run build` で `out/` が生成されるので、静的ホスティングにそのまま置ける。
 `trailingSlash: true` のため、`/g/nocturnes/` のような末尾スラッシュ付きURLで配信すること。
+Node は 20 以上（`.nvmrc` で固定）。
+
+### Netlify（設定済み）
+
+`netlify.toml` を置いてあるので、リポジトリを Netlify に接続するだけでよい。
+
+- Build command: `npm run build`（自動）
+- Publish directory: `out`（自動）
+- 404 は `out/404.html` がそのまま使われる
+- 無料枠で足りる（すべて静的、サーバー処理なし）
+
+### Cloudflare Pages
+
+同じ `out/` をそのまま使える。ビルド設定のみ指定する。
+
+- Framework preset: `Next.js (Static HTML Export)`
+- Build command: `npm run build`
+- Build output directory: `out`
+- 環境変数: `NODE_VERSION=20`
+
+### GitHub Pages
+
+`out/` を gh-pages ブランチに置けば動くが、リポジトリ名のパス配下
+（`/met-project/`）になるため `next.config.js` に `basePath` と `assetPrefix` の追加が必要。
+Netlify / Cloudflare Pages のほうが設定が少なくて済む。
+
+### 公開前の確認
+
+```bash
+npm run build
+npx serve out          # ローカルで本番ビルドを確認
+npm run verify-images -- --check   # 画像URLの404がないか
+```
 
 ## クレジット
 

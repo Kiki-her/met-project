@@ -24,6 +24,9 @@ const ja = {
     settings: "館内の設定",
     sound: "環境音",
     soundHint: "展示室の空気音（ブラウザ内で生成）",
+    volume: "音量",
+    volumeQuiet: "静か",
+    volumeFull: "ひびく",
     motion: "動き",
     motionFull: "標準",
     motionReduced: "控えめ",
@@ -95,6 +98,14 @@ const ja = {
     backToEntry: "受付へ戻る",
     notFound: "この展示室は存在しません。",
   },
+  nf: {
+    code: "404",
+    eyebrow: "NOT ON VIEW",
+    title: "この展示室は、ありません。",
+    body: "リンクが古いか、展示が入れ替わったようです。受付へ戻れば、今夜開いている展示室から選べます。",
+    home: "受付へ戻る",
+    hint: "展示室の一覧は受付にあります。",
+  },
 };
 
 const en = {
@@ -116,6 +127,9 @@ const en = {
     settings: "House settings",
     sound: "Ambience",
     soundHint: "Room tone, generated in your browser",
+    volume: "Volume",
+    volumeQuiet: "Quiet",
+    volumeFull: "Present",
     motion: "Motion",
     motionFull: "Standard",
     motionReduced: "Reduced",
@@ -186,6 +200,14 @@ const en = {
     error: "The gallery could not be opened.",
     backToEntry: "Back to entrance",
     notFound: "This gallery does not exist.",
+  },
+  nf: {
+    code: "404",
+    eyebrow: "NOT ON VIEW",
+    title: "This gallery is not on view.",
+    body: "The link may be old, or the exhibition may have changed since. Return to the entrance and choose a room that is open tonight.",
+    home: "Back to the entrance",
+    hint: "The list of galleries is at the entrance.",
   },
 };
 

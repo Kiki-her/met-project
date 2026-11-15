@@ -97,6 +97,14 @@
   margin: 12px 0 20px;
 }
 
+/* モバイルでは展示室側で作品がすでに拡大表示されているので、
+   パネル内の画像は省いて文字情報に集中する（同じ絵が二重に見えるのを避ける） */
+@media (max-width: 899px) {
+  .figure {
+    display: none;
+  }
+}
+
 .imageWrap {
   display: grid;
   place-items: center;

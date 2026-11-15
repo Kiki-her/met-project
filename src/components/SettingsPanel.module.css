@@ -153,6 +153,66 @@
   color: var(--muted-2);
 }
 
+/* 音量スライダー */
+.sliderWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 150px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 110px;
+  height: 2px;
+  background: rgba(240, 233, 221, 0.18);
+  border-radius: 99px;
+  outline: none;
+  cursor: pointer;
+}
+
+.slider:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  box-shadow: 0 0 0 3px rgba(200, 163, 74, 0.14);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  box-shadow: 0 0 0 3px rgba(200, 163, 74, 0.14);
+  cursor: pointer;
+}
+
+.slider::-moz-range-track {
+  height: 2px;
+  background: rgba(240, 233, 221, 0.18);
+  border-radius: 99px;
+}
+
+.sliderValue {
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  min-width: 2ch;
+  text-align: right;
+}
+
 @media (max-width: 560px) {
   .overlay {
     align-items: flex-end;

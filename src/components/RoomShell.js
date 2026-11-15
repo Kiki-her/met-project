@@ -158,8 +158,10 @@ export default function RoomShell({ room, neighbours }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const volume = typeof settings.volume === "number" ? settings.volume : 0.6;
+
   const enableSound = useCallback(async () => {
-    const ok = await startAmbience(0.62);
+    const ok = await startAmbience(volume);
     setSoundOn(ok);
     try {
       window.localStorage.setItem(SOUND_KEY, "1");
@@ -167,7 +169,7 @@ export default function RoomShell({ room, neighbours }) {
       /* noop */
     }
     return ok;
-  }, []);
+  }, [volume]);
 
   const toggleSound = useCallback(async () => {
     if (soundOn) {
@@ -179,8 +181,9 @@ export default function RoomShell({ room, neighbours }) {
   }, [enableSound, soundOn]);
 
   useEffect(() => {
-    if (soundOn) setAmbienceVolume(settings.sound ? 0.62 : 0, 0.8);
-  }, [settings.sound, soundOn]);
+    if (!soundOn) return;
+    setAmbienceVolume(settings.sound ? volume : 0, 0.45);
+  }, [settings.sound, volume, soundOn]);
 
   /* ---------- 寄る／戻る ---------- */
   const geometry = useCallback(
