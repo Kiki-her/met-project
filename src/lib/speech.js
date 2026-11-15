@@ -27,29 +27,75 @@ function pickVoice(lang) {
   return pool.find(v => prefer.test(v.name || "")) || pool[0];
 }
 
-export function buildScript(work, { lang, chapterTitle, museumName }) {
+/**
+ * 音声ガイドの原稿を組み立てる。
+ *
+ * 目録の読み上げ（作者・素材・寸法）だけだと、展示室で耳にする案内にはならない。
+ * そこで順番を「作品 → 誰が描いたか → なぜこの章にあるか → 目録」に組み替え、
+ * キュレーターが書いた章の解説（chapterNote）を真ん中に置いている。
+ * 寸法は最後に回す。数字は記憶に残りにくく、最初に置くと前口上が重くなるため。
+ */
+export function buildScript(work, { lang, chapterTitle, chapterNote, museumName }) {
   const L = (a, b) => (lang === "ja" ? a : b);
   const parts = [];
 
   const title = work.title || L("無題", "Untitled");
   const artist = work.artist || L("作者不詳", "Unknown artist");
+  const clean = s => (typeof s === "string" ? s.trim().replace(/\s+/g, " ") : "");
 
+  // 作品名・作者・制作年 — 最初に「何を見ているか」を確定させる
   if (lang === "ja") {
-    parts.push(`${title}。${artist}。`);
-    if (work.date) parts.push(`${work.date}。`);
-    if (work.medium) parts.push(`${work.medium}。`);
-    if (work.dims) parts.push(`寸法は${work.dims}。`);
-    if (museumName) parts.push(`${museumName}の所蔵です。`);
-    if (chapterTitle) parts.push(`「${chapterTitle}」の章に展示されています。`);
+    parts.push(`${title}。`);
+    if (work.artist) {
+      // 「作者ca. 1825–30頃」と繋がらないよう、読点で区切る
+      const dor = work.date ? `、${work.date}頃の作品です。` : "の作品です。";
+      parts.push(`${work.artist}${dor}`);
+    } else {
+      parts.push("作者はわかっていません。");
+    }
   } else {
-    parts.push(`${title}. By ${artist}.`);
-    if (work.date) parts.push(`${work.date}.`);
-    if (work.medium) parts.push(`${work.medium}.`);
-    if (work.dims) parts.push(`Dimensions: ${work.dims}.`);
-    if (museumName) parts.push(`From the collection of ${museumName}.`);
-    if (chapterTitle) parts.push(`Shown in the chapter "${chapterTitle}".`);
+    parts.push(`${title}.`);
+    if (work.artist) {
+      const when = work.date ? `, ${work.date}` : "";
+      parts.push(`By ${work.artist}${when}.`);
+    } else {
+      parts.push("The artist is unknown.");
+    }
   }
-  return parts.join(" ");
+
+  // 章の解説 — ここが鑑賞の本体
+  const note = clean(chapterNote);
+  if (note) parts.push(note);
+
+  // 章の位置づけ
+  const chapter = clean(chapterTitle);
+  if (chapter) {
+    parts.push(
+      lang === "ja"
+        ? `「${chapter}」の章に掛かっています。`
+        : `It hangs in the chapter "${chapter}".`
+    );
+  }
+
+  // 目録情報（控えめに、最後に）
+  const facts = [];
+  if (work.medium) facts.push(clean(work.medium));
+  if (work.dims) facts.push(lang === "ja" ? `${clean(work.dims)}` : clean(work.dims));
+  if (facts.length) {
+    parts.push(
+      lang === "ja" ? `${facts.join("、")}。` : `${facts.join(". ")}.`
+    );
+  }
+
+  if (museumName) {
+    parts.push(
+      lang === "ja"
+        ? `${museumName}の所蔵です。`
+        : `From the collection of ${museumName}.`
+    );
+  }
+
+  return parts.join(lang === "ja" ? "" : " ");
 }
 
 export function speak(text, lang, { onEnd, onError } = {}) {

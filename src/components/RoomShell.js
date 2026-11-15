@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { useSettings } from "@/components/Providers";
@@ -17,6 +18,7 @@ const SOUND_KEY = "night-museum.soundAsked";
 export default function RoomShell({ room, neighbours }) {
   const { t, L, lang } = useI18n();
   const { settings, update } = useSettings();
+  const router = useRouter();
 
   const stageRef = useRef(null);
   const worldRef = useRef(null);
@@ -55,6 +57,8 @@ export default function RoomShell({ room, neighbours }) {
   const [askSound, setAskSound] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [hiRes, setHiRes] = useState(false);
+  /** 展示室を移るときの暗転 — entering | off | leaving */
+  const [veil, setVeil] = useState("entering");
 
   const lastIndex = useRef(-1);
   const totalRef = useRef(0);
@@ -92,15 +96,41 @@ export default function RoomShell({ room, neighbours }) {
 
   /* ---------- 初期位置 ---------- */
   useEffect(() => {
-    if (!layout || !works.length || cam.current.ready) return;
+    if (!layout || !works.length) return;
+    // 展示室を移ると同じコンポーネントが再利用されるため、
+    // 「まだ初期化していない」ではなく「前の部屋と違う」で判定する。
+    // 画面サイズは判定に入れない（リサイズのたびに先頭へ戻ってしまう）。
+    if (cam.current.roomId === room.id) return;
+    const fresh = cam.current.roomId === undefined;
+    cam.current.roomId = room.id;
     const first = works[0];
     cam.current.x = centerOf(first);
     cam.current.tx = cam.current.x;
+    cam.current.z = 1;
+    cam.current.tz = 1;
+    cam.current.oy = 0;
+    cam.current.toy = 0;
     cam.current.ready = true;
     lastIndex.current = 0;
     setHud({ index: 0, chapter: first.chapterIndex });
+    setFocus(null);
+    setHiRes(false);
     apply();
-  }, [layout, works, apply]);
+    // 部屋が変わったときだけ幕を開ける（初回はマウント時の effect が担当）
+    if (!fresh) {
+      const t = window.setTimeout(() => setVeil("off"), 60);
+      return () => window.clearTimeout(t);
+    }
+    return undefined;
+  }, [layout, works, apply, room.id]);
+
+  /* 画面サイズが変わったら、視点があらぬ方向を向かないよう壁の中に収め直す */
+  useEffect(() => {
+    if (!cam.current.ready || !size.w) return;
+    cam.current.x = clampX(cam.current.x, cam.current.z);
+    cam.current.tx = clampX(cam.current.tx, cam.current.tz);
+    apply();
+  }, [size.w, size.h, apply, clampX]);
 
   /* ---------- ループ ---------- */
   useEffect(() => {
@@ -379,6 +409,36 @@ export default function RoomShell({ room, neighbours }) {
     }
   }, [update]);
 
+  /* ---------- 展示室の移動（暗転してから次の部屋へ）---------- */
+
+  // 入館時：真っ暗な状態から明るくなるまで待つ
+  useEffect(() => {
+    const t = window.setTimeout(() => setVeil("off"), 60);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  const goTo = useCallback(
+    href => {
+      // 動きを控えめにしている場合は暗転を挟まず、そのまま移る
+      if (settings.motion === "reduced") {
+        router.push(href);
+        return;
+      }
+      setFocus(null);
+      setShareOpen(false);
+      setVeil("leaving");
+      // 幕が下りきるのを待ってから遷移する（CSS の transition と揃える）
+      window.setTimeout(() => {
+        router.push(href);
+        setVeil("entering");
+        // 何らかの理由で次の部屋が描画されなかった場合に、
+        // 画面が真っ暗のまま固まらないよう必ず幕を開ける
+        window.setTimeout(() => setVeil("off"), 1600);
+      }, 620);
+    },
+    [router, settings.motion]
+  );
+
   const chapter = room.chapters[hud.chapter] || room.chapters[0];
   const progress = works.length ? Math.round(((hud.index + 1) / works.length) * 100) : 0;
   const current = works[hud.index];
@@ -390,6 +450,15 @@ export default function RoomShell({ room, neighbours }) {
         <span className={styles.ceiling} />
         <span className={styles.floorGlow} />
         <span className={styles.vignette} />
+      </div>
+
+      {/* 展示室を移るときの暗転。幕が下りてから次の部屋へ */}
+      <div className={styles.veil} data-state={veil} aria-hidden="true">
+        <span className={styles.veilText}>
+          {neighbours && neighbours.next && veil === "leaving"
+            ? L(neighbours.next.title)
+            : ""}
+        </span>
       </div>
 
       <div
@@ -438,14 +507,28 @@ export default function RoomShell({ room, neighbours }) {
                       <span className={styles.endRule} aria-hidden="true" />
                       <p className={styles.endText}>{t("room.endOfRoom")}</p>
                       {neighbours && neighbours.next ? (
-                        <Link href={`/g/${neighbours.next.id}/`} className={styles.endLink}>
+                        <Link
+                          href={`/g/${neighbours.next.id}/`}
+                          className={styles.endLink}
+                          onClick={e => {
+                            e.preventDefault();
+                            goTo(`/g/${neighbours.next.id}/`);
+                          }}
+                        >
                           {t("room.seeNext")}
                           <span className={styles.endArrow} aria-hidden="true">
                             →
                           </span>
                         </Link>
                       ) : (
-                        <Link href="/" className={styles.endLink}>
+                        <Link
+                          href="/"
+                          className={styles.endLink}
+                          onClick={e => {
+                            e.preventDefault();
+                            goTo("/");
+                          }}
+                        >
                           {t("room.exit")}
                           <span className={styles.endArrow} aria-hidden="true">
                             →
@@ -475,7 +558,15 @@ export default function RoomShell({ room, neighbours }) {
 
       {/* ---------- HUD ---------- */}
       <header className={styles.hudTop}>
-        <Link href="/" className={styles.iconLink} aria-label={t("room.exit")}>
+        <Link
+          href="/"
+          className={styles.iconLink}
+          aria-label={t("room.exit")}
+          onClick={e => {
+            e.preventDefault();
+            goTo("/");
+          }}
+        >
           <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true" fill="none">
             <path
               d="M10 2.5L4.5 8l5.5 5.5"

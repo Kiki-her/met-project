@@ -98,6 +98,7 @@ export default function WorkPanel({
     const script = buildScript(work, {
       lang,
       chapterTitle,
+      chapterNote,
       museumName: "The Metropolitan Museum of Art",
     });
     const ok = speak(script, lang, {

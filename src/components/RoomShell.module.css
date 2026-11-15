@@ -20,6 +20,46 @@
   pointer-events: none;
 }
 
+/* ---------- 展示室を移るときの暗転 ----------
+   扉を抜ける一瞬を、真っ暗な幕で挟む。
+   入館時はここから明るくなるので、最初の一枚も同じ黒から始まる。 */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.62s var(--ease);
+}
+
+.veil[data-state="entering"],
+.veil[data-state="leaving"] {
+  opacity: 1;
+}
+
+/* 幕が下りている間は、下の要素を触らせない */
+.veil[data-state="leaving"] {
+  pointer-events: auto;
+}
+
+.veilText {
+  font-family: var(--serif);
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(200, 163, 74, 0.42);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.veil[data-state="leaving"] .veilText {
+  opacity: 1;
+  transition-delay: 0.18s;
+}
+
 .ceiling {
   position: absolute;
   top: 0;
