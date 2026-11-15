@@ -1,0 +1,257 @@
+[
+  {
+    "id": "nocturnes",
+    "title": {
+      "ja": "夜想曲",
+      "en": "Nocturnes"
+    },
+    "subtitle": {
+      "ja": "光が消えていく時間",
+      "en": "The hour when light leaves"
+    },
+    "totalWorks": 17,
+    "chapters": [
+      {
+        "title": {
+          "ja": "月の下で",
+          "en": "Under the Moon"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "月光の港",
+          "en": "Moonlit Harbor"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "灯をともす",
+          "en": "Kindling a Light"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "沈む光",
+          "en": "The Sinking Light"
+        },
+        "count": 4
+      }
+    ],
+    "cover": {
+      "id": 438417,
+      "title": "Two Men Contemplating the Moon",
+      "titleJa": "月を眺める二人の男",
+      "artist": "Caspar David Friedrich",
+      "date": "ca. 1825–30",
+      "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-31997-001-NEW.jpg",
+      "ratio": 0.7968
+    }
+  },
+  {
+    "id": "sea-and-light",
+    "title": {
+      "ja": "海と光",
+      "en": "Sea and Light"
+    },
+    "subtitle": {
+      "ja": "水平線の向こう側",
+      "en": "Beyond the horizon line"
+    },
+    "totalWorks": 17,
+    "chapters": [
+      {
+        "title": {
+          "ja": "荒れる海",
+          "en": "The Restless Sea"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "港",
+          "en": "Harbors"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "静かな入り江",
+          "en": "The Quiet Cove"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "ひかりの海",
+          "en": "A Sea of Light"
+        },
+        "count": 4
+      }
+    ],
+    "cover": {
+      "id": 11122,
+      "title": "The Gulf Stream",
+      "titleJa": "メキシコ湾流",
+      "artist": "Winslow Homer",
+      "date": "1899; reworked by 1906",
+      "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-20821-001.jpg",
+      "ratio": 0.5721
+    }
+  },
+  {
+    "id": "quiet-interiors",
+    "title": {
+      "ja": "室内の静けさ",
+      "en": "Quiet Interiors"
+    },
+    "subtitle": {
+      "ja": "部屋という小さな世界",
+      "en": "The room as a small world"
+    },
+    "totalWorks": 17,
+    "chapters": [
+      {
+        "title": {
+          "ja": "読む",
+          "en": "Reading"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "集う",
+          "en": "Gathering"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "窓辺",
+          "en": "By the Window"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "手しごと",
+          "en": "Hands at Work"
+        },
+        "count": 4
+      }
+    ],
+    "cover": {
+      "id": 10813,
+      "title": "The Chess Players",
+      "titleJa": "チェスをする人々",
+      "artist": "Thomas Eakins",
+      "date": "1876",
+      "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-18074-001.jpg",
+      "ratio": 0.7012
+    }
+  },
+  {
+    "id": "small-worlds",
+    "title": {
+      "ja": "静物という小宇宙",
+      "en": "Still Life, a Small Cosmos"
+    },
+    "subtitle": {
+      "ja": "動かないものの物語",
+      "en": "The story of things that do not move"
+    },
+    "totalWorks": 17,
+    "chapters": [
+      {
+        "title": {
+          "ja": "卓上の秩序",
+          "en": "Order on a Table"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "咲くということ",
+          "en": "Being in Bloom"
+        },
+        "count": 6
+      },
+      {
+        "title": {
+          "ja": "狩りのあと",
+          "en": "After the Hunt"
+        },
+        "count": 3
+      },
+      {
+        "title": {
+          "ja": "うつろい",
+          "en": "Passing"
+        },
+        "count": 3
+      }
+    ],
+    "cover": {
+      "id": 435882,
+      "title": "Still Life with Apples and a Pot of Primroses",
+      "titleJa": "リンゴとプリムローズの鉢のある静物",
+      "artist": "Paul Cézanne",
+      "date": "ca. 1890",
+      "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT47.jpg",
+      "ratio": 0.79
+    }
+  },
+  {
+    "id": "faces",
+    "title": {
+      "ja": "顔",
+      "en": "Faces"
+    },
+    "subtitle": {
+      "ja": "こちらを見る人々",
+      "en": "Those who look back"
+    },
+    "totalWorks": 17,
+    "chapters": [
+      {
+        "title": {
+          "ja": "自分を描く",
+          "en": "Painting the Self"
+        },
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "学識と威厳",
+          "en": "Learning and Bearing"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "笑う人",
+          "en": "The Laughing Face"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "見つめかえす",
+          "en": "Looking Back"
+        },
+        "count": 3
+      }
+    ],
+    "cover": {
+      "id": 437397,
+      "title": "Self-Portrait",
+      "titleJa": "自画像",
+      "artist": "Rembrandt (Rembrandt van Rijn)",
+      "date": "1660",
+      "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-16323-001.jpg",
+      "ratio": 1.1932
+    }
+  }
+]

@@ -1,0 +1,252 @@
+/* ============================================================
+   404 — 消えた展示室
+   作品が下ろされた壁に、スポットライトとフックだけが残る
+   ============================================================ */
+.page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(20px, 5vw, 64px);
+  padding-bottom: env(safe-area-inset-bottom);
+  background:
+    radial-gradient(120% 70% at 50% -12%, rgba(200, 163, 74, 0.1), transparent 62%),
+    var(--ink);
+  overflow: hidden;
+}
+
+.glow {
+  position: fixed;
+  inset: -20% -10% auto;
+  height: 58vh;
+  background: radial-gradient(50% 100% at 50% 0%, rgba(224, 192, 120, 0.11), transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- topbar ---------- */
+.topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 22px 0 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.brandMark {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.85;
+}
+
+.brandName {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  letter-spacing: 0.22em;
+  color: var(--paper);
+}
+
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+
+.langOn {
+  color: var(--gold-soft);
+  padding: 2px 1px;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.langOff {
+  color: var(--muted-2);
+  padding: 2px 1px;
+  transition: color 0.3s;
+}
+
+.langOff:hover {
+  color: var(--muted);
+}
+
+.langSlash {
+  color: rgba(240, 233, 221, 0.2);
+}
+
+/* ---------- stage ---------- */
+.stage {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 84px);
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(24px, 6vh, 72px) 0 clamp(48px, 9vh, 96px);
+}
+
+/* 空いた壁 */
+.emptyWall {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(70% 60% at 50% 34%, rgba(224, 192, 120, 0.07), transparent 72%),
+    linear-gradient(180deg, var(--wall-hi), var(--wall-lo));
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.spot {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(38% 46% at 50% 36%, rgba(255, 236, 196, 0.14), transparent 74%);
+  pointer-events: none;
+}
+
+/* 外された額の跡（壁の日焼け） */
+.outline {
+  position: relative;
+  width: 46%;
+  aspect-ratio: 3 / 4;
+  border: 1px solid rgba(240, 233, 221, 0.14);
+  background: rgba(240, 233, 221, 0.014);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 26px 46px -22px rgba(0, 0, 0, 0.85);
+}
+
+/* フック */
+.hook {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 1px;
+  height: 34px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(200, 163, 74, 0.6), rgba(200, 163, 74, 0.06));
+}
+
+/* ---------- copy ---------- */
+.copy {
+  position: relative;
+  max-width: 30rem;
+}
+
+.code {
+  font-family: var(--serif);
+  font-size: clamp(3.4rem, 9vw, 6rem);
+  line-height: 0.9;
+  color: rgba(240, 233, 221, 0.07);
+  letter-spacing: 0.06em;
+  margin: 0 0 0.18em;
+  user-select: none;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin: 0 0 14px;
+}
+
+.title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  line-height: 1.24;
+  color: var(--paper);
+  margin: 0 0 18px;
+}
+
+.body {
+  font-size: 0.94rem;
+  line-height: 1.85;
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+
+.home {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-soft);
+  border-bottom: 1px solid rgba(200, 163, 74, 0.35);
+  padding-bottom: 6px;
+  transition: gap 0.4s var(--ease);
+}
+
+.home:hover {
+  gap: 18px;
+}
+
+.hint {
+  font-size: 0.76rem;
+  color: var(--muted-2);
+  margin: 26px 0 0;
+}
+
+/* ---------- タブレット ---------- */
+@media (max-width: 900px) {
+  .stage {
+    gap: clamp(26px, 5vw, 44px);
+  }
+
+  .code {
+    font-size: clamp(2.8rem, 8vw, 4.4rem);
+  }
+}
+
+/* ---------- スマホは縦積み ---------- */
+@media (max-width: 700px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 30px;
+    padding-top: clamp(12px, 3vh, 28px);
+  }
+
+  .emptyWall {
+    aspect-ratio: 5 / 3;
+    order: -1;
+  }
+
+  .outline {
+    width: 34%;
+  }
+
+  .copy {
+    max-width: none;
+  }
+
+  .code {
+    display: none;
+  }
+
+  .body {
+    margin-bottom: 26px;
+  }
+}

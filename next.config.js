@@ -1,16 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack5: true,
-  webpack: config => {
-    config.resolve.fallback = {
-      fs: false,
-    };
-
-    return config;
-  },
-  images: {
-    domains: ["images.metmuseum.org"],
-  },
+  // 静的ホスティング（Netlify / Cloudflare Pages 等）にそのまま置けるよう完全静的出力
+  output: "export",
+  trailingSlash: true,
+  images: { unoptimized: true },
+  reactStrictMode: true,
 };
 
 module.exports = nextConfig;

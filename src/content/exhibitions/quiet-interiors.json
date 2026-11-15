@@ -1,0 +1,556 @@
+{
+  "id": "quiet-interiors",
+  "title": {
+    "ja": "室内の静けさ",
+    "en": "Quiet Interiors"
+  },
+  "subtitle": {
+    "ja": "部屋という小さな世界",
+    "en": "The room as a small world"
+  },
+  "curator": {
+    "ja": "扉の向こうの部屋には、いつも少し遅れた時間が流れています。読む人、待つ人、弾く人。私たちはその数秒を、戸口から覗いています。",
+    "en": "Time runs slightly late in a room behind a door. Someone reading, someone waiting, someone playing. We are watching those few seconds from the threshold."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "読む",
+        "en": "Reading"
+      },
+      "note": {
+        "ja": "本を読む人は、こちらを見ません。絵の中の沈黙を、そのまま受け取ってください。",
+        "en": "A reader will not look up. Take the silence of the painting as it is given."
+      },
+      "works": [
+        {
+          "id": 13210,
+          "title": "Arrangement in Black: Girl Reading",
+          "titleJa": "黒の配列：読書する少女",
+          "artist": "James McNeill Whistler",
+          "bio": "American, Lowell, Massachusetts 1834–1903 London",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1880–90",
+          "medium": "Oil on wood",
+          "dims": "12 x 9 in. (22.9 x 30.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Bequest of Miss Adelaide Milton de Groot (1876-1967), 1967",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/13210",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP361944.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP361944.jpg",
+          "h": 53.3,
+          "w": 45.1,
+          "ratio": 1.1818,
+          "tags": [
+            "Women",
+            "Reading"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 10813,
+          "title": "The Chess Players",
+          "titleJa": "チェスをする人々",
+          "artist": "Thomas Eakins",
+          "bio": "American, Philadelphia, Pennsylvania 1844–1916 Philadelphia, Pennsylvania",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1876",
+          "medium": "Oil on wood",
+          "dims": "11 3/4 x 16 3/4 in. (29.8 x 42.6 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of the artist, 1881",
+          "gallery": "764",
+          "url": "https://www.metmuseum.org/art/collection/search/10813",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-18074-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP-18074-001.jpg",
+          "h": 29.8,
+          "w": 42.5,
+          "ratio": 0.7012,
+          "tags": [
+            "Interiors",
+            "Men",
+            "Chess",
+            "Playing",
+            "Cats"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10468,
+          "title": "For the Little One",
+          "titleJa": "小さな子のために",
+          "artist": "William Merritt Chase",
+          "bio": "American, Williamsburg, Indiana 1849–1916 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1896",
+          "medium": "Oil on canvas",
+          "dims": "40 x 35 1/4 in. (101.6 x 89.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Amelia B. Lazarus Fund, by exchange, 1917",
+          "gallery": "769",
+          "url": "https://www.metmuseum.org/art/collection/search/10468",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP161212.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP161212.jpg",
+          "h": 132.1,
+          "w": 137.2,
+          "ratio": 0.9628,
+          "tags": [
+            "Interiors",
+            "Women",
+            "Sewing"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437193,
+          "title": "The Reader",
+          "titleJa": "読書する人",
+          "artist": "Eglon van der Neer",
+          "bio": "Dutch, Amsterdam 1635/36–1703 Düsseldorf",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "",
+          "medium": "Oil on canvas",
+          "dims": "15 x 11 in. (38.1 x 27.9 cm)",
+          "dept": "European Paintings",
+          "credit": "The Friedsam Collection, Bequest of Michael Friedsam, 1931",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437193",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146484.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP146484.jpg",
+          "h": 38.1,
+          "w": 27.9,
+          "ratio": 1.3656,
+          "tags": [
+            "Portraits",
+            "Women",
+            "Reading"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "集う",
+        "en": "Gathering"
+      },
+      "note": {
+        "ja": "家族、生徒、客。部屋に人が増えるほど、語られない物語も増えていきます。",
+        "en": "Family, pupils, guests. The more people in the room, the more stories go unspoken."
+      },
+      "works": [
+        {
+          "id": 11263,
+          "title": "The Hatch Family",
+          "titleJa": "ハッチ家の人々",
+          "artist": "Eastman Johnson",
+          "bio": "American, Lovell, Maine 1824–1906 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1870–71",
+          "medium": "Oil on canvas",
+          "dims": "48 x 73 3/8 in. (121.9 x 186.4 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Frederic H. Hatch, 1926",
+          "gallery": "763",
+          "url": "https://www.metmuseum.org/art/collection/search/11263",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT85.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT85.jpg",
+          "h": 174.3,
+          "w": 237.8,
+          "ratio": 0.733,
+          "tags": [
+            "Interiors",
+            "Boys",
+            "Girls",
+            "Men",
+            "Women",
+            "Family",
+            "Toys",
+            "Reading"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 438817,
+          "title": "The Dance Class",
+          "titleJa": "ダンス教室",
+          "artist": "Edgar Degas",
+          "bio": "French, Paris 1834–1917 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1874",
+          "medium": "Oil on canvas",
+          "dims": "32 7/8 x 30 3/8 in. (83.5 x 77.2 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Mrs. Harry Payne Bingham, 1986",
+          "gallery": "815",
+          "url": "https://www.metmuseum.org/art/collection/search/438817",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-20101-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-20101-001.jpg",
+          "h": 83.5027,
+          "w": 77.1527,
+          "ratio": 1.0823,
+          "tags": [
+            "Girls",
+            "Men",
+            "Women",
+            "Students",
+            "Dancers",
+            "Ballet"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 20129,
+          "title": "Story of Golden Locks",
+          "titleJa": "金髪の物語",
+          "artist": "Seymour Joseph Guy",
+          "bio": "American (born England), London 1824–1910 New York",
+          "nationality": "American, born England",
+          "role": "Artist",
+          "date": "ca. 1870",
+          "medium": "Oil on canvas",
+          "dims": "34 x 28 in. (86.4 x 71.1 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Daniel Wolf and Mathew Wolf, in memory of their sister, the Honorable Diane R. Wolf, 2013",
+          "gallery": "763",
+          "url": "https://www.metmuseum.org/art/collection/search/20129",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP219245.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP219245.jpg",
+          "h": 86.3602,
+          "w": 71.1201,
+          "ratio": 1.2143,
+          "tags": [
+            "Bedrooms",
+            "Boys",
+            "Girls",
+            "Reading"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 437070,
+          "title": "A Musical Party",
+          "titleJa": "音楽の集い",
+          "artist": "Gabriël Metsu",
+          "bio": "Dutch, Leiden 1629–1667 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1659",
+          "medium": "Oil on canvas",
+          "dims": "24 1/2 x 21 3/8 in. (62.2 x 54.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Marquand Collection, Gift of Henry G. Marquand, 1890",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437070",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145948.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145948.jpg",
+          "h": 62.2,
+          "w": 54.3,
+          "ratio": 1.1455,
+          "tags": [
+            "Interiors",
+            "Lutes",
+            "Musical Instruments",
+            "Men",
+            "Women",
+            "Party",
+            "Music"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 626692,
+          "title": "The Jabach Family",
+          "titleJa": "ジャバッハ家",
+          "artist": "Charles Le Brun",
+          "bio": "French, Paris 1619–1690 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "ca. 1660",
+          "medium": "Oil on canvas",
+          "dims": "110 1/4 × 129 1/8 in. (280 × 328 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, Mrs. Charles Wrightsman Gift, in honor of Keith Christiansen, 2014",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/626692",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP352819.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP352819.jpg",
+          "h": 280,
+          "w": 328,
+          "ratio": 0.8537,
+          "tags": [
+            "Interiors",
+            "Boys",
+            "Self-portraits",
+            "Dogs",
+            "Girls",
+            "Infants",
+            "Men",
+            "Women"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "窓辺",
+        "en": "By the Window"
+      },
+      "note": {
+        "ja": "窓は、室内にいる私たちに外の気配を教えます。光の向きが、時刻を告げます。",
+        "en": "A window tells those inside that there is an outside. The direction of the light tells the hour."
+      },
+      "works": [
+        {
+          "id": 436947,
+          "title": "Boating",
+          "titleJa": "舟遊び",
+          "artist": "Edouard Manet",
+          "bio": "French, Paris 1832–1883 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1874",
+          "medium": "Oil on canvas",
+          "dims": "38 1/4 x 51 1/4 in. (97.2 x 130.2 cm)",
+          "dept": "European Paintings",
+          "credit": "H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929",
+          "gallery": "899",
+          "url": "https://www.metmuseum.org/art/collection/search/436947",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-25466-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-25466-001.jpg",
+          "h": 97.2,
+          "w": 130.2,
+          "ratio": 0.7465,
+          "tags": [
+            "Men",
+            "Women",
+            "Boats"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436579,
+          "title": "Broken Eggs",
+          "titleJa": "割れた卵",
+          "artist": "Jean-Baptiste Greuze",
+          "bio": "French, Tournus 1725–1805 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1756",
+          "medium": "Oil on canvas",
+          "dims": "28 3/4 x 37 in. (73 x 94 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of William K. Vanderbilt, 1920",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436579",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-12952-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-12952-001.jpg",
+          "h": 73,
+          "w": 94,
+          "ratio": 0.7766,
+          "tags": [
+            "Interiors",
+            "Children",
+            "Men",
+            "Women",
+            "Eggs"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 437881,
+          "title": "Young Woman with a Water Pitcher",
+          "titleJa": "水差しを持つ若い女性",
+          "artist": "Johannes Vermeer",
+          "bio": "Dutch, Delft 1632–1675 Delft",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "ca. 1662",
+          "medium": "Oil on canvas",
+          "dims": "18 x 16 in. (45.7 x 40.6 cm)",
+          "dept": "European Paintings",
+          "credit": "Marquand Collection, Gift of Henry G. Marquand, 1889",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437881",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP353257.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP353257.jpg",
+          "h": 45.7,
+          "w": 40.6,
+          "ratio": 1.1256,
+          "tags": [
+            "Interiors",
+            "Women",
+            "Maps",
+            "Pitchers"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 435771,
+          "title": "The Spinner",
+          "titleJa": "糸紡ぎ女",
+          "artist": "Quirijn van Brekelenkam",
+          "bio": "Dutch, Zwammerdam (?), after 1622–ca. 1669 Leiden",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1653",
+          "medium": "Oil on wood",
+          "dims": "19 x 25 1/4 in. (48.3 x 64.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, 1871",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/435771",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP143193.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP143193.jpg",
+          "h": 48.3,
+          "w": 64.1,
+          "ratio": 0.7535,
+          "tags": [
+            "Interiors",
+            "Men",
+            "Women",
+            "Working"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "手しごと",
+        "en": "Hands at Work"
+      },
+      "note": {
+        "ja": "金を打つ手、糸を紡ぐ手、子を抱く手。部屋の静けさは、働く手によって保たれています。",
+        "en": "Hands beating gold, hands spinning thread, hands holding a child. The quiet of a room is kept by working hands."
+      },
+      "works": [
+        {
+          "id": 459052,
+          "title": "A Goldsmith in his Shop",
+          "titleJa": "工房の金細工師",
+          "artist": "Petrus Christus",
+          "bio": "Netherlandish, Baarle-Hertog (Baerle-Duc), active by 1444–died 1475/76 Bruges",
+          "nationality": "Netherlandish",
+          "role": "Artist",
+          "date": "1449",
+          "medium": "Oil on oak panel",
+          "dims": "Overall 39 3/8 x 33 3/4 in. (100.1 x 85.8 cm); painted surface 38 5/8 x 33 1/2 in. (98 x 85.2 cm)",
+          "dept": "Robert Lehman Collection",
+          "credit": "Robert Lehman Collection, 1975",
+          "gallery": "953",
+          "url": "https://www.metmuseum.org/art/collection/search/459052",
+          "img": "https://images.metmuseum.org/CRDImages/rl/web-large/DP-42353-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/rl/original/DP-42353-001.jpg",
+          "h": 100,
+          "w": 85.8,
+          "ratio": 1.1655,
+          "tags": [
+            "Interiors",
+            "Jewelry",
+            "Couples",
+            "Men",
+            "Women"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 437915,
+          "title": "Interior of the Oude Kerk, Delft",
+          "titleJa": "デルフトのアウデ・ケルク内部",
+          "artist": "Hendrick van Vliet",
+          "bio": "Dutch, Delft 1611/12–1675 Delft",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1660",
+          "medium": "Oil on canvas",
+          "dims": "32 1/2 x 26 in. (82.6 x 66 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift of Clarence Dillon, 1976",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437915",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146460.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP146460.jpg",
+          "h": 82.6,
+          "w": 66,
+          "ratio": 1.2515,
+          "tags": [
+            "Columns",
+            "Interiors",
+            "Churches"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437071,
+          "title": "The Visit to the Nursery",
+          "titleJa": "子供部屋への訪問",
+          "artist": "Gabriël Metsu",
+          "bio": "Dutch, Leiden 1629–1667 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1661",
+          "medium": "Oil on canvas",
+          "dims": "30 1/2 x 32 in. (77.5 x 81.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift of J. Pierpont Morgan, 1917",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437071",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146447.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP146447.jpg",
+          "h": 77.5,
+          "w": 81.3,
+          "ratio": 0.9533,
+          "tags": [
+            "Bedrooms",
+            "Dogs",
+            "Servants",
+            "Infants",
+            "Men",
+            "Women"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437636,
+          "title": "Domestic Scene",
+          "titleJa": "家庭の情景",
+          "artist": "German Painter",
+          "bio": "ca. 1775–80",
+          "nationality": "German",
+          "role": "Artist",
+          "date": "",
+          "medium": "Oil on canvas",
+          "dims": "18 x 14 7/8 in. (45.7 x 37.8 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Edward Fowles, 1971",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437636",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT11332.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT11332.jpg",
+          "h": 45.7,
+          "w": 37.8,
+          "ratio": 1.209,
+          "tags": [
+            "Interiors",
+            "Men",
+            "Women",
+            "Reading",
+            "Dogs",
+            "Genre Scene"
+          ],
+          "highlight": false
+        }
+      ]
+    }
+  ],
+  "totalWorks": 17
+}

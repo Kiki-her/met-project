@@ -1,0 +1,33 @@
+# Netlify — 静的エクスポート（out/）をそのまま配信する
+#
+# 使い方:
+#   1. GitHub リポジトリを Netlify に接続
+#   2. ビルド設定はこのファイルから自動で読まれる（手入力不要）
+#   3. 公開URLが払い出される
+#
+# Next.js は output: "export" なので、サーバー側の実行環境は不要。
+# /g/nocturnes/ のような末尾スラッシュ付きURLは out/g/nocturnes/index.html に対応する。
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  # Next.js 13.5 は Node 18 以上が必要。Vercel の設定（22.x）と揃えて 22 で固定する。
+  NODE_VERSION = "22"
+  # データ生成時に大きめのヒープを使う
+  NODE_OPTIONS = "--max-old-space-size=3072"
+
+# Next.js のビルド成果物はファイル名にハッシュが入るので、長くキャッシュしてよい
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 作品画像は The Met の CDN から直接読むため、ここでは扱わない
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# 404 は out/404.html が自動で使われる（設定不要）

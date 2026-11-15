@@ -1,0 +1,538 @@
+{
+  "id": "small-worlds",
+  "title": {
+    "ja": "静物という小宇宙",
+    "en": "Still Life, a Small Cosmos"
+  },
+  "subtitle": {
+    "ja": "動かないものの物語",
+    "en": "The story of things that do not move"
+  },
+  "curator": {
+    "ja": "リンゴ、パン、魚、花。動かないものを前に、画家は時間との交渉を始めます。咲いている花は、すでに散りかけています。",
+    "en": "Apples, bread, fish, flowers. Before things that do not move, the painter begins a negotiation with time. The flower in bloom is already beginning to fall."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "卓上の秩序",
+        "en": "Order on a Table"
+      },
+      "note": {
+        "ja": "テーブルの上の数センチが、画家にとっては一日の仕事でした。",
+        "en": "A few centimetres of tabletop was a day's work for these painters."
+      },
+      "works": [
+        {
+          "id": 435882,
+          "title": "Still Life with Apples and a Pot of Primroses",
+          "titleJa": "リンゴとプリムローズの鉢のある静物",
+          "artist": "Paul Cézanne",
+          "bio": "French, Aix-en-Provence 1839–1906 Aix-en-Provence",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "ca. 1890",
+          "medium": "Oil on canvas",
+          "dims": "28 3/4 x 36 3/8 in. (73 x 92.4 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Sam A. Lewisohn, 1951",
+          "gallery": "826",
+          "url": "https://www.metmuseum.org/art/collection/search/435882",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT47.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT47.jpg",
+          "h": 73,
+          "w": 92.4,
+          "ratio": 0.79,
+          "tags": [
+            "Apples",
+            "Flowers",
+            "Still Life"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436946,
+          "title": "The Brioche",
+          "titleJa": "ブリオッシュ",
+          "artist": "Edouard Manet",
+          "bio": "French, Paris 1832–1883 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1870",
+          "medium": "Oil on canvas",
+          "dims": "25 5/8 x 31 7/8 in. (65.1 x 81 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift and Bequest of David and Peggy Rockefeller, 1991, 2017",
+          "gallery": "810",
+          "url": "https://www.metmuseum.org/art/collection/search/436946",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13655-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-13655-001.jpg",
+          "h": 65.1,
+          "w": 81,
+          "ratio": 0.8037,
+          "tags": [
+            "Bread",
+            "Grapes",
+            "Peaches",
+            "Flowers",
+            "Still Life"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436292,
+          "title": "Still Life with Roses and Fruit",
+          "titleJa": "バラと果物の静物",
+          "artist": "Henri Fantin-Latour",
+          "bio": "French, Grenoble 1836–1904 Buré",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1863",
+          "medium": "Oil on canvas",
+          "dims": "13 5/8 x 16 3/8 in. (34.6 x 41.6 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Alice A. Hay, 1987",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436292",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT8649.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT8649.jpg",
+          "h": 34.6,
+          "w": 41.6,
+          "ratio": 0.8317,
+          "tags": [
+            "Roses",
+            "Pears",
+            "Still Life"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 11737,
+          "title": "Still Life with Cake",
+          "titleJa": "ケーキのある静物",
+          "artist": "Raphaelle Peale",
+          "bio": "1774–1825",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1818",
+          "medium": "Oil on wood",
+          "dims": "10 3/4 x 15 1/4 in. (27.3 x 38.7 cm)",
+          "dept": "The American Wing",
+          "credit": "Maria DeWitt Jesup Fund, 1959",
+          "gallery": "756",
+          "url": "https://www.metmuseum.org/art/collection/search/11737",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT64.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT64.jpg",
+          "h": 27.3,
+          "w": 38.7,
+          "ratio": 0.7054,
+          "tags": [
+            "Fruit",
+            "Grapes",
+            "Wine",
+            "Still Life",
+            "Cakes"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10997,
+          "title": "Still Life—Violin and Music",
+          "titleJa": "ヴァイオリンと楽譜のある静物",
+          "artist": "William Michael Harnett",
+          "bio": "1848–1892",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1888",
+          "medium": "Oil on canvas",
+          "dims": "40 x 30 in. (101.6 x 76.2 cm)",
+          "dept": "The American Wing",
+          "credit": "Catharine Lorillard Wolfe Collection, Wolfe Fund, 1963",
+          "gallery": "763",
+          "url": "https://www.metmuseum.org/art/collection/search/10997",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT2046.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT2046.jpg",
+          "h": 129.9,
+          "w": 104.5,
+          "ratio": 1.2431,
+          "tags": [
+            "Music",
+            "Flutes",
+            "Violins",
+            "Still Life"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "咲くということ",
+        "en": "Being in Bloom"
+      },
+      "note": {
+        "ja": "花は、描かれた瞬間から散りはじめます。それが静物画の静かな緊張です。",
+        "en": "A painted flower begins to fall the moment it is painted. That is the quiet tension of still life."
+      },
+      "works": [
+        {
+          "id": 436524,
+          "title": "Sunflowers",
+          "titleJa": "ひまわり",
+          "artist": "Vincent van Gogh",
+          "bio": "Dutch, Zundert 1853–1890 Auvers-sur-Oise",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1887",
+          "medium": "Oil on canvas",
+          "dims": "17 x 24 in. (43.2 x 61 cm)",
+          "dept": "European Paintings",
+          "credit": "Rogers Fund, 1949",
+          "gallery": "825",
+          "url": "https://www.metmuseum.org/art/collection/search/436524",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-41223-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-41223-001.jpg",
+          "h": 43.2,
+          "w": 61,
+          "ratio": 0.7082,
+          "tags": [
+            "Still Life",
+            "Sunflowers"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436528,
+          "title": "Irises",
+          "titleJa": "アイリス",
+          "artist": "Vincent van Gogh",
+          "bio": "Dutch, Zundert 1853–1890 Auvers-sur-Oise",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1890",
+          "medium": "Oil on canvas",
+          "dims": "29 x 36 1/4 in. (73.7 x 92.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift of Adele R. Levy, 1958",
+          "gallery": "825",
+          "url": "https://www.metmuseum.org/art/collection/search/436528",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP346474.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP346474.jpg",
+          "h": 97.1552,
+          "w": 115.5702,
+          "ratio": 0.8407,
+          "tags": [
+            "Still Life",
+            "Flowers"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10476,
+          "title": "Still Life: Fish",
+          "titleJa": "静物：魚",
+          "artist": "William Merritt Chase",
+          "bio": "American, Williamsburg, Indiana 1849–1916 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "by 1908",
+          "medium": "Oil on canvas",
+          "dims": "40 1/8 x 45 1/16 in. (101.9 x 114.5 cm)",
+          "dept": "The American Wing",
+          "credit": "George A. Hearn Fund, 1908",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/10476",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP361299.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP361299.jpg",
+          "h": 101.9,
+          "w": 114.5,
+          "ratio": 0.89,
+          "tags": [
+            "Vegetables",
+            "Fish",
+            "Still Life"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437867,
+          "title": "A Bouquet of Flowers in a Crystal Vase",
+          "titleJa": "水晶の花瓶に生けた花束",
+          "artist": "Nicolaes van Veerendael",
+          "bio": "Flemish, 1640–1691",
+          "nationality": "Flemish",
+          "role": "Artist",
+          "date": "1662",
+          "medium": "Oil on canvas",
+          "dims": "19 1/2 x 15 7/8 in. (49.5 x 40.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Stephen Whitney Phoenix, 1881",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437867",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT202022.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT202022.jpg",
+          "h": 49.5,
+          "w": 40.3,
+          "ratio": 1.2283,
+          "tags": [
+            "Flowers",
+            "Still Life",
+            "Vases"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436634,
+          "title": "A Vase of Flowers",
+          "titleJa": "花瓶の花",
+          "artist": "Margareta Haverman",
+          "bio": "Dutch, Breda 1693–1722 or later",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1716",
+          "medium": "Oil on wood",
+          "dims": "31 1/4 x 23 3/4 in. (79.4 x 60.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, 1871",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436634",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-15788-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-15788-001.jpg",
+          "h": 79.4,
+          "w": 60.3,
+          "ratio": 1.3167,
+          "tags": [
+            "Grapes",
+            "Flowers",
+            "Still Life"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436121,
+          "title": "A Woman Seated beside a Vase of Flowers (Madame Paul Valpinçon?)",
+          "titleJa": "花瓶のそばに座る女性（ポール・ヴァルパンソン夫人？）",
+          "artist": "Edgar Degas",
+          "bio": "French, Paris 1834–1917 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1865",
+          "medium": "Oil on canvas",
+          "dims": "29 x 36 1/2 in. (73.7 x 92.7 cm)",
+          "dept": "European Paintings",
+          "credit": "H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929",
+          "gallery": "899",
+          "url": "https://www.metmuseum.org/art/collection/search/436121",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-25460-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-25460-001.jpg",
+          "h": 73.7,
+          "w": 92.7,
+          "ratio": 0.795,
+          "tags": [
+            "Pitchers",
+            "Women",
+            "Flowers"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "狩りのあと",
+        "en": "After the Hunt"
+      },
+      "note": {
+        "ja": "獲物は、もう動きません。だからこそ画家は、羽毛の一枚まで描き込めます。",
+        "en": "The quarry no longer moves. That is exactly why a painter can describe every single feather."
+      },
+      "works": [
+        {
+          "id": 437238,
+          "title": "Still Life of Fruit and Game",
+          "titleJa": "果物と狩猟獣の静物",
+          "artist": "Pieter van Overschee",
+          "bio": "Flemish, active ca. 1645–61",
+          "nationality": "Flemish",
+          "role": "Artist",
+          "date": "1645",
+          "medium": "Oil on wood",
+          "dims": "32 7/8 x 46 3/4 in. (83.5 x 118.7 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Grace Wilkes, 1921",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437238",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/ep22.45.10.bw.R.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/ep22.45.10.bw.R.jpg",
+          "h": 83.5,
+          "w": 118.7,
+          "ratio": 0.7035,
+          "tags": [
+            "Birds",
+            "Fruit",
+            "Still Life",
+            "Grapes",
+            "Rabbits"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437937,
+          "title": "Gamepiece with a Dead Heron",
+          "titleJa": "死んだサギのある狩猟静物",
+          "artist": "Jan Weenix",
+          "bio": "Dutch, Amsterdam ca. 1641?–1719 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1695",
+          "medium": "Oil on canvas",
+          "dims": "52 3/4 x 43 3/4 in. (134 x 111.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Rogers Fund, 1950",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437937",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145930.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145930.jpg",
+          "h": 134,
+          "w": 111.1,
+          "ratio": 1.2061,
+          "tags": [
+            "Birds",
+            "Flowers",
+            "Death"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436805,
+          "title": "Still Life with Fruit, Glassware, and a Wanli Bowl",
+          "titleJa": "果物、ガラス器、万暦の鉢のある静物",
+          "artist": "Willem Kalf",
+          "bio": "Dutch, Rotterdam 1619–1693 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1659",
+          "medium": "Oil on canvas",
+          "dims": "23 x 20 in. (58.4 x 50.8 cm)",
+          "dept": "European Paintings",
+          "credit": "Maria DeWitt Jesup Fund, 1953",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436805",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145932.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145932.jpg",
+          "h": 58.4,
+          "w": 50.8,
+          "ratio": 1.1496,
+          "tags": [
+            "Lemons",
+            "Fruit",
+            "Still Life",
+            "Bowls"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "うつろい",
+        "en": "Passing"
+      },
+      "note": {
+        "ja": "頭蓋骨、砂時計、消えかけの蝋燭。静物画はときどき、時間そのものを描きます。",
+        "en": "A skull, an hourglass, a guttering candle. Still life sometimes paints time itself."
+      },
+      "works": [
+        {
+          "id": 435904,
+          "title": "Still Life with a Skull and a Writing Quill",
+          "titleJa": "頭蓋骨と羽根ペンのある静物",
+          "artist": "Pieter Claesz",
+          "bio": "Dutch, Berchem? 1596/97–1660 Haarlem",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1628",
+          "medium": "Oil on wood",
+          "dims": "9 1/2 x 14 1/8 in. (24.1 x 35.9 cm)",
+          "dept": "European Paintings",
+          "credit": "Rogers Fund, 1949",
+          "gallery": "520",
+          "url": "https://www.metmuseum.org/art/collection/search/435904",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145929.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145929.jpg",
+          "h": 24.1,
+          "w": 35.9,
+          "ratio": 0.6713,
+          "tags": [
+            "Books",
+            "Skulls",
+            "Still Life",
+            "Drinking Glasses",
+            "Lamps"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 435918,
+          "title": "Vanitas Still Life",
+          "titleJa": "ヴァニタスの静物",
+          "artist": "Edwaert Collier",
+          "bio": "Dutch, Breda ca. 1640?–after 1707 London or Leiden",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1662",
+          "medium": "Oil on wood",
+          "dims": "37 x 44 1/8 in. (94 x 112.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, 1871",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/435918",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146494.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP146494.jpg",
+          "h": 94,
+          "w": 112.1,
+          "ratio": 0.8385,
+          "tags": [
+            "Books",
+            "Jewelry",
+            "Skulls",
+            "Music",
+            "Violins",
+            "Still Life",
+            "Globes"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 438376,
+          "title": "Still Life with Oysters, a Silver Tazza, and Glassware",
+          "titleJa": "牡蠣、銀製タッツァ、ガラス器のある静物",
+          "artist": "Willem Claesz Heda",
+          "bio": "Dutch, Haarlem? 1594–1680 Haarlem",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1635",
+          "medium": "Oil on wood",
+          "dims": "19 5/8 x 31 3/4 in. (49.8 x 80.6 cm)",
+          "dept": "European Paintings",
+          "credit": "From the Collection of Rita and Frits Markus, Bequest of Rita Markus, 2005",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/438376",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP120415.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP120415.jpg",
+          "h": 49.8476,
+          "w": 80.6452,
+          "ratio": 0.6181,
+          "tags": [
+            "Still Life",
+            "Lemons",
+            "Drinking Glasses",
+            "Oysters"
+          ],
+          "highlight": false
+        }
+      ]
+    }
+  ],
+  "totalWorks": 17
+}
