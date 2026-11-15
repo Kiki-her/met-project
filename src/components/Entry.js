@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { useSettings } from "@/components/Providers";
 import { loadProgress } from "@/lib/settings";
+import Door from "./Door";
 import SettingsPanel from "./SettingsPanel";
 import styles from "./Entry.module.css";
+
+const SEEN_KEY = "night-museum.entered";
 
 /** 日替わりの展示（日付から決まるので、同じ日は同じ展示になる） */
 function todayIndex(count) {
@@ -20,9 +23,32 @@ export default function Entry({ exhibitions }) {
   const { settings, update } = useSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [progress, setProgress] = useState(null);
+  /** 扉の状態。サーバー側では必ず閉じた状態で描く */
+  const [doorOpen, setDoorOpen] = useState(false);
 
   useEffect(() => {
     setProgress(loadProgress());
+  }, []);
+
+  // 二度目以降の来館では扉を出さない（layout.js の先読みと揃える）
+  useEffect(() => {
+    let seen = false;
+    try {
+      seen = window.localStorage.getItem(SEEN_KEY) === "1";
+    } catch {
+      seen = false;
+    }
+    if (seen) setDoorOpen(true);
+  }, []);
+
+  const openDoor = useCallback(() => {
+    setDoorOpen(true);
+    document.documentElement.dataset.entered = "1";
+    try {
+      window.localStorage.setItem(SEEN_KEY, "1");
+    } catch {
+      /* private mode */
+    }
   }, []);
 
   const today = useMemo(
@@ -38,8 +64,11 @@ export default function Entry({ exhibitions }) {
   const others = exhibitions.filter(e => !today || e.id !== today.id);
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} data-door={doorOpen ? "off" : "on"}>
       <div className={styles.glow} aria-hidden="true" />
+
+      {/* 初回だけの扉。中身はこの下に最初から描かれている */}
+      <Door open={doorOpen} onOpen={openDoor} />
 
       <header className={styles.topbar}>
         <div className={styles.brand}>

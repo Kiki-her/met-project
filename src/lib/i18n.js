@@ -13,6 +13,10 @@ const ja = {
   },
   brand: "夜の美術館",
   brandEn: "THE NIGHT MUSEUM",
+  door: {
+    open: "扉をひらく",
+    hint: "お好きなときに、どうぞ。音は切り替えられます。",
+  },
   entry: {
     lede: "灯りを落とした展示室を、あなたのペースで。",
     sub: "The Metropolitan Museum of Art のオープンアクセス作品による、5つの小展覧会。",
@@ -117,10 +121,20 @@ const ja = {
     unknownArtist: "作者不詳",
     openFull: "高精細で見る",
     loadingHi: "高精細画像を読み込み中…",
+    scaleShow: "実寸で見る",
+    scaleHide: "実寸をとじる",
+    scaleNote: "約 {h} × {w} cm（人の背丈は約170cm）",
   },
   share: {
     title: "この展示室を共有",
+    workTitle: "この作品を共有",
     body: "リンクを受け取った人は、同じ展示室を最初から見ることができます。",
+    workBody: "リンクを開くと、この作品の前に立った状態から始まります。",
+    lang: "送る言語",
+    workBy: "夜の美術館",
+    galleryBy: "夜の美術館",
+    x: "X で共有",
+    line: "LINE で送る",
     copy: "リンクをコピー",
     copied: "コピーしました",
     qr: "QRコード",
@@ -151,6 +165,10 @@ const en = {
   },
   brand: "The Night Museum",
   brandEn: "THE NIGHT MUSEUM",
+  door: {
+    open: "Open the door",
+    hint: "Whenever you are ready. Sound can be turned off at any time.",
+  },
   entry: {
     lede: "A gallery after dark, at your own pace.",
     sub: "Five small exhibitions drawn from the open-access collection of The Metropolitan Museum of Art.",
@@ -255,10 +273,20 @@ const en = {
     unknownArtist: "Unknown artist",
     openFull: "View in high resolution",
     loadingHi: "Loading high-resolution image…",
+    scaleShow: "See actual size",
+    scaleHide: "Hide scale",
+    scaleNote: "About {h} × {w} cm (a person is roughly 170 cm)",
   },
   share: {
     title: "Share this gallery",
+    workTitle: "Share this work",
     body: "Anyone with the link can walk the same gallery from the beginning.",
+    workBody: "The link opens with this work already in front of you.",
+    lang: "Language for the link",
+    workBy: "The Night Museum",
+    galleryBy: "The Night Museum",
+    x: "Share on X",
+    line: "Send via LINE",
     copy: "Copy link",
     copied: "Copied",
     qr: "QR code",
@@ -295,6 +323,22 @@ function readStoredLang() {
   }
 }
 
+/**
+ * URL の ?lang= を読む。
+ * 共有リンクは ?lang=en を持っているので、受け取った人は
+ * 自分の保存設定に関係なく、送り主が選んだ言語で読める。
+ * 保存設定より優先する（リンクを開いた意図のほうが強い）。
+ */
+function readUrlLang() {
+  if (typeof window === "undefined") return null;
+  try {
+    const v = new URLSearchParams(window.location.search).get("lang");
+    return LANGS.includes(v) ? v : null;
+  } catch {
+    return null;
+  }
+}
+
 /** 端末の言語から初期値を推定（ブラウザのja以外は英語） */
 function detectLang() {
   if (typeof navigator === "undefined") return "ja";
@@ -308,8 +352,8 @@ export function I18nProvider({ children }) {
   const [lang, setLang] = useState("ja");
 
   useEffect(() => {
-    const stored = readStoredLang();
-    const next = stored || detectLang();
+    // 共有リンクの ?lang= が最優先。無ければ保存値、それも無ければ端末言語
+    const next = readUrlLang() || readStoredLang() || detectLang();
     if (next !== lang) setLang(next);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

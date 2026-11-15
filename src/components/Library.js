@@ -120,6 +120,39 @@ export default function Library() {
   const artistOf = w => w.a || t("library.noArtist");
   const dateOf = w => w.d || t("library.noDate");
 
+  /**
+   * 作品の縦横比。書庫は「壁のように」並べたいので、
+   * 4:5 で切り揃えず、その作品の本来の形のまま置く。
+   * 実寸（cm）が無い作品だけ 4:5 に落とす。
+   */
+  const shapeOf = w => {
+    if (w.w && w.h && w.w > 2 && w.h > 2) return `${w.w} / ${w.h}`;
+    return "4 / 5";
+  };
+
+  /**
+   * 実寸比の基準。並んでいる作品の幅の 95% 点を「マスいっぱい」とし、
+   * それより小さい作品はマスの中で小さく置く。こうすると
+   * 手のひら大の素描と、壁を占める大作が、同じ一覧の中で
+   * 実際の大きさの違いのまま並ぶ。
+   * 外れ値（1点だけ巨大な作品）で全部が小さくならないよう 95% 点を使う。
+   */
+  const scaleRef = useMemo(() => {
+    if (!filtered || !filtered.length) return 250;
+    const widths = filtered
+      .map(w => (w.w && w.w > 2 ? w.w : null))
+      .filter(Boolean)
+      .sort((a, b) => a - b);
+    if (!widths.length) return 250;
+    return widths[Math.floor((widths.length - 1) * 0.95)] || widths[widths.length - 1];
+  }, [filtered]);
+
+  /** マスに対する相対的な大きさ（0.4〜1） */
+  const relOf = w => {
+    if (!w.w || w.w < 2) return 1;
+    return Math.min(1, Math.max(0.4, w.w / scaleRef));
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.glow} aria-hidden="true" />
@@ -249,7 +282,7 @@ export default function Library() {
                         onClick={() => setSelected(w)}
                         aria-label={`${titleOf(w)} — ${artistOf(w)}`}
                       >
-                        <span className={styles.thumb}>
+                        <span className={styles.thumb} style={{ aspectRatio: shapeOf(w) }}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={w.im}
@@ -257,6 +290,7 @@ export default function Library() {
                             className={styles.thumbImg}
                             loading="lazy"
                             decoding="async"
+                            style={{ width: `${Math.round(relOf(w) * 100)}%` }}
                           />
                         </span>
                         <span className={styles.cardBody}>
