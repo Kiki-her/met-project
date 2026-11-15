@@ -86,7 +86,7 @@ npm run verify-images              # API から最新URLを取得し data/image-
 
 `npm run build` で `out/` が生成されるので、静的ホスティングにそのまま置ける。
 `trailingSlash: true` のため、`/g/nocturnes/` のような末尾スラッシュ付きURLで配信すること。
-Node は 20 以上（`.nvmrc` で固定）。
+Node は 22 で固定（`package.json` の `engines.node` と `.nvmrc`）。
 
 ### Netlify（設定済み）
 
@@ -104,7 +104,7 @@ Node は 20 以上（`.nvmrc` で固定）。
 - Framework preset: `Next.js (Static HTML Export)`
 - Build command: `npm run build`
 - Build output directory: `out`
-- 環境変数: `NODE_VERSION=20`
+- 環境変数: `NODE_VERSION=22`
 
 ### GitHub Pages
 

@@ -13,8 +13,8 @@
   publish = "out"
 
 [build.environment]
-  # Next.js 13.5 は Node 18 以上が必要。20 で固定する。
-  NODE_VERSION = "20"
+  # Next.js 13.5 は Node 18 以上が必要。Vercel の設定（22.x）と揃えて 22 で固定する。
+  NODE_VERSION = "22"
   # データ生成時に大きめのヒープを使う
   NODE_OPTIONS = "--max-old-space-size=3072"
 
