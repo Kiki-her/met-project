@@ -1,4 +1,8 @@
 {
+  "435896": {
+    "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-44361-001.jpg",
+    "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-44361-001.jpg"
+  },
   "436524": {
     "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-41223-001.jpg",
     "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-41223-001.jpg"
@@ -11,8 +15,16 @@
     "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg",
     "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-30758-001.jpg"
   },
+  "437975": {
+    "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-34962-001.jpg",
+    "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-34962-001.jpg"
+  },
   "438417": {
     "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-31997-001-NEW.jpg",
     "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-31997-001-NEW.jpg"
+  },
+  "459052": {
+    "img": "https://images.metmuseum.org/CRDImages/rl/web-large/DP-42353-001.jpg",
+    "imgFull": "https://images.metmuseum.org/CRDImages/rl/original/DP-42353-001.jpg"
   }
 }

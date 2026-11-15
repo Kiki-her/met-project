@@ -6,8 +6,9 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useI18n } from "@/lib/i18n";
 import { useSettings } from "@/components/Providers";
 import { buildRoom, centerOf, clampCam, frameKind, nearestWork } from "@/lib/room";
-import { saveProgress } from "@/lib/settings";
+import { DEFAULTS, saveProgress } from "@/lib/settings";
 import { setAmbienceVolume, startAmbience, stopAmbience } from "@/lib/sound";
+import { isSpeaking } from "@/lib/speech";
 import WorkPanel from "./WorkPanel";
 import ShareSheet from "./ShareSheet";
 import SoundPrompt from "./SoundPrompt";
@@ -23,6 +24,8 @@ export default function RoomShell({ room, neighbours }) {
   const stageRef = useRef(null);
   const worldRef = useRef(null);
   const tiltRef = useRef(null);
+  /** 自動スライドまでの残り時間を塗る細い線 */
+  const autoBarRef = useRef(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
 
   /** 画面の高さに応じて作品の実寸スケールを変える（狭い画面では壁を広く見せる） */
@@ -63,6 +66,27 @@ export default function RoomShell({ room, neighbours }) {
   const lastIndex = useRef(-1);
   const totalRef = useRef(0);
   totalRef.current = totalWidth;
+
+  /* ---------- 自動スライド（放置検知） ----------
+     展示室は「開いたまま眺める」場所でもある。何秒か触られなければ
+     静かに次の作品へ移る。少しでも操作があれば最初から数え直す。 */
+  const autoAt = useRef(0); // 最後に手が触れた時刻
+  const autoRef = useRef({ on: false, sec: DEFAULTS.autoTourSec });
+  /** rAF ループは毎フレーム走るので、状態は ref 経由で読む（再生成を避ける） */
+  const stepRef = useRef(() => {});
+  const indexRef = useRef(0);
+  const lenRef = useRef(0);
+  const blockRef = useRef(false);
+  const veilRef = useRef("off");
+  indexRef.current = hud.index;
+  lenRef.current = works.length;
+  blockRef.current = shareOpen || askSound;
+  veilRef.current = veil;
+
+  /** 何か操作があったら計り直す */
+  const bump = useCallback(() => {
+    autoAt.current = performance.now();
+  }, []);
 
   /* ---------- 計測 ---------- */
   useLayoutEffect(() => {
@@ -136,6 +160,7 @@ export default function RoomShell({ room, neighbours }) {
   useEffect(() => {
     let raf = 0;
     let lastHud = 0;
+    let lastAuto = 0;
     const tick = now => {
       const s = cam.current;
       if (!s.ready) {
@@ -158,6 +183,36 @@ export default function RoomShell({ room, neighbours }) {
           }
         }
       }
+
+      /* 自動スライド — 無操作のまま一定時間が過ぎたら次の作品へ */
+      if (now - lastAuto > 200) {
+        lastAuto = now;
+        const a = autoRef.current;
+        const gated =
+          !a.on ||
+          blockRef.current || // 共有シート・音の確認中は止める
+          veilRef.current !== "off" || // 暗転中は動かさない
+          s.dragging ||
+          isSpeaking(); // 音声ガイドの途中で切り替えない
+        if (gated) {
+          autoAt.current = now; // 止まっている間は数えない
+        } else if (indexRef.current >= lenRef.current - 1) {
+          autoAt.current = now; // 最後の作品で止まる
+        } else if (!autoAt.current) {
+          autoAt.current = now; // 初回はここから数えはじめる
+        } else {
+          const elapsed = now - autoAt.current;
+          const p = Math.min(1, elapsed / (a.sec * 1000));
+          // 残り時間を細い線で示す（触れば 0 に戻る）
+          const bar = autoBarRef.current;
+          if (bar) bar.style.transform = `scaleX(${p.toFixed(3)})`;
+          if (elapsed >= a.sec * 1000) {
+            autoAt.current = now;
+            stepRef.current(1);
+          }
+        }
+      }
+
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -214,6 +269,21 @@ export default function RoomShell({ room, neighbours }) {
     if (!soundOn) return;
     setAmbienceVolume(settings.sound ? volume : 0, 0.45);
   }, [settings.sound, volume, soundOn]);
+
+  /* ---------- 自動スライドの設定を反映 ---------- */
+  useEffect(() => {
+    const on = settings.autoTour !== false;
+    const sec = Math.max(4, Number(settings.autoTourSec) || DEFAULTS.autoTourSec);
+    autoRef.current = { on, sec };
+    bump(); // 設定を変えた時点から数え直す
+    const bar = autoBarRef.current;
+    if (bar) bar.style.transform = "scaleX(0)";
+  }, [settings.autoTour, settings.autoTourSec, bump]);
+
+  // 部屋が変わったら、また最初から
+  useEffect(() => {
+    bump();
+  }, [room.id, bump]);
 
   /* ---------- 寄る／戻る ---------- */
   const geometry = useCallback(
@@ -288,12 +358,16 @@ export default function RoomShell({ room, neighbours }) {
     [focus, hud.index, works, openWork, snapTo]
   );
 
+  // rAF ループ（依存を持たない effect）から最新の step を呼ぶための橋渡し
+  stepRef.current = step;
+
   /* ---------- 入力 ---------- */
   const settleTimer = useRef(null);
 
   const onWheel = useCallback(
     e => {
       e.preventDefault();
+      bump();
       const s = cam.current;
       const d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
 
@@ -313,11 +387,12 @@ export default function RoomShell({ room, neighbours }) {
         if (near) s.tx = clampX(centerOf(near), 1);
       }, 260);
     },
-    [focus, geometry, works, clampX]
+    [focus, geometry, works, clampX, bump]
   );
 
   const onPointerDown = useCallback(e => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
+    bump();
     const s = cam.current;
     s.dragging = true;
     s.startX = e.clientX;
@@ -325,7 +400,7 @@ export default function RoomShell({ room, neighbours }) {
     s.startCam = s.tx;
     s.moved = 0;
     if (settleTimer.current) window.clearTimeout(settleTimer.current);
-  }, []);
+  }, [bump]);
 
   const onPointerMove = useCallback(
     e => {
@@ -340,15 +415,18 @@ export default function RoomShell({ room, neighbours }) {
       }
 
       if (!s.dragging) return;
+      // 長く引きずっている間も「反応あり」とみなす（ホバーだけでは数え直さない）
+      bump();
       const dx = e.clientX - s.startX;
       const dy = e.clientY - s.startY;
       s.moved = Math.max(s.moved, Math.abs(dx), Math.abs(dy));
       s.tx = clampX(s.startCam - dx, s.z);
     },
-    [focus, size, settings.motion, clampX]
+    [focus, size, settings.motion, clampX, bump]
   );
 
   const onPointerUp = useCallback(() => {
+    bump();
     const s = cam.current;
     if (!s.dragging) return;
     s.dragging = false;
@@ -358,16 +436,29 @@ export default function RoomShell({ room, neighbours }) {
       const g = focus && focus.work.id === near.work.id ? geometry(near) : null;
       s.tx = clampX(g ? g.x : centerOf(near), g ? g.z : 1);
     }
-  }, [works, focus, geometry, clampX]);
+  }, [works, focus, geometry, clampX, bump]);
 
   /** ドラッグ直後のクリックで作品が開いてしまうのを防ぐ */
-  const onClickCapture = useCallback(e => {
-    if (cam.current.moved > 8) {
-      e.preventDefault();
-      e.stopPropagation();
-      cam.current.moved = 0;
-    }
-  }, []);
+  const onClickCapture = useCallback(
+    e => {
+      bump();
+      if (cam.current.moved > 8) {
+        e.preventDefault();
+        e.stopPropagation();
+        cam.current.moved = 0;
+      }
+    },
+    [bump]
+  );
+
+  /* 別のタブを見ているあいだは進めない。戻ってきたら数え直す */
+  useEffect(() => {
+    const onVis = () => {
+      if (!document.hidden) bump();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, [bump]);
 
   /* ---------- キーボード ---------- */
   const dismissSoundPrompt = useCallback(() => setAskSound(false), []);
@@ -442,6 +533,8 @@ export default function RoomShell({ room, neighbours }) {
   const chapter = room.chapters[hud.chapter] || room.chapters[0];
   const progress = works.length ? Math.round(((hud.index + 1) / works.length) * 100) : 0;
   const current = works[hud.index];
+  /** 自動スライドが「いま働きうる状態か」。最後の作品では止まるので線も引かない */
+  const autoOn = settings.autoTour !== false && hud.index < works.length - 1;
 
   return (
     <div className={styles.shell}>
@@ -639,6 +732,10 @@ export default function RoomShell({ room, neighbours }) {
       <footer className={styles.hudBottom} data-dim={focus ? "on" : "off"}>
         <div className={styles.rail}>
           <span className={styles.railFill} style={{ width: `${progress}%` }} />
+        </div>
+        {/* 自動スライドまでの残り。触れると伸びきって、また縮みはじめる */}
+        <div className={styles.autoRail} aria-hidden="true" data-on={autoOn ? "on" : "off"}>
+          <span className={styles.autoFill} ref={autoBarRef} />
         </div>
         <div className={styles.railMeta}>
           <span className={styles.railHint}>{t("room.walkHint")}</span>

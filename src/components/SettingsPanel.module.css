@@ -146,6 +146,15 @@
   font-weight: 500;
 }
 
+/* 自動スライドを止めているあいだは、待ち時間の選択を沈める */
+.row[data-disabled="on"] {
+  opacity: 0.4;
+}
+
+.row[data-disabled="on"] .segmented {
+  pointer-events: none;
+}
+
 .credit {
   margin: 20px 0 0;
   font-size: 0.64rem;

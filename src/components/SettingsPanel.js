@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useI18n } from "@/lib/i18n";
+import { AUTO_TOUR_STEPS } from "@/lib/settings";
 import styles from "./SettingsPanel.module.css";
 
 export default function SettingsPanel({ open, onClose, settings, update }) {
@@ -144,6 +145,51 @@ export default function SettingsPanel({ open, onClose, settings, update }) {
             >
               {t("entry.motionReduced")}
             </button>
+          </div>
+        </div>
+
+        <div className={styles.row}>
+          <div className={styles.rowLabel}>
+            <span className={styles.label}>{t("entry.autoTour")}</span>
+            <span className={styles.hint}>{t("entry.autoTourHint")}</span>
+          </div>
+          <div className={styles.segmented} role="group" aria-label={t("entry.autoTour")}>
+            <button
+              type="button"
+              className={settings.autoTour !== false ? styles.segOn : styles.seg}
+              onClick={() => update({ autoTour: true })}
+              aria-pressed={settings.autoTour !== false}
+            >
+              ON
+            </button>
+            <button
+              type="button"
+              className={settings.autoTour === false ? styles.segOn : styles.seg}
+              onClick={() => update({ autoTour: false })}
+              aria-pressed={settings.autoTour === false}
+            >
+              OFF
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.row} data-disabled={settings.autoTour === false ? "on" : "off"}>
+          <div className={styles.rowLabel}>
+            <span className={styles.label}>{t("entry.autoTourWait")}</span>
+          </div>
+          <div className={styles.segmented} role="group" aria-label={t("entry.autoTourWait")}>
+            {AUTO_TOUR_STEPS.map(sec => (
+              <button
+                key={sec}
+                type="button"
+                className={(settings.autoTourSec ?? 12) === sec ? styles.segOn : styles.seg}
+                onClick={() => update({ autoTourSec: sec })}
+                aria-pressed={(settings.autoTourSec ?? 12) === sec}
+                disabled={settings.autoTour === false}
+              >
+                {t("entry.seconds", { n: sec })}
+              </button>
+            ))}
           </div>
         </div>
 

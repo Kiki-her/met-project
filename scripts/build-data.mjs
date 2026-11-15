@@ -47,6 +47,29 @@ function loadAutoTitles() {
 const autoTitles = loadAutoTitles();
 
 /**
+ * 画像が 404 になっている作品の記録（scripts/check-images.mjs が生成）。
+ * 書庫には「切れた額」を並べたくないので、ここに載っている作品は除外する。
+ * 展示会（企画展）の側は、キュレーションした作品なので除外せず、
+ * 修復（data/image-overrides.json）で対応する。
+ */
+const BROKEN_PATH = path.join(ROOT, "data/broken-images.json");
+
+function loadBrokenIds() {
+  if (!fs.existsSync(BROKEN_PATH)) {
+    console.warn("[build-data] data/broken-images.json がありません（画像検査は未実行）");
+    return new Set();
+  }
+  try {
+    const j = JSON.parse(fs.readFileSync(BROKEN_PATH, "utf8"));
+    return new Set((j.broken || []).map(b => b.id));
+  } catch {
+    return new Set();
+  }
+}
+
+const brokenIds = loadBrokenIds();
+
+/**
  * 作品の日本語題を決める。
  *   1. 手書きの訳（scripts/titles-ja.mjs）— 展示会で使う作品はこちらが優先
  *   2. 自動訳（英語タイトルをキーにしたキャッシュ）
@@ -156,26 +179,34 @@ function main() {
 
   // 書庫（全収蔵品の一覧・検索）用の軽量インデックス。
   // キー名は1文字にして、3,000件でも転送量を抑える（gzip 後 約260KB）。
-  const library = catalog.map(o => ({
-    i: o.id,
-    t: o.title,
-    j: o.titleJa || "",
-    a: o.artist,
-    d: o.date,
-    m: o.medium,
-    p: o.dept,
-    w: o.w,
-    h: o.h,
-    s: o.credit,
-    g: o.gallery,
-    u: o.url,
-    im: o.img,
-    hl: o.highlight ? 1 : 0,
-  }));
+  //
+  // 画像が 404 の作品は載せない。書庫は「開けば必ず絵がある」場所にしたいので、
+  // 切れた額を並べるより、並べないほうが誠実。
+  // （展示会で使う作品はキュレーション済みなので除外せず、overrides で修復する）
+  const library = catalog
+    .filter(o => !brokenIds.has(o.id))
+    .map(o => ({
+      i: o.id,
+      t: o.title,
+      j: o.titleJa || "",
+      a: o.artist,
+      d: o.date,
+      m: o.medium,
+      p: o.dept,
+      w: o.w,
+      h: o.h,
+      s: o.credit,
+      g: o.gallery,
+      u: o.url,
+      im: o.img,
+      hl: o.highlight ? 1 : 0,
+    }));
   const libraryPath = path.join(PUBLIC_DATA, "library.json");
   fs.writeFileSync(libraryPath, JSON.stringify(library));
   console.log(
-    `[build-data] library.json: ${library.length} works, ${(fs.statSync(libraryPath).size / 1024).toFixed(0)}KB`
+    `[build-data] library.json: ${library.length} works` +
+      (brokenIds.size ? ` （表示できない ${brokenIds.size} 点を除外）` : "") +
+      `, ${(fs.statSync(libraryPath).size / 1024).toFixed(0)}KB`
   );
 
   const errors = [];

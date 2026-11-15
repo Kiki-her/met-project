@@ -604,6 +604,36 @@
   transition: width 0.5s var(--ease);
 }
 
+/* 自動スライドまでの残り時間。触れると 0 に戻って、また静かに伸びる。
+   歩行の進捗線（.rail）と混ざらないよう、ごく細く・淡く置く。 */
+.autoRail {
+  position: relative;
+  height: 1px;
+  margin-top: 5px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.autoRail[data-on="on"] {
+  opacity: 1;
+}
+
+.autoFill {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: rgba(240, 233, 221, 0.22);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .autoRail {
+    display: none;
+  }
+}
+
 .railMeta {
   display: flex;
   align-items: center;

@@ -10,7 +10,12 @@ export const DEFAULTS = {
   motion: "full", // full | reduced
   textSize: "m", // s | m | l
   volume: 0.6, // 0–1 環境音の音量
+  autoTour: true, // 放置すると自動で次の作品へ進む
+  autoTourSec: 12, // 無操作が何秒続いたら進むか
 };
+
+/** 自動スライドの待ち時間として選べる値（秒） */
+export const AUTO_TOUR_STEPS = [8, 12, 20];
 
 const TEXT_SCALE = { s: 0.94, m: 1, l: 1.1 };
 

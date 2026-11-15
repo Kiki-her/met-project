@@ -37,6 +37,10 @@ const ja = {
     chapters: "章",
     works: "点",
     minutes: "分",
+    autoTour: "自動スライド",
+    autoTourHint: "触れずにいると、次の作品へ静かに移ります",
+    autoTourWait: "待ち時間",
+    seconds: "{n}秒",
   },
   library: {
     eyebrow: "THE STOREROOM",
@@ -171,6 +175,10 @@ const en = {
     chapters: "chapters",
     works: "works",
     minutes: "min",
+    autoTour: "Auto tour",
+    autoTourHint: "Left untouched, the gallery moves on by itself",
+    autoTourWait: "Waiting time",
+    seconds: "{n}s",
   },
   library: {
     eyebrow: "THE STOREROOM",
