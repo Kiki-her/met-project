@@ -26,6 +26,7 @@
         {
           "id": 435882,
           "title": "Still Life with Apples and a Pot of Primroses",
+          "titleJa": "リンゴとプリムローズの鉢のある静物",
           "artist": "Paul Cézanne",
           "bio": "French, Aix-en-Provence 1839–1906 Aix-en-Provence",
           "nationality": "French",
@@ -52,6 +53,7 @@
         {
           "id": 436946,
           "title": "The Brioche",
+          "titleJa": "ブリオッシュ",
           "artist": "Edouard Manet",
           "bio": "French, Paris 1832–1883 Paris",
           "nationality": "French",
@@ -80,6 +82,7 @@
         {
           "id": 436292,
           "title": "Still Life with Roses and Fruit",
+          "titleJa": "バラと果物の静物",
           "artist": "Henri Fantin-Latour",
           "bio": "French, Grenoble 1836–1904 Buré",
           "nationality": "French",
@@ -118,6 +121,7 @@
         {
           "id": 436524,
           "title": "Sunflowers",
+          "titleJa": "ひまわり",
           "artist": "Vincent van Gogh",
           "bio": "Dutch, Zundert 1853–1890 Auvers-sur-Oise",
           "nationality": "Dutch",
@@ -143,6 +147,7 @@
         {
           "id": 436528,
           "title": "Irises",
+          "titleJa": "アイリス",
           "artist": "Vincent van Gogh",
           "bio": "Dutch, Zundert 1853–1890 Auvers-sur-Oise",
           "nationality": "Dutch",
@@ -168,6 +173,7 @@
         {
           "id": 10476,
           "title": "Still Life: Fish",
+          "titleJa": "静物：魚",
           "artist": "William Merritt Chase",
           "bio": "American, Williamsburg, Indiana 1849–1916 New York",
           "nationality": "American",

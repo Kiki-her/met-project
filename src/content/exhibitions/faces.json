@@ -26,6 +26,7 @@
         {
           "id": 437397,
           "title": "Self-Portrait",
+          "titleJa": "自画像",
           "artist": "Rembrandt (Rembrandt van Rijn)",
           "bio": "Dutch, Leiden 1606–1669 Amsterdam",
           "nationality": "Dutch",
@@ -51,6 +52,7 @@
         {
           "id": 437394,
           "title": "Aristotle with a Bust of Homer",
+          "titleJa": "ホメロスの胸像を見つめるアリストテレス",
           "artist": "Rembrandt (Rembrandt van Rijn)",
           "bio": "Dutch, Leiden 1606–1669 Amsterdam",
           "nationality": "Dutch",
@@ -88,6 +90,7 @@
         {
           "id": 459080,
           "title": "Erasmus of Rotterdam",
+          "titleJa": "ロッテルダムのエラスムス",
           "artist": "Hans Holbein the Younger",
           "bio": "German, Augsburg 1497/98–1543 London",
           "nationality": "German",
@@ -113,6 +116,7 @@
         {
           "id": 436658,
           "title": "Hermann von Wedigh III (died 1560)",
+          "titleJa": "ヘルマン・フォン・ヴェディヒ三世",
           "artist": "Hans Holbein the Younger",
           "bio": "German, Augsburg 1497/98–1543 London",
           "nationality": "German",
@@ -139,6 +143,7 @@
         {
           "id": 437056,
           "title": "Tommaso di Folco Portinari (1428–1501); Maria Portinari (Maria Maddalena Baroncelli, born 1456)",
+          "titleJa": "トンマーゾ・ディ・フォルコ・ポルティナーリとマリア・ポルティナーリ",
           "artist": "Hans Memling",
           "bio": "Netherlandish, Seligenstadt, active by 1465–died 1494 Bruges",
           "nationality": "Netherlandish",
@@ -178,6 +183,7 @@
         {
           "id": 436622,
           "title": "Merrymakers at Shrovetide",
+          "titleJa": "謝肉祭の楽しみ",
           "artist": "Frans Hals",
           "bio": "Dutch, Antwerp 1582/83–1666 Haarlem",
           "nationality": "Dutch",
@@ -209,6 +215,7 @@
         {
           "id": 438112,
           "title": "Queen Henrietta Maria",
+          "titleJa": "ヘンリエッタ・マリア王妃",
           "artist": "Anthony van Dyck",
           "bio": "Flemish, Antwerp 1599–1641 London",
           "nationality": "Flemish",
@@ -236,6 +243,7 @@
         {
           "id": 436253,
           "title": "Lucas van Uffel (died 1637)",
+          "titleJa": "ルーカス・ファン・ウッフェル",
           "artist": "Anthony van Dyck",
           "bio": "Flemish, Antwerp 1599–1641 London",
           "nationality": "Flemish",

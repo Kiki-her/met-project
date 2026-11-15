@@ -39,7 +39,8 @@ export function buildScript(work, { lang, chapterTitle, chapterNote, museumName 
   const L = (a, b) => (lang === "ja" ? a : b);
   const parts = [];
 
-  const title = work.title || L("無題", "Untitled");
+  const title =
+    lang === "ja" && work.titleJa ? work.titleJa : work.title || L("無題", "Untitled");
   const artist = work.artist || L("作者不詳", "Unknown artist");
   const clean = s => (typeof s === "string" ? s.trim().replace(/\s+/g, " ") : "");
 

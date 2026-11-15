@@ -26,6 +26,7 @@
         {
           "id": 11122,
           "title": "The Gulf Stream",
+          "titleJa": "メキシコ湾流",
           "artist": "Winslow Homer",
           "bio": "American, Boston, Massachusetts 1836–1910 Prouts Neck, Maine",
           "nationality": "American",
@@ -54,6 +55,7 @@
         {
           "id": 11130,
           "title": "Northeaster",
+          "titleJa": "北東の嵐",
           "artist": "Winslow Homer",
           "bio": "American, Boston, Massachusetts 1836–1910 Prouts Neck, Maine",
           "nationality": "American",
@@ -80,6 +82,7 @@
         {
           "id": 11050,
           "title": "Approaching Thunder Storm",
+          "titleJa": "近づく雷雨",
           "artist": "Martin Johnson Heade",
           "bio": "1819–1904",
           "nationality": "American",
@@ -118,6 +121,7 @@
         {
           "id": 11307,
           "title": "Eaton's Neck, Long Island",
+          "titleJa": "ロングアイランド、イートンズ・ネック",
           "artist": "John Frederick Kensett",
           "bio": "American, Cheshire, Connecticut 1816–1872 New York",
           "nationality": "American",
@@ -143,6 +147,7 @@
         {
           "id": 11396,
           "title": "Stage Fort across Gloucester Harbor",
+          "titleJa": "グロスター港の向こうのステージ要塞",
           "artist": "Fitz Henry Lane (formerly Fitz Hugh Lane)",
           "bio": "1804–1865",
           "nationality": "American",
@@ -170,6 +175,7 @@
         {
           "id": 10464,
           "title": "At the Seaside",
+          "titleJa": "海浜にて",
           "artist": "William Merritt Chase",
           "bio": "American, Williamsburg, Indiana 1849–1916 New York",
           "nationality": "American",
@@ -208,6 +214,7 @@
         {
           "id": 437430,
           "title": "By the Seashore",
+          "titleJa": "海辺にて",
           "artist": "Auguste Renoir",
           "bio": "French, Limoges 1841–1919 Cagnes-sur-Mer",
           "nationality": "French",
@@ -233,6 +240,7 @@
         {
           "id": 10480,
           "title": "The Aegean Sea",
+          "titleJa": "エーゲ海",
           "artist": "Frederic Edwin Church",
           "bio": "American, Hartford, Connecticut 1826–1900 New York",
           "nationality": "American",
@@ -260,6 +268,7 @@
         {
           "id": 10207,
           "title": "An Arctic Summer: Boring Through the Pack in Melville Bay",
+          "titleJa": "北極の夏：メルヴィル湾の流氷を突き進む",
           "artist": "William Bradford",
           "bio": "American, 1823–1892",
           "nationality": "American",

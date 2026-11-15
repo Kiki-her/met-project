@@ -36,6 +36,7 @@
     "cover": {
       "id": 438417,
       "title": "Two Men Contemplating the Moon",
+      "titleJa": "月を眺める二人の男",
       "artist": "Caspar David Friedrich",
       "date": "ca. 1825–30",
       "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-31997-001-NEW.jpg",
@@ -79,6 +80,7 @@
     "cover": {
       "id": 11122,
       "title": "The Gulf Stream",
+      "titleJa": "メキシコ湾流",
       "artist": "Winslow Homer",
       "date": "1899; reworked by 1906",
       "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-20821-001.jpg",
@@ -122,6 +124,7 @@
     "cover": {
       "id": 10813,
       "title": "The Chess Players",
+      "titleJa": "チェスをする人々",
       "artist": "Thomas Eakins",
       "date": "1876",
       "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-18074-001.jpg",
@@ -158,6 +161,7 @@
     "cover": {
       "id": 435882,
       "title": "Still Life with Apples and a Pot of Primroses",
+      "titleJa": "リンゴとプリムローズの鉢のある静物",
       "artist": "Paul Cézanne",
       "date": "ca. 1890",
       "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT47.jpg",
@@ -201,6 +205,7 @@
     "cover": {
       "id": 437397,
       "title": "Self-Portrait",
+      "titleJa": "自画像",
       "artist": "Rembrandt (Rembrandt van Rijn)",
       "date": "1660",
       "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-16323-001.jpg",

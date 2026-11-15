@@ -16,7 +16,7 @@ import styles from "./RoomShell.module.css";
 const SOUND_KEY = "night-museum.soundAsked";
 
 export default function RoomShell({ room, neighbours }) {
-  const { t, L, lang } = useI18n();
+  const { t, L, T, lang } = useI18n();
   const { settings, update } = useSettings();
   const router = useRouter();
 
@@ -543,6 +543,7 @@ export default function RoomShell({ room, neighbours }) {
                     key={item.key}
                     item={item}
                     lang={lang}
+                    title={T(item.work)}
                     active={!!focus && focus.work.id === item.work.id}
                     onOpen={() => openWork(item)}
                     onFocus={() => {
@@ -649,7 +650,7 @@ export default function RoomShell({ room, neighbours }) {
 
       {/* スクリーンリーダー向けの現在位置 */}
       <p className="sr-only" aria-live="polite">
-        {current ? `${current.work.title} — ${current.work.artist}` : ""}
+        {current ? `${T(current.work)} — ${current.work.artist}` : ""}
       </p>
 
       <WorkPanel
@@ -675,7 +676,7 @@ export default function RoomShell({ room, neighbours }) {
 /* ============================================================
    壁に掛かった作品
    ============================================================ */
-function Frame({ item, active, onOpen, onFocus, lang }) {
+function Frame({ item, active, onOpen, onFocus, lang, title }) {
   const [failed, setFailed] = useState(false);
   const kind = frameKind(item.work);
 
@@ -693,7 +694,7 @@ function Frame({ item, active, onOpen, onFocus, lang }) {
         onClick={onOpen}
         onFocus={onFocus}
         style={{ width: item.w, height: item.h }}
-        aria-label={`${item.work.title}${item.work.artist ? ` — ${item.work.artist}` : ""}`}
+        aria-label={`${title}${item.work.artist ? ` — ${item.work.artist}` : ""}`}
       >
         <span className={styles.frameInner}>
           {failed ? (
@@ -702,7 +703,7 @@ function Frame({ item, active, onOpen, onFocus, lang }) {
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={item.work.img}
-              alt={item.work.title}
+              alt={title}
               className={styles.frameImg}
               loading="lazy"
               decoding="async"
@@ -715,7 +716,7 @@ function Frame({ item, active, onOpen, onFocus, lang }) {
       </button>
       <span className={styles.label}>
         <span className={styles.labelTitle} lang={lang}>
-          {item.work.title}
+          {title}
         </span>
         <span className={styles.labelMeta}>
           {[item.work.artist, item.work.date].filter(Boolean).join(", ")}

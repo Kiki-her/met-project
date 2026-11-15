@@ -16,7 +16,7 @@ function todayIndex(count) {
 }
 
 export default function Entry({ exhibitions }) {
-  const { t, L, lang, setLang } = useI18n();
+  const { t, L, T, lang, setLang } = useI18n();
   const { settings, update } = useSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [progress, setProgress] = useState(null);
@@ -119,7 +119,7 @@ export default function Entry({ exhibitions }) {
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={today.cover.img}
-                    alt={today.cover.title}
+                    alt={T(today.cover)}
                     className={styles.todayImage}
                     loading="eager"
                   />
@@ -156,7 +156,7 @@ export default function Entry({ exhibitions }) {
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={ex.cover.img}
-                        alt={ex.cover.title}
+                        alt={T(ex.cover)}
                         className={styles.cardImage}
                         loading="lazy"
                       />

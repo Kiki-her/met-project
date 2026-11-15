@@ -17,7 +17,7 @@ export default function WorkPanel({
   hasPrev = true,
   hasNext = true,
 }) {
-  const { t, L, lang } = useI18n();
+  const { t, L, T, lang } = useI18n();
   const [speaking, setSpeaking] = useState(false);
   const [paused, setPaused] = useState(false);
   const [speechErr, setSpeechErr] = useState(false);
@@ -135,7 +135,7 @@ export default function WorkPanel({
       data-open={open ? "on" : "off"}
       ref={panelRef}
       aria-hidden={!open}
-      aria-label={work.title}
+      aria-label={T(work)}
     >
       <div className={styles.scroll}>
         <div className={styles.head}>
@@ -159,7 +159,7 @@ export default function WorkPanel({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={hiSrc}
-              alt={work.title}
+              alt={T(work)}
               className={styles.image}
               onError={() => {
                 if (loadedFull) setFullFailed(true);
@@ -175,7 +175,7 @@ export default function WorkPanel({
           ) : null}
         </figure>
 
-        <h2 className={styles.title}>{work.title || t("work.untitled")}</h2>
+        <h2 className={styles.title}>{T(work) || t("work.untitled")}</h2>
         <p className={styles.artist}>
           {work.artist || t("work.unknownArtist")}
           {work.nationality ? <span className={styles.nationality}> · {work.nationality}</span> : null}

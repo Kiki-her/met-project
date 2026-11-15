@@ -26,6 +26,7 @@
         {
           "id": 13210,
           "title": "Arrangement in Black: Girl Reading",
+          "titleJa": "黒の配列：読書する少女",
           "artist": "James McNeill Whistler",
           "bio": "American, Lowell, Massachusetts 1834–1903 London",
           "nationality": "American",
@@ -51,6 +52,7 @@
         {
           "id": 10813,
           "title": "The Chess Players",
+          "titleJa": "チェスをする人々",
           "artist": "Thomas Eakins",
           "bio": "American, Philadelphia, Pennsylvania 1844–1916 Philadelphia, Pennsylvania",
           "nationality": "American",
@@ -79,6 +81,7 @@
         {
           "id": 10468,
           "title": "For the Little One",
+          "titleJa": "小さな子のために",
           "artist": "William Merritt Chase",
           "bio": "American, Williamsburg, Indiana 1849–1916 New York",
           "nationality": "American",
@@ -117,6 +120,7 @@
         {
           "id": 11263,
           "title": "The Hatch Family",
+          "titleJa": "ハッチ家の人々",
           "artist": "Eastman Johnson",
           "bio": "American, Lovell, Maine 1824–1906 New York",
           "nationality": "American",
@@ -148,6 +152,7 @@
         {
           "id": 438817,
           "title": "The Dance Class",
+          "titleJa": "ダンス教室",
           "artist": "Edgar Degas",
           "bio": "French, Paris 1834–1917 Paris",
           "nationality": "French",
@@ -177,6 +182,7 @@
         {
           "id": 20129,
           "title": "Story of Golden Locks",
+          "titleJa": "金髪の物語",
           "artist": "Seymour Joseph Guy",
           "bio": "American (born England), London 1824–1910 New York",
           "nationality": "American, born England",
@@ -216,6 +222,7 @@
         {
           "id": 436947,
           "title": "Boating",
+          "titleJa": "舟遊び",
           "artist": "Edouard Manet",
           "bio": "French, Paris 1832–1883 Paris",
           "nationality": "French",
@@ -242,6 +249,7 @@
         {
           "id": 436579,
           "title": "Broken Eggs",
+          "titleJa": "割れた卵",
           "artist": "Jean-Baptiste Greuze",
           "bio": "French, Tournus 1725–1805 Paris",
           "nationality": "French",

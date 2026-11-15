@@ -26,6 +26,7 @@
         {
           "id": 438417,
           "title": "Two Men Contemplating the Moon",
+          "titleJa": "月を眺める二人の男",
           "artist": "Caspar David Friedrich",
           "bio": "German, Greifswald 1774–1840 Dresden",
           "nationality": "German",
@@ -52,6 +53,7 @@
         {
           "id": 441769,
           "title": "Virgil's Tomb by Moonlight, with Silius Italicus Declaiming",
+          "titleJa": "月光のもとのウェルギリウスの墓、熱弁をふるうシリウス・イタリクス",
           "artist": "Joseph Wright (Wright of Derby)",
           "bio": "British, Derby 1734–1797 Derby",
           "nationality": "British",
@@ -78,6 +80,7 @@
         {
           "id": 11127,
           "title": "Moonlight, Wood Island Light",
+          "titleJa": "月光、ウッド・アイランド灯台",
           "artist": "Winslow Homer",
           "bio": "American, Boston, Massachusetts 1836–1910 Prouts Neck, Maine",
           "nationality": "American",
@@ -102,6 +105,7 @@
         {
           "id": 11979,
           "title": "Moonlight Marine",
+          "titleJa": "月夜の海",
           "artist": "Albert Pinkham Ryder",
           "bio": "American, New Bedford, Massachusetts 1847–1917 Elmhurst, New York",
           "nationality": "American",
@@ -139,6 +143,7 @@
         {
           "id": 436839,
           "title": "The Penitent Magdalen",
+          "titleJa": "悔悛のマグダラのマリア",
           "artist": "Georges de La Tour",
           "bio": "French, Vic-sur-Seille 1593–1652 Lunéville",
           "nationality": "French",
@@ -166,6 +171,7 @@
         {
           "id": 13269,
           "title": "Nocturne in Green and Gold",
+          "titleJa": "緑と金のノクターン",
           "artist": "James McNeill Whistler",
           "bio": "American, Lowell, Massachusetts 1834–1903 London",
           "nationality": "American",
@@ -188,6 +194,7 @@
         {
           "id": 11230,
           "title": "Evening at Medfield, Massachusetts",
+          "titleJa": "マサチューセッツ州メドフィールドの夕暮れ",
           "artist": "George Inness",
           "bio": "American, Newburgh, New York 1825–1894 Bridge of Allan, Scotland",
           "nationality": "American",
@@ -213,6 +220,7 @@
         {
           "id": 10183,
           "title": "A Waterfall, Moonlight",
+          "titleJa": "月光の滝",
           "artist": "Ralph Albert Blakelock",
           "bio": "1847–1919",
           "nationality": "American",
@@ -252,6 +260,7 @@
         {
           "id": 11325,
           "title": "Sunset on the Sea",
+          "titleJa": "海上の夕日",
           "artist": "John Frederick Kensett",
           "bio": "American, Cheshire, Connecticut 1816–1872 New York",
           "nationality": "American",
@@ -278,6 +287,7 @@
         {
           "id": 436455,
           "title": "Evening: Landscape with an Aqueduct",
+          "titleJa": "夕暮れ：水道橋のある風景",
           "artist": "Théodore Gericault",
           "bio": "French, Rouen 1791–1824 Paris",
           "nationality": "French",
@@ -306,6 +316,7 @@
         {
           "id": 11328,
           "title": "Twilight in the Cedars at Darien, Connecticut",
+          "titleJa": "コネチカット州ダリエンの杉林のたそがれ",
           "artist": "John Frederick Kensett",
           "bio": "American, Cheshire, Connecticut 1816–1872 New York",
           "nationality": "American",

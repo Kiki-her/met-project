@@ -270,7 +270,16 @@ export function I18nProvider({ children }) {
       if (typeof obj === "string") return obj;
       return obj[lang] ?? obj.ja ?? obj.en ?? "";
     };
-    return { lang, setLang, t, L };
+    /**
+     * 作品の題。日本語表示のときだけ titleJa を使い、
+     * 訳が無い作品は英語のまま出す（空欄にはしない）。
+     */
+    const T = work => {
+      if (!work) return "";
+      if (lang === "ja" && work.titleJa) return work.titleJa;
+      return work.title || "";
+    };
+    return { lang, setLang, t, L, T };
   }, [lang]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

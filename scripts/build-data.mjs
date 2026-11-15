@@ -17,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { exhibitions } from "./curation.mjs";
+import { titlesJa } from "./titles-ja.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -77,6 +78,8 @@ function slim(o, overrides = {}) {
   return {
     id: o.objectID,
     title: o.title || "",
+    // 日本語の題。訳が無ければ空文字にして、表示側で英語へフォールバックさせる
+    titleJa: titlesJa[o.objectID] || "",
     artist: o.artistDisplayName || "",
     bio: o.artistDisplayBio || "",
     nationality: o.artistNationality || "",
@@ -177,6 +180,7 @@ function main() {
           ? {
               id: coverWork.objectID,
               title: coverWork.title,
+              titleJa: titlesJa[coverWork.objectID] || "",
               artist: coverWork.artistDisplayName || "",
               date: coverWork.objectDate || "",
               img: coverImg,
