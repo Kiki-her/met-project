@@ -226,9 +226,17 @@ export default function WorkPanel({
                     {work.w ? null : <span className={styles.scaleWorkBlank} />}
                   </span>
                   <span className={styles.scalePerson} style={{ height: `${Math.round(170 * scaleRatio)}px` }}>
-                    <svg viewBox="0 0 24 76" fill="currentColor" aria-hidden="true">
-                      <circle cx="12" cy="6.5" r="5.2" />
-                      <path d="M6.4 14h11.2a2.6 2.6 0 0 1 2.6 2.6v16.2h-4.4v19.4h-3.2V32.8h-1.2v19.4H8.2V32.8H3.8V16.6A2.6 2.6 0 0 1 6.4 14z" />
+                    {/*
+                      人物は「頭のてっぺん＝viewBox の上端」「足の裏＝下端」に
+                      ぴったり合わせて描く。ここが揃っていないと、作品の下端と
+                      人の足元がずれて、実寸の比較として意味をなさない。
+                      高さの合計が 96 になるよう座標を置いている。
+                    */}
+                    <svg viewBox="0 0 20 96" preserveAspectRatio="xMidYMax meet" fill="currentColor" aria-hidden="true">
+                      <circle cx="10" cy="6.6" r="6.6" />
+                      <rect x="4.4" y="13.2" width="11.2" height="29.8" rx="3.2" />
+                      <rect x="6.1" y="43" width="3.5" height="53" />
+                      <rect x="10.4" y="43" width="3.5" height="53" />
                     </svg>
                   </span>
                 </div>

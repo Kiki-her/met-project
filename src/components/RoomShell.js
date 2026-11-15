@@ -392,6 +392,36 @@ export default function RoomShell({ room, neighbours }) {
   // rAF ループ（依存を持たない effect）から最新の step を呼ぶための橋渡し
   stepRef.current = step;
 
+  /**
+   * 拡大／縮小。
+   *
+   * ピンチでも拡大できるが、指を離した瞬間に詳細が開くのが邪魔だったので
+   * 拡大だけを担うボタンを置いた。1回あたり 1.35 倍。
+   * 壁を見ているときは壁ごと、作品に寄っているときは作品をさらに寄る。
+   * 縮小して等倍に戻ったら、寄った状態は解除する。
+   */
+  const zoomBy = useCallback(
+    dir => {
+      const s = cam.current;
+      const maxZ = focus ? geometry(focus).z * 2.6 : 3.2;
+      const next = Math.min(maxZ, Math.max(1, s.tz * (dir > 0 ? 1.35 : 1 / 1.35)));
+      // 等倍まで戻したら、寄った状態は解除して壁に戻す。
+      // そうしないと「縮小したのに作品の前から動けない」ように見える。
+      if (next <= 1.02 && focus) {
+        closeWork();
+        bump();
+        return;
+      }
+      s.tz = next;
+      // 拡大すると見える範囲が狭まるので、壁の外を向かないよう収め直す
+      s.tx = clampX(s.tx, next);
+      if (next > 1.9) setHiRes(true);
+      if (next <= 1.02) setHiRes(false);
+      bump();
+    },
+    [focus, geometry, clampX, bump, closeWork]
+  );
+
   /* ---------- 入力 ---------- */
   const settleTimer = useRef(null);
 
@@ -494,16 +524,11 @@ export default function RoomShell({ room, neighbours }) {
       const s = cam.current;
       if (e && e.pointerId != null) pointers.current.delete(e.pointerId);
 
-      // ピンチの指が離れたら、その拡大率で確定して終わる
+      // ピンチの指が離れたら、拡大率だけ確定して終わる。
+      // ここで作品を開くと「拡大したら詳細が被さる」ことになり、せっかく寄った絵が
+      // 隠れてしまう。拡大は拡大のまま、開くのは明示的なタップ／クリックに任せる。
       if (pinch.current && pointers.current.size < 2) {
         pinch.current = null;
-        // 拡大したまま指を離したら、寄った状態として扱う
-        if (s.tz > 1.6 && !focus) {
-          const near = nearestWork(works, s.x);
-          if (near) openWork(near, { keepHiRes: true });
-        } else if (s.tz <= 1.05 && focus) {
-          closeWork();
-        }
         s.moved = 0;
         return;
       }
@@ -517,7 +542,7 @@ export default function RoomShell({ room, neighbours }) {
         s.tx = clampX(g ? g.x : centerOf(near), g ? g.z : 1);
       }
     },
-    [works, focus, geometry, clampX, bump, openWork, closeWork]
+    [works, focus, geometry, clampX, bump]
   );
 
   const onPointerCancel = useCallback(
@@ -797,6 +822,35 @@ export default function RoomShell({ room, neighbours }) {
       <div className={styles.chapterBadge} data-dim={focus ? "on" : "off"}>
         <span className={styles.chapterBadgeNum}>{t("room.chapter", { n: hud.chapter + 1 })}</span>
         <span className={styles.chapterBadgeName}>{L(chapter?.title)}</span>
+      </div>
+
+      {/*
+        拡大／縮小。
+        ピンチでも拡大できるが、指を離した瞬間に詳細が開くと、せっかく寄った絵が
+        隠れてしまう。拡大だけを担う明示的なボタンを置いて、
+        「寄る」と「開く」を別の操作に分ける。
+      */}
+      <div className={styles.zoomBtns} data-dim={focus ? "on" : "off"}>
+        <button
+          type="button"
+          className={styles.zoomBtn}
+          onClick={() => zoomBy(1)}
+          aria-label={t("room.zoomIn")}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" fill="none">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          className={styles.zoomBtn}
+          onClick={() => zoomBy(-1)}
+          aria-label={t("room.zoomOut")}
+        >
+          <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" fill="none">
+            <path d="M3 8h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
 
       <div className={styles.stepBtns} data-dim={focus ? "on" : "off"}>

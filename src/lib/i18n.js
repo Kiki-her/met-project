@@ -99,6 +99,8 @@ const ja = {
     chapterTitle: "章",
     endOfRoom: "展示室の終わり",
     seeNext: "次の展覧会へ",
+    zoomIn: "拡大する",
+    zoomOut: "縮小する",
   },
   work: {
     artist: "作者",
@@ -251,6 +253,8 @@ const en = {
     chapterTitle: "Chapter",
     endOfRoom: "End of the gallery",
     seeNext: "Next exhibition",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   work: {
     artist: "Artist",

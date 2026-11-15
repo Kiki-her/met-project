@@ -19,13 +19,6 @@
   pointer-events: none;
 }
 
-/* 二度目以降の来館では、React の初期化を待たずに扉を出さない */
-:global(html[data-entered="1"]) .wrap {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .hit {
   position: absolute;
   inset: 0;

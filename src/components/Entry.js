@@ -30,20 +30,15 @@ export default function Entry({ exhibitions }) {
     setProgress(loadProgress());
   }, []);
 
-  // 二度目以降の来館では扉を出さない（layout.js の先読みと揃える）
-  useEffect(() => {
-    let seen = false;
-    try {
-      seen = window.localStorage.getItem(SEEN_KEY) === "1";
-    } catch {
-      seen = false;
-    }
-    if (seen) setDoorOpen(true);
-  }, []);
+  /*
+   * 扉は毎回出す。
+   * 一度きりにすると「また来た人には邪魔」ではあるが、ここは作品を見る前の
+   * 一度きりの切り替え（夜の館に入る合図）なので、回数で削らない。
+   * 前回の来館記録は残すが、扉の表示には使わない。
+   */
 
   const openDoor = useCallback(() => {
     setDoorOpen(true);
-    document.documentElement.dataset.entered = "1";
     try {
       window.localStorage.setItem(SEEN_KEY, "1");
     } catch {
