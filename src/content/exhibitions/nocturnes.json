@@ -1,0 +1,336 @@
+{
+  "id": "nocturnes",
+  "title": {
+    "ja": "夜想曲",
+    "en": "Nocturnes"
+  },
+  "subtitle": {
+    "ja": "光が消えていく時間",
+    "en": "The hour when light leaves"
+  },
+  "curator": {
+    "ja": "夜の絵画は、暗さを描くのではなく、暗さの中に残るわずかな光を描いています。月、蝋燭、そして沈みかけた太陽。声を落として、順路を進んでください。",
+    "en": "Night paintings are not pictures of darkness. They are pictures of the little light that darkness leaves behind — moon, candle, and a sun already going down. Lower your voice and walk on."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "月の下で",
+        "en": "Under the Moon"
+      },
+      "note": {
+        "ja": "月は絵の中の唯一の光源です。人物は背を向け、こちらではなく空を見ています。",
+        "en": "The moon is the only source of light in the room. The figures turn their backs and look up, not at us."
+      },
+      "works": [
+        {
+          "id": 438417,
+          "title": "Two Men Contemplating the Moon",
+          "artist": "Caspar David Friedrich",
+          "bio": "German, Greifswald 1774–1840 Dresden",
+          "nationality": "German",
+          "role": "Artist",
+          "date": "ca. 1825–30",
+          "medium": "Oil on canvas",
+          "dims": "13 3/4 x 17 1/4 in. (34.9 x 43.8 cm)",
+          "dept": "European Paintings",
+          "credit": "Wrightsman Fund, 2000",
+          "gallery": "807",
+          "url": "https://www.metmuseum.org/art/collection/search/438417",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-31997-001-NEW.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-31997-001-NEW.jpg",
+          "h": 34.9,
+          "w": 43.8,
+          "ratio": 0.7968,
+          "tags": [
+            "Contemplation",
+            "Men",
+            "Moon"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 441769,
+          "title": "Virgil's Tomb by Moonlight, with Silius Italicus Declaiming",
+          "artist": "Joseph Wright (Wright of Derby)",
+          "bio": "British, Derby 1734–1797 Derby",
+          "nationality": "British",
+          "role": "Artist",
+          "date": "1779",
+          "medium": "Oil on canvas",
+          "dims": "40 x 50 in. (101.6 x 127 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, Lila Acheson Wallace Gift, Gifts of Mrs. William M. Haupt, Josephine Bay Paul, and Estate of George Quackenbush, in his memory, by exchange, The Morris and Alma Schapiro Fund Gift, and funds from various donors, 2013",
+          "gallery": "806",
+          "url": "https://www.metmuseum.org/art/collection/search/441769",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP322015.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP322015.jpg",
+          "h": 101.600204,
+          "w": 127.00025,
+          "ratio": 0.8,
+          "tags": [
+            "Tombs",
+            "Men",
+            "Moon"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 11127,
+          "title": "Moonlight, Wood Island Light",
+          "artist": "Winslow Homer",
+          "bio": "American, Boston, Massachusetts 1836–1910 Prouts Neck, Maine",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1894",
+          "medium": "Oil on canvas",
+          "dims": "30 3/4 x 40 1/4 in. (78.1 x 102.2 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of George A. Hearn, in memory of Arthur Hoppock Hearn, 1911",
+          "gallery": "767",
+          "url": "https://www.metmuseum.org/art/collection/search/11127",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP232469.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP232469.jpg",
+          "h": 78.581406,
+          "w": 103.663956,
+          "ratio": 0.758,
+          "tags": [
+            "Seascapes"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 11979,
+          "title": "Moonlight Marine",
+          "artist": "Albert Pinkham Ryder",
+          "bio": "American, New Bedford, Massachusetts 1847–1917 Elmhurst, New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1870–90",
+          "medium": "Oil and possibly wax on wood panel",
+          "dims": "11 1/2 x 12 in. (29.2 x 30.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Samuel D. Lee Fund, 1934",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/11979",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT240273.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT240273.jpg",
+          "h": 29.2,
+          "w": 30.5,
+          "ratio": 0.9574,
+          "tags": [
+            "Clouds",
+            "Boats"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "灯をともす",
+        "en": "Kindling a Light"
+      },
+      "note": {
+        "ja": "月が遠い光なら、蝋燭は手の届く光です。炎のまわりの闇は、いちばん濃い闇です。",
+        "en": "If moonlight is distant, candlelight is within reach. The dark around a flame is the densest dark there is."
+      },
+      "works": [
+        {
+          "id": 436839,
+          "title": "The Penitent Magdalen",
+          "artist": "Georges de La Tour",
+          "bio": "French, Vic-sur-Seille 1593–1652 Lunéville",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "ca. 1640",
+          "medium": "Oil on canvas",
+          "dims": "52 1/2 x 40 1/4 in. (133.4 x 102.2 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift of Mr. and Mrs. Charles Wrightsman, 1978",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436839",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-27910-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-27910-001.jpg",
+          "h": 133.4,
+          "w": 102.2,
+          "ratio": 1.3053,
+          "tags": [
+            "Skulls",
+            "Mary Magdalene",
+            "Candles",
+            "Mirrors"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 13269,
+          "title": "Nocturne in Green and Gold",
+          "artist": "James McNeill Whistler",
+          "bio": "American, Lowell, Massachusetts 1834–1903 London",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "by 1877 (?)",
+          "medium": "Oil on canvas",
+          "dims": "25 1/8 x 30 3/8 in. (63.8 x 77.2 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Harris C. Fahnestock, 1906",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/13269",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/ap06.286.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/ap06.286.jpg",
+          "h": 63.8,
+          "w": 77.2,
+          "ratio": 0.8264,
+          "tags": [],
+          "highlight": false
+        },
+        {
+          "id": 11230,
+          "title": "Evening at Medfield, Massachusetts",
+          "artist": "George Inness",
+          "bio": "American, Newburgh, New York 1825–1894 Bridge of Allan, Scotland",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1875",
+          "medium": "Oil on canvas",
+          "dims": "38 x 63 1/8 in. (96.5 x 160.3 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of George A. Hearn, 1910",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/11230",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT11918.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT11918.jpg",
+          "h": 96.5,
+          "w": 160.3,
+          "ratio": 0.602,
+          "tags": [
+            "Cows",
+            "Landscapes"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 10183,
+          "title": "A Waterfall, Moonlight",
+          "artist": "Ralph Albert Blakelock",
+          "bio": "1847–1919",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "by 1886",
+          "medium": "Oil on canvas",
+          "dims": "56 1/4 x 35 3/4 in. (142.9 x 90.8 cm)",
+          "dept": "The American Wing",
+          "credit": "Bequest of Eda K. Loeb, 1952",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/10183",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP343327.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP343327.jpg",
+          "h": 142.9,
+          "w": 90.8,
+          "ratio": 1.5738,
+          "tags": [
+            "Waterfalls",
+            "Landscapes",
+            "Trees",
+            "Night"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "沈む光",
+        "en": "The Sinking Light"
+      },
+      "note": {
+        "ja": "夕暮れは、昼でも夜でもない時間。画家たちはこの数分のために何枚も画布を使いました。",
+        "en": "Twilight belongs to neither day nor night. Painters spent canvas after canvas on those few minutes."
+      },
+      "works": [
+        {
+          "id": 11325,
+          "title": "Sunset on the Sea",
+          "artist": "John Frederick Kensett",
+          "bio": "American, Cheshire, Connecticut 1816–1872 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1872",
+          "medium": "Oil on canvas",
+          "dims": "28 x 41 1/8 in. (71.1 x 104.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Thomas Kensett, 1874",
+          "gallery": "761",
+          "url": "https://www.metmuseum.org/art/collection/search/11325",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT226485.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT226485.jpg",
+          "h": 108,
+          "w": 141.28778,
+          "ratio": 0.7644,
+          "tags": [
+            "Sun",
+            "Seascapes",
+            "Evening"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436455,
+          "title": "Evening: Landscape with an Aqueduct",
+          "artist": "Théodore Gericault",
+          "bio": "French, Rouen 1791–1824 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1818",
+          "medium": "Oil on canvas",
+          "dims": "98 1/2 x 86 1/2 in. (250.2 x 219.7 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, Gift of James A. Moffett 2nd, in memory of George M. Moffett, by exchange, 1989",
+          "gallery": "802",
+          "url": "https://www.metmuseum.org/art/collection/search/436455",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT2138.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT2138.jpg",
+          "h": 250.2,
+          "w": 219.7,
+          "ratio": 1.1388,
+          "tags": [
+            "Men",
+            "Aqueducts",
+            "Rivers",
+            "Landscapes",
+            "Evening"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 11328,
+          "title": "Twilight in the Cedars at Darien, Connecticut",
+          "artist": "John Frederick Kensett",
+          "bio": "American, Cheshire, Connecticut 1816–1872 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1872",
+          "medium": "Oil on canvas",
+          "dims": "28 1/2 x 41 in. (72.4 x 104.1cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Thomas Kensett, 1874",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/11328",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/ap74.4.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/ap74.4.jpg",
+          "h": 72.4,
+          "w": 104.1,
+          "ratio": 0.6955,
+          "tags": [
+            "Forests",
+            "Trees",
+            "Landscapes"
+          ],
+          "highlight": false
+        }
+      ]
+    }
+  ],
+  "totalWorks": 11
+}

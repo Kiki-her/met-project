@@ -1,0 +1,289 @@
+{
+  "id": "sea-and-light",
+  "title": {
+    "ja": "海と光",
+    "en": "Sea and Light"
+  },
+  "subtitle": {
+    "ja": "水平線の向こう側",
+    "en": "Beyond the horizon line"
+  },
+  "curator": {
+    "ja": "海は、光をいちばん正直に写す鏡です。曇天、嵐の前、真夜中の月光。19世紀の画家たちは海の前で、空の色を描くことを学びました。",
+    "en": "The sea is the most honest mirror light has. Overcast, before a storm, in moonlight: standing before the water, nineteenth-century painters learned to paint the sky."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "荒れる海",
+        "en": "The Restless Sea"
+      },
+      "note": {
+        "ja": "波は人間を飲み込みます。ここでは海が主役で、人は小さな出来事にすぎません。",
+        "en": "The waves swallow people whole. Here the sea is the subject and the human is an incident."
+      },
+      "works": [
+        {
+          "id": 11122,
+          "title": "The Gulf Stream",
+          "artist": "Winslow Homer",
+          "bio": "American, Boston, Massachusetts 1836–1910 Prouts Neck, Maine",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1899; reworked by 1906",
+          "medium": "Oil on canvas",
+          "dims": "28 1/8 x 49 1/8 in. (71.4 x 124.8 cm)\r\nFramed: 42 5/16 x 62 11/16 x 5 7/8 in. (107.5 x 159.3 x 15 cm)",
+          "dept": "The American Wing",
+          "credit": "Catharine Lorillard Wolfe Collection, Wolfe Fund, 1906",
+          "gallery": "767",
+          "url": "https://www.metmuseum.org/art/collection/search/11122",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-20821-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP-20821-001.jpg",
+          "h": 71.4,
+          "w": 124.8,
+          "ratio": 0.5721,
+          "tags": [
+            "Men",
+            "Fish",
+            "Seas",
+            "Waves",
+            "Boats"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 11130,
+          "title": "Northeaster",
+          "artist": "Winslow Homer",
+          "bio": "American, Boston, Massachusetts 1836–1910 Prouts Neck, Maine",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1895; reworked by 1901",
+          "medium": "Oil on canvas",
+          "dims": "34 1/2 x 50 in. (87.6 x 127 cm)\r\nFramed: 48 13/16 x 64 3/4 x 5 7/8 in. (124 x 164.5 x 15 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of George A. Hearn, 1910",
+          "gallery": "767",
+          "url": "https://www.metmuseum.org/art/collection/search/11130",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT1545.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT1545.jpg",
+          "h": 88.42393,
+          "w": 128.7465,
+          "ratio": 0.6868,
+          "tags": [
+            "Seascapes",
+            "Waves",
+            "Storms"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 11050,
+          "title": "Approaching Thunder Storm",
+          "artist": "Martin Johnson Heade",
+          "bio": "1819–1904",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1859",
+          "medium": "Oil on canvas",
+          "dims": "28 x 44in. (71.1 x 111.8cm)\r\nFramed: 42 1/2 × 58 3/8 × 5 in. (108 × 148.3 × 12.7 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Erving Wolf Foundation and Mr. and Mrs. Erving Wolf, in memory of Diane R. Wolf, 1975",
+          "gallery": "761",
+          "url": "https://www.metmuseum.org/art/collection/search/11050",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP248013.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP248013.jpg",
+          "h": 107.95022,
+          "w": 148.3,
+          "ratio": 0.7279,
+          "tags": [
+            "Landscapes",
+            "Storms",
+            "Boats"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "静かな入り江",
+        "en": "The Quiet Cove"
+      },
+      "note": {
+        "ja": "嵐のあとには、水が鏡になります。帆は垂れ、音は水面に吸い込まれます。",
+        "en": "After the storm the water turns to glass. Sails hang slack; sound is absorbed by the surface."
+      },
+      "works": [
+        {
+          "id": 11307,
+          "title": "Eaton's Neck, Long Island",
+          "artist": "John Frederick Kensett",
+          "bio": "American, Cheshire, Connecticut 1816–1872 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1872",
+          "medium": "Oil on canvas",
+          "dims": "18 x 36 in. (45.7 x 91.4 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Thomas Kensett, 1874",
+          "gallery": "761",
+          "url": "https://www.metmuseum.org/art/collection/search/11307",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/ap74.29.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/ap74.29.jpg",
+          "h": 80,
+          "w": 125.7,
+          "ratio": 0.6364,
+          "tags": [
+            "Beaches",
+            "Landscapes"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 11396,
+          "title": "Stage Fort across Gloucester Harbor",
+          "artist": "Fitz Henry Lane (formerly Fitz Hugh Lane)",
+          "bio": "1804–1865",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1862",
+          "medium": "Oil on canvas",
+          "dims": "38 x 60 in. (96.5 x 152.4 cm)",
+          "dept": "The American Wing",
+          "credit": "Purchase, Rogers and Fletcher Funds, Erving and Joyce Wolf Fund, Raymond J. Horowitz Gift, Bequest of Richard De Wolfe Brixey, by exchange, and John Osgood and Elizabeth Amis Cameron Blanchard Memorial Fund, 1978",
+          "gallery": "761",
+          "url": "https://www.metmuseum.org/art/collection/search/11396",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT5586.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT5586.jpg",
+          "h": 96.5,
+          "w": 152.4,
+          "ratio": 0.6332,
+          "tags": [
+            "Trees",
+            "Boats",
+            "Ships",
+            "Human Figures"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10464,
+          "title": "At the Seaside",
+          "artist": "William Merritt Chase",
+          "bio": "American, Williamsburg, Indiana 1849–1916 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1892",
+          "medium": "Oil on canvas",
+          "dims": "20 × 34 in. (50.8 × 86.4 cm)",
+          "dept": "The American Wing",
+          "credit": "Bequest of Miss Adelaide Milton de Groot (1876-1967), 1967",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/10464",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT95.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT95.jpg",
+          "h": 50.8,
+          "w": 86.4,
+          "ratio": 0.588,
+          "tags": [
+            "Summer",
+            "Beaches",
+            "Seascapes"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "ひかりの海",
+        "en": "A Sea of Light"
+      },
+      "note": {
+        "ja": "水平線だけの絵があります。描かれているのは場所ではなく、光そのものです。",
+        "en": "Some of these are almost nothing but a horizon. What is painted is not a place but light itself."
+      },
+      "works": [
+        {
+          "id": 437430,
+          "title": "By the Seashore",
+          "artist": "Auguste Renoir",
+          "bio": "French, Limoges 1841–1919 Cagnes-sur-Mer",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1883",
+          "medium": "Oil on canvas",
+          "dims": "36 1/4 x 28 1/2 in. (92.1 x 72.4 cm)",
+          "dept": "European Paintings",
+          "credit": "H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929",
+          "gallery": "824",
+          "url": "https://www.metmuseum.org/art/collection/search/437430",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14936-039.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-039.jpg",
+          "h": 92.1,
+          "w": 72.4,
+          "ratio": 1.2721,
+          "tags": [
+            "Portraits",
+            "Women"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10480,
+          "title": "The Aegean Sea",
+          "artist": "Frederic Edwin Church",
+          "bio": "American, Hartford, Connecticut 1826–1900 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1877",
+          "medium": "Oil on canvas",
+          "dims": "54 in. × 84 1/4 in. (137.2 × 214 cm)",
+          "dept": "The American Wing",
+          "credit": "Bequest of Mrs. William H. Osborn, 1902",
+          "gallery": "760",
+          "url": "https://www.metmuseum.org/art/collection/search/10480",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/ap02.23.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/ap02.23.jpg",
+          "h": 137.2,
+          "w": 213.99542,
+          "ratio": 0.6411,
+          "tags": [
+            "Seas",
+            "Landscapes",
+            "Trees",
+            "Rainbows"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 10207,
+          "title": "An Arctic Summer: Boring Through the Pack in Melville Bay",
+          "artist": "William Bradford",
+          "bio": "American, 1823–1892",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1871",
+          "medium": "Oil on canvas",
+          "dims": "51 3/4 x 78 in. (131.4 x 198.1 cm); framed: 60 x 86 1/2 x 4 in.",
+          "dept": "The American Wing",
+          "credit": "Gift of Erving and Joyce Wolf, in memory of Diane R. Wolf, 1982",
+          "gallery": "760",
+          "url": "https://www.metmuseum.org/art/collection/search/10207",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT2101.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT2101.jpg",
+          "h": 219.7,
+          "w": 153,
+          "ratio": 1.4359,
+          "tags": [
+            "Ships",
+            "Landscapes"
+          ],
+          "highlight": true
+        }
+      ]
+    }
+  ],
+  "totalWorks": 9
+}

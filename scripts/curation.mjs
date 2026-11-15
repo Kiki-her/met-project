@@ -1,0 +1,179 @@
+/**
+ * 展覧会のキュレーション定義。
+ * 作品は The Met Collection（Open Access / CC0）の objectID で指定する。
+ * ビルド時に scripts/build-data.mjs が実データと突き合わせて検証する。
+ */
+export const exhibitions = [
+  {
+    id: "nocturnes",
+    title: { ja: "夜想曲", en: "Nocturnes" },
+    subtitle: { ja: "光が消えていく時間", en: "The hour when light leaves" },
+    curator: {
+      ja: "夜の絵画は、暗さを描くのではなく、暗さの中に残るわずかな光を描いています。月、蝋燭、そして沈みかけた太陽。声を落として、順路を進んでください。",
+      en: "Night paintings are not pictures of darkness. They are pictures of the little light that darkness leaves behind — moon, candle, and a sun already going down. Lower your voice and walk on.",
+    },
+    cover: 438417,
+    chapters: [
+      {
+        title: { ja: "月の下で", en: "Under the Moon" },
+        note: {
+          ja: "月は絵の中の唯一の光源です。人物は背を向け、こちらではなく空を見ています。",
+          en: "The moon is the only source of light in the room. The figures turn their backs and look up, not at us.",
+        },
+        works: [438417, 441769, 11127, 11979],
+      },
+      {
+        title: { ja: "灯をともす", en: "Kindling a Light" },
+        note: {
+          ja: "月が遠い光なら、蝋燭は手の届く光です。炎のまわりの闇は、いちばん濃い闇です。",
+          en: "If moonlight is distant, candlelight is within reach. The dark around a flame is the densest dark there is.",
+        },
+        works: [436839, 13269, 11230, 10183],
+      },
+      {
+        title: { ja: "沈む光", en: "The Sinking Light" },
+        note: {
+          ja: "夕暮れは、昼でも夜でもない時間。画家たちはこの数分のために何枚も画布を使いました。",
+          en: "Twilight belongs to neither day nor night. Painters spent canvas after canvas on those few minutes.",
+        },
+        works: [11325, 436455, 11328],
+      },
+    ],
+  },
+  {
+    id: "sea-and-light",
+    title: { ja: "海と光", en: "Sea and Light" },
+    subtitle: { ja: "水平線の向こう側", en: "Beyond the horizon line" },
+    curator: {
+      ja: "海は、光をいちばん正直に写す鏡です。曇天、嵐の前、真夜中の月光。19世紀の画家たちは海の前で、空の色を描くことを学びました。",
+      en: "The sea is the most honest mirror light has. Overcast, before a storm, in moonlight: standing before the water, nineteenth-century painters learned to paint the sky.",
+    },
+    cover: 11122,
+    chapters: [
+      {
+        title: { ja: "荒れる海", en: "The Restless Sea" },
+        note: {
+          ja: "波は人間を飲み込みます。ここでは海が主役で、人は小さな出来事にすぎません。",
+          en: "The waves swallow people whole. Here the sea is the subject and the human is an incident.",
+        },
+        works: [11122, 11130, 11050],
+      },
+      {
+        title: { ja: "静かな入り江", en: "The Quiet Cove" },
+        note: {
+          ja: "嵐のあとには、水が鏡になります。帆は垂れ、音は水面に吸い込まれます。",
+          en: "After the storm the water turns to glass. Sails hang slack; sound is absorbed by the surface.",
+        },
+        works: [11307, 11396, 10464],
+      },
+      {
+        title: { ja: "ひかりの海", en: "A Sea of Light" },
+        note: {
+          ja: "水平線だけの絵があります。描かれているのは場所ではなく、光そのものです。",
+          en: "Some of these are almost nothing but a horizon. What is painted is not a place but light itself.",
+        },
+        works: [437430, 10480, 10207],
+      },
+    ],
+  },
+  {
+    id: "quiet-interiors",
+    title: { ja: "室内の静けさ", en: "Quiet Interiors" },
+    subtitle: { ja: "部屋という小さな世界", en: "The room as a small world" },
+    curator: {
+      ja: "扉の向こうの部屋には、いつも少し遅れた時間が流れています。読む人、待つ人、弾く人。私たちはその数秒を、戸口から覗いています。",
+      en: "Time runs slightly late in a room behind a door. Someone reading, someone waiting, someone playing. We are watching those few seconds from the threshold.",
+    },
+    cover: 10813,
+    chapters: [
+      {
+        title: { ja: "読む", en: "Reading" },
+        note: {
+          ja: "本を読む人は、こちらを見ません。絵の中の沈黙を、そのまま受け取ってください。",
+          en: "A reader will not look up. Take the silence of the painting as it is given.",
+        },
+        works: [13210, 10813, 10468],
+      },
+      {
+        title: { ja: "集う", en: "Gathering" },
+        note: {
+          ja: "家族、生徒、客。部屋に人が増えるほど、語られない物語も増えていきます。",
+          en: "Family, pupils, guests. The more people in the room, the more stories go unspoken.",
+        },
+        works: [11263, 438817, 20129],
+      },
+      {
+        title: { ja: "窓辺", en: "By the Window" },
+        note: {
+          ja: "窓は、室内にいる私たちに外の気配を教えます。光の向きが、時刻を告げます。",
+          en: "A window tells those inside that there is an outside. The direction of the light tells the hour.",
+        },
+        works: [436947, 436579],
+      },
+    ],
+  },
+  {
+    id: "small-worlds",
+    title: { ja: "静物という小宇宙", en: "Still Life, a Small Cosmos" },
+    subtitle: { ja: "動かないものの物語", en: "The story of things that do not move" },
+    curator: {
+      ja: "リンゴ、パン、魚、花。動かないものを前に、画家は時間との交渉を始めます。咲いている花は、すでに散りかけています。",
+      en: "Apples, bread, fish, flowers. Before things that do not move, the painter begins a negotiation with time. The flower in bloom is already beginning to fall.",
+    },
+    cover: 435882,
+    chapters: [
+      {
+        title: { ja: "卓上の秩序", en: "Order on a Table" },
+        note: {
+          ja: "テーブルの上の数センチが、画家にとっては一日の仕事でした。",
+          en: "A few centimetres of tabletop was a day's work for these painters.",
+        },
+        works: [435882, 436946, 436292],
+      },
+      {
+        title: { ja: "咲くということ", en: "Being in Bloom" },
+        note: {
+          ja: "花は、描かれた瞬間から散りはじめます。それが静物画の静かな緊張です。",
+          en: "A painted flower begins to fall the moment it is painted. That is the quiet tension of still life.",
+        },
+        works: [436524, 436528, 10476],
+      },
+    ],
+  },
+  {
+    id: "faces",
+    title: { ja: "顔", en: "Faces" },
+    subtitle: { ja: "こちらを見る人々", en: "Those who look back" },
+    curator: {
+      ja: "肖像画は、四百年前の誰かと、いまのあなたが目を合わせる場所です。額縁の前に立ち、相手がまばたきするのを待ってみてください。",
+      en: "A portrait is a place where someone from four hundred years ago meets your eyes. Stand before the frame and wait for them to blink.",
+    },
+    cover: 437397,
+    chapters: [
+      {
+        title: { ja: "自分を描く", en: "Painting the Self" },
+        note: {
+          ja: "鏡を見ながら描いた顔は、いちばん正直で、いちばん嘘をつきます。",
+          en: "A face painted from a mirror is the most honest and the most deceptive of all.",
+        },
+        works: [437397, 437394],
+      },
+      {
+        title: { ja: "学識と威厳", en: "Learning and Bearing" },
+        note: {
+          ja: "本、羽毛、毛皮。身につけたものは、その人が何者かを静かに語ります。",
+          en: "Books, fur, feather. What a sitter wears says quietly who they are.",
+        },
+        works: [459080, 436658, 437056],
+      },
+      {
+        title: { ja: "笑う人", en: "The Laughing Face" },
+        note: {
+          ja: "笑顔を描くのは難しい。止まっているのに、動いて見えるからです。",
+          en: "A smile is hard to paint: it stands still, and still seems to move.",
+        },
+        works: [436622, 438112, 436253],
+      },
+    ],
+  },
+];

@@ -1,0 +1,274 @@
+{
+  "id": "quiet-interiors",
+  "title": {
+    "ja": "室内の静けさ",
+    "en": "Quiet Interiors"
+  },
+  "subtitle": {
+    "ja": "部屋という小さな世界",
+    "en": "The room as a small world"
+  },
+  "curator": {
+    "ja": "扉の向こうの部屋には、いつも少し遅れた時間が流れています。読む人、待つ人、弾く人。私たちはその数秒を、戸口から覗いています。",
+    "en": "Time runs slightly late in a room behind a door. Someone reading, someone waiting, someone playing. We are watching those few seconds from the threshold."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "読む",
+        "en": "Reading"
+      },
+      "note": {
+        "ja": "本を読む人は、こちらを見ません。絵の中の沈黙を、そのまま受け取ってください。",
+        "en": "A reader will not look up. Take the silence of the painting as it is given."
+      },
+      "works": [
+        {
+          "id": 13210,
+          "title": "Arrangement in Black: Girl Reading",
+          "artist": "James McNeill Whistler",
+          "bio": "American, Lowell, Massachusetts 1834–1903 London",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1880–90",
+          "medium": "Oil on wood",
+          "dims": "12 x 9 in. (22.9 x 30.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Bequest of Miss Adelaide Milton de Groot (1876-1967), 1967",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/13210",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP361944.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP361944.jpg",
+          "h": 53.3,
+          "w": 45.1,
+          "ratio": 1.1818,
+          "tags": [
+            "Women",
+            "Reading"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 10813,
+          "title": "The Chess Players",
+          "artist": "Thomas Eakins",
+          "bio": "American, Philadelphia, Pennsylvania 1844–1916 Philadelphia, Pennsylvania",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1876",
+          "medium": "Oil on wood",
+          "dims": "11 3/4 x 16 3/4 in. (29.8 x 42.6 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of the artist, 1881",
+          "gallery": "764",
+          "url": "https://www.metmuseum.org/art/collection/search/10813",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-18074-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP-18074-001.jpg",
+          "h": 29.8,
+          "w": 42.5,
+          "ratio": 0.7012,
+          "tags": [
+            "Interiors",
+            "Men",
+            "Chess",
+            "Playing",
+            "Cats"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10468,
+          "title": "For the Little One",
+          "artist": "William Merritt Chase",
+          "bio": "American, Williamsburg, Indiana 1849–1916 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1896",
+          "medium": "Oil on canvas",
+          "dims": "40 x 35 1/4 in. (101.6 x 89.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Amelia B. Lazarus Fund, by exchange, 1917",
+          "gallery": "769",
+          "url": "https://www.metmuseum.org/art/collection/search/10468",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP161212.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP161212.jpg",
+          "h": 132.1,
+          "w": 137.2,
+          "ratio": 0.9628,
+          "tags": [
+            "Interiors",
+            "Women",
+            "Sewing"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "集う",
+        "en": "Gathering"
+      },
+      "note": {
+        "ja": "家族、生徒、客。部屋に人が増えるほど、語られない物語も増えていきます。",
+        "en": "Family, pupils, guests. The more people in the room, the more stories go unspoken."
+      },
+      "works": [
+        {
+          "id": 11263,
+          "title": "The Hatch Family",
+          "artist": "Eastman Johnson",
+          "bio": "American, Lovell, Maine 1824–1906 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1870–71",
+          "medium": "Oil on canvas",
+          "dims": "48 x 73 3/8 in. (121.9 x 186.4 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Frederic H. Hatch, 1926",
+          "gallery": "763",
+          "url": "https://www.metmuseum.org/art/collection/search/11263",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT85.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT85.jpg",
+          "h": 174.3,
+          "w": 237.8,
+          "ratio": 0.733,
+          "tags": [
+            "Interiors",
+            "Boys",
+            "Girls",
+            "Men",
+            "Women",
+            "Family",
+            "Toys",
+            "Reading"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 438817,
+          "title": "The Dance Class",
+          "artist": "Edgar Degas",
+          "bio": "French, Paris 1834–1917 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1874",
+          "medium": "Oil on canvas",
+          "dims": "32 7/8 x 30 3/8 in. (83.5 x 77.2 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Mrs. Harry Payne Bingham, 1986",
+          "gallery": "815",
+          "url": "https://www.metmuseum.org/art/collection/search/438817",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-20101-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-20101-001.jpg",
+          "h": 83.5027,
+          "w": 77.1527,
+          "ratio": 1.0823,
+          "tags": [
+            "Girls",
+            "Men",
+            "Women",
+            "Students",
+            "Dancers",
+            "Ballet"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 20129,
+          "title": "Story of Golden Locks",
+          "artist": "Seymour Joseph Guy",
+          "bio": "American (born England), London 1824–1910 New York",
+          "nationality": "American, born England",
+          "role": "Artist",
+          "date": "ca. 1870",
+          "medium": "Oil on canvas",
+          "dims": "34 x 28 in. (86.4 x 71.1 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Daniel Wolf and Mathew Wolf, in memory of their sister, the Honorable Diane R. Wolf, 2013",
+          "gallery": "763",
+          "url": "https://www.metmuseum.org/art/collection/search/20129",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP219245.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP219245.jpg",
+          "h": 86.3602,
+          "w": 71.1201,
+          "ratio": 1.2143,
+          "tags": [
+            "Bedrooms",
+            "Boys",
+            "Girls",
+            "Reading"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "窓辺",
+        "en": "By the Window"
+      },
+      "note": {
+        "ja": "窓は、室内にいる私たちに外の気配を教えます。光の向きが、時刻を告げます。",
+        "en": "A window tells those inside that there is an outside. The direction of the light tells the hour."
+      },
+      "works": [
+        {
+          "id": 436947,
+          "title": "Boating",
+          "artist": "Edouard Manet",
+          "bio": "French, Paris 1832–1883 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1874",
+          "medium": "Oil on canvas",
+          "dims": "38 1/4 x 51 1/4 in. (97.2 x 130.2 cm)",
+          "dept": "European Paintings",
+          "credit": "H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929",
+          "gallery": "899",
+          "url": "https://www.metmuseum.org/art/collection/search/436947",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-25466-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-25466-001.jpg",
+          "h": 97.2,
+          "w": 130.2,
+          "ratio": 0.7465,
+          "tags": [
+            "Men",
+            "Women",
+            "Boats"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436579,
+          "title": "Broken Eggs",
+          "artist": "Jean-Baptiste Greuze",
+          "bio": "French, Tournus 1725–1805 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1756",
+          "medium": "Oil on canvas",
+          "dims": "28 3/4 x 37 in. (73 x 94 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of William K. Vanderbilt, 1920",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436579",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-12952-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-12952-001.jpg",
+          "h": 73,
+          "w": 94,
+          "ratio": 0.7766,
+          "tags": [
+            "Interiors",
+            "Children",
+            "Men",
+            "Women",
+            "Eggs"
+          ],
+          "highlight": true
+        }
+      ]
+    }
+  ],
+  "totalWorks": 8
+}

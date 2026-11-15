@@ -1,0 +1,198 @@
+{
+  "id": "small-worlds",
+  "title": {
+    "ja": "静物という小宇宙",
+    "en": "Still Life, a Small Cosmos"
+  },
+  "subtitle": {
+    "ja": "動かないものの物語",
+    "en": "The story of things that do not move"
+  },
+  "curator": {
+    "ja": "リンゴ、パン、魚、花。動かないものを前に、画家は時間との交渉を始めます。咲いている花は、すでに散りかけています。",
+    "en": "Apples, bread, fish, flowers. Before things that do not move, the painter begins a negotiation with time. The flower in bloom is already beginning to fall."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "卓上の秩序",
+        "en": "Order on a Table"
+      },
+      "note": {
+        "ja": "テーブルの上の数センチが、画家にとっては一日の仕事でした。",
+        "en": "A few centimetres of tabletop was a day's work for these painters."
+      },
+      "works": [
+        {
+          "id": 435882,
+          "title": "Still Life with Apples and a Pot of Primroses",
+          "artist": "Paul Cézanne",
+          "bio": "French, Aix-en-Provence 1839–1906 Aix-en-Provence",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "ca. 1890",
+          "medium": "Oil on canvas",
+          "dims": "28 3/4 x 36 3/8 in. (73 x 92.4 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Sam A. Lewisohn, 1951",
+          "gallery": "826",
+          "url": "https://www.metmuseum.org/art/collection/search/435882",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT47.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT47.jpg",
+          "h": 73,
+          "w": 92.4,
+          "ratio": 0.79,
+          "tags": [
+            "Apples",
+            "Flowers",
+            "Still Life"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436946,
+          "title": "The Brioche",
+          "artist": "Edouard Manet",
+          "bio": "French, Paris 1832–1883 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1870",
+          "medium": "Oil on canvas",
+          "dims": "25 5/8 x 31 7/8 in. (65.1 x 81 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift and Bequest of David and Peggy Rockefeller, 1991, 2017",
+          "gallery": "810",
+          "url": "https://www.metmuseum.org/art/collection/search/436946",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13655-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-13655-001.jpg",
+          "h": 65.1,
+          "w": 81,
+          "ratio": 0.8037,
+          "tags": [
+            "Bread",
+            "Grapes",
+            "Peaches",
+            "Flowers",
+            "Still Life"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436292,
+          "title": "Still Life with Roses and Fruit",
+          "artist": "Henri Fantin-Latour",
+          "bio": "French, Grenoble 1836–1904 Buré",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1863",
+          "medium": "Oil on canvas",
+          "dims": "13 5/8 x 16 3/8 in. (34.6 x 41.6 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Alice A. Hay, 1987",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436292",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT8649.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT8649.jpg",
+          "h": 34.6,
+          "w": 41.6,
+          "ratio": 0.8317,
+          "tags": [
+            "Roses",
+            "Pears",
+            "Still Life"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "咲くということ",
+        "en": "Being in Bloom"
+      },
+      "note": {
+        "ja": "花は、描かれた瞬間から散りはじめます。それが静物画の静かな緊張です。",
+        "en": "A painted flower begins to fall the moment it is painted. That is the quiet tension of still life."
+      },
+      "works": [
+        {
+          "id": 436524,
+          "title": "Sunflowers",
+          "artist": "Vincent van Gogh",
+          "bio": "Dutch, Zundert 1853–1890 Auvers-sur-Oise",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1887",
+          "medium": "Oil on canvas",
+          "dims": "17 x 24 in. (43.2 x 61 cm)",
+          "dept": "European Paintings",
+          "credit": "Rogers Fund, 1949",
+          "gallery": "825",
+          "url": "https://www.metmuseum.org/art/collection/search/436524",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-41223-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-41223-001.jpg",
+          "h": 43.2,
+          "w": 61,
+          "ratio": 0.7082,
+          "tags": [
+            "Still Life",
+            "Sunflowers"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436528,
+          "title": "Irises",
+          "artist": "Vincent van Gogh",
+          "bio": "Dutch, Zundert 1853–1890 Auvers-sur-Oise",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1890",
+          "medium": "Oil on canvas",
+          "dims": "29 x 36 1/4 in. (73.7 x 92.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift of Adele R. Levy, 1958",
+          "gallery": "825",
+          "url": "https://www.metmuseum.org/art/collection/search/436528",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP346474.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP346474.jpg",
+          "h": 97.1552,
+          "w": 115.5702,
+          "ratio": 0.8407,
+          "tags": [
+            "Still Life",
+            "Flowers"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10476,
+          "title": "Still Life: Fish",
+          "artist": "William Merritt Chase",
+          "bio": "American, Williamsburg, Indiana 1849–1916 New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "by 1908",
+          "medium": "Oil on canvas",
+          "dims": "40 1/8 x 45 1/16 in. (101.9 x 114.5 cm)",
+          "dept": "The American Wing",
+          "credit": "George A. Hearn Fund, 1908",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/10476",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP361299.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP361299.jpg",
+          "h": 101.9,
+          "w": 114.5,
+          "ratio": 0.89,
+          "tags": [
+            "Vegetables",
+            "Fish",
+            "Still Life"
+          ],
+          "highlight": false
+        }
+      ]
+    }
+  ],
+  "totalWorks": 6
+}

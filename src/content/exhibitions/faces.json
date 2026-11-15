@@ -1,0 +1,267 @@
+{
+  "id": "faces",
+  "title": {
+    "ja": "顔",
+    "en": "Faces"
+  },
+  "subtitle": {
+    "ja": "こちらを見る人々",
+    "en": "Those who look back"
+  },
+  "curator": {
+    "ja": "肖像画は、四百年前の誰かと、いまのあなたが目を合わせる場所です。額縁の前に立ち、相手がまばたきするのを待ってみてください。",
+    "en": "A portrait is a place where someone from four hundred years ago meets your eyes. Stand before the frame and wait for them to blink."
+  },
+  "chapters": [
+    {
+      "title": {
+        "ja": "自分を描く",
+        "en": "Painting the Self"
+      },
+      "note": {
+        "ja": "鏡を見ながら描いた顔は、いちばん正直で、いちばん嘘をつきます。",
+        "en": "A face painted from a mirror is the most honest and the most deceptive of all."
+      },
+      "works": [
+        {
+          "id": 437397,
+          "title": "Self-Portrait",
+          "artist": "Rembrandt (Rembrandt van Rijn)",
+          "bio": "Dutch, Leiden 1606–1669 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1660",
+          "medium": "Oil on canvas",
+          "dims": "31 5/8 x 26 1/2 in. (80.3 x 67.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Benjamin Altman, 1913",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437397",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-16323-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-16323-001.jpg",
+          "h": 80.3,
+          "w": 67.3,
+          "ratio": 1.1932,
+          "tags": [
+            "Men",
+            "Self-portraits"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 437394,
+          "title": "Aristotle with a Bust of Homer",
+          "artist": "Rembrandt (Rembrandt van Rijn)",
+          "bio": "Dutch, Leiden 1606–1669 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1653",
+          "medium": "Oil on canvas",
+          "dims": "56 1/2 x 53 3/4 in. (143.5 x 136.5 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, special contributions and funds given or bequeathed by friends of the Museum, 1961",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437394",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-30758-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-30758-001.jpg",
+          "h": 143.5,
+          "w": 136.5,
+          "ratio": 1.0513,
+          "tags": [
+            "Men",
+            "Portraits"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "学識と威厳",
+        "en": "Learning and Bearing"
+      },
+      "note": {
+        "ja": "本、羽毛、毛皮。身につけたものは、その人が何者かを静かに語ります。",
+        "en": "Books, fur, feather. What a sitter wears says quietly who they are."
+      },
+      "works": [
+        {
+          "id": 459080,
+          "title": "Erasmus of Rotterdam",
+          "artist": "Hans Holbein the Younger",
+          "bio": "German, Augsburg 1497/98–1543 London",
+          "nationality": "German",
+          "role": "Artist",
+          "date": "ca. 1532",
+          "medium": "Oil on linden panel",
+          "dims": "7 1/4 x 5 9/16 in. (18.4 x 14.2 cm); painted surface 6 15/16 x 5 1/2 in. (17.6 x 14 cm)",
+          "dept": "Robert Lehman Collection",
+          "credit": "Robert Lehman Collection, 1975",
+          "gallery": "953",
+          "url": "https://www.metmuseum.org/art/collection/search/459080",
+          "img": "https://images.metmuseum.org/CRDImages/rl/web-large/DP164857.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/rl/original/DP164857.jpg",
+          "h": 18.4,
+          "w": 14.2,
+          "ratio": 1.2958,
+          "tags": [
+            "Men",
+            "Portraits"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436658,
+          "title": "Hermann von Wedigh III (died 1560)",
+          "artist": "Hans Holbein the Younger",
+          "bio": "German, Augsburg 1497/98–1543 London",
+          "nationality": "German",
+          "role": "Artist",
+          "date": "1532",
+          "medium": "Oil and gold on oak",
+          "dims": "16 5/8 x 12 3/4 in. (42.2 x 32.4 cm), with added strip of 1/2 in. (1.3 cm) at bottom",
+          "dept": "European Paintings",
+          "credit": "Bequest of Edward S. Harkness, 1940",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436658",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP164836.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP164836.jpg",
+          "h": 42.2,
+          "w": 32.4,
+          "ratio": 1.3025,
+          "tags": [
+            "Men",
+            "Portraits",
+            "Latin"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 437056,
+          "title": "Tommaso di Folco Portinari (1428–1501); Maria Portinari (Maria Maddalena Baroncelli, born 1456)",
+          "artist": "Hans Memling",
+          "bio": "Netherlandish, Seligenstadt, active by 1465–died 1494 Bruges",
+          "nationality": "Netherlandish",
+          "role": "Artist",
+          "date": "ca. 1470",
+          "medium": "Oil on wood",
+          "dims": "(.626, Tommaso) overall 17 3/8 x 13 1/4 in. (44.1 x 33.7 cm), painted surface 16 5/8 x 12 1/2 in. (42.2 x 31.8 cm); (.627, Maria) overall 17 3/8 x 13 3/8 in. (44.1 x 34 cm); painted surface 16 5/8 x 12 5/8 in. (42.2 x 32.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Benjamin Altman, 1913",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437056",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-44362-005.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-44362-005.jpg",
+          "h": 44.1,
+          "w": 33.7,
+          "ratio": 1.3086,
+          "tags": [
+            "Couples",
+            "Men",
+            "Portraits",
+            "Women"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "笑う人",
+        "en": "The Laughing Face"
+      },
+      "note": {
+        "ja": "笑顔を描くのは難しい。止まっているのに、動いて見えるからです。",
+        "en": "A smile is hard to paint: it stands still, and still seems to move."
+      },
+      "works": [
+        {
+          "id": 436622,
+          "title": "Merrymakers at Shrovetide",
+          "artist": "Frans Hals",
+          "bio": "Dutch, Antwerp 1582/83–1666 Haarlem",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "ca. 1616–17",
+          "medium": "Oil on canvas",
+          "dims": "51 3/4 x 39 1/4 in. (131.4 x 99.7 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Benjamin Altman, 1913",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436622",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145901.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145901.jpg",
+          "h": 131.4,
+          "w": 99.7,
+          "ratio": 1.318,
+          "tags": [
+            "Food",
+            "Bread",
+            "Happiness",
+            "Men",
+            "Women",
+            "Party",
+            "Bagpipes",
+            "Eggs"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 438112,
+          "title": "Queen Henrietta Maria",
+          "artist": "Anthony van Dyck",
+          "bio": "Flemish, Antwerp 1599–1641 London",
+          "nationality": "Flemish",
+          "role": "Artist",
+          "date": "1636",
+          "medium": "Oil on canvas",
+          "dims": "41 5/8 × 33 1/4 in. (105.7 × 84.5 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Mrs. Charles Wrightsman in honor of Annette de la Renta, 2019",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/438112",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-18371-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-18371-001.jpg",
+          "h": 105.727715,
+          "w": 84.45517,
+          "ratio": 1.2519,
+          "tags": [
+            "Queens",
+            "Portraits",
+            "Women",
+            "Crowns"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 436253,
+          "title": "Lucas van Uffel (died 1637)",
+          "artist": "Anthony van Dyck",
+          "bio": "Flemish, Antwerp 1599–1641 London",
+          "nationality": "Flemish",
+          "role": "Artist",
+          "date": "ca. 1622",
+          "medium": "Oil on canvas",
+          "dims": "49 x 39 5/8 in. (124.5 x 100.6 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Benjamin Altman, 1913",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436253",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-27908-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-27908-001.jpg",
+          "h": 124.5,
+          "w": 100.6,
+          "ratio": 1.2376,
+          "tags": [
+            "Musical Instruments",
+            "Men",
+            "Portraits",
+            "Globes"
+          ],
+          "highlight": true
+        }
+      ]
+    }
+  ],
+  "totalWorks": 8
+}
