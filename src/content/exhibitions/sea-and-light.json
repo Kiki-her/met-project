@@ -105,6 +105,154 @@
             "Boats"
           ],
           "highlight": true
+        },
+        {
+          "id": 10554,
+          "title": "Watson and the Shark",
+          "titleJa": "ワトソンとサメ",
+          "artist": "John Singleton Copley",
+          "bio": "American, Boston, Massachusetts 1738–1815 London",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1778",
+          "medium": "Oil on canvas",
+          "dims": "24 7/8 x 30 1/8 in. (63.2 x 76.5 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Mrs. Gordon Dexter, 1942",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/10554",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DP140862.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DP140862.jpg",
+          "h": 63.2,
+          "w": 76.5,
+          "ratio": 0.8261,
+          "tags": [
+            "Fear",
+            "Men",
+            "Male Nudes",
+            "Fish",
+            "Boats"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "港",
+        "en": "Harbors"
+      },
+      "note": {
+        "ja": "港は、海と陸が交渉する場所です。帆を上げる者、網を引く者、砲を向ける者。",
+        "en": "A harbor is where sea and land negotiate. Someone raises sail, someone hauls nets, someone aims a gun."
+      },
+      "works": [
+        {
+          "id": 437103,
+          "title": "Harbor Scene: An English Ship with Sails Loosened Firing a Gun",
+          "titleJa": "港の情景：帆を解いた砲撃中のイギリス船",
+          "artist": "Peter Monamy",
+          "bio": "British, London 1681–1749 London",
+          "nationality": "British",
+          "role": "Artist",
+          "date": "",
+          "medium": "Oil on canvas",
+          "dims": "48 x 59 in. (121.9 x 149.9 cm)",
+          "dept": "European Paintings",
+          "credit": "Gift of William P. Clyde, 1960",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437103",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP169404.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP169404.jpg",
+          "h": 121.9,
+          "w": 149.9,
+          "ratio": 0.8132,
+          "tags": [
+            "Harbors",
+            "Ships"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437886,
+          "title": "Harbor Scene with a Grotto and Fishermen Hauling in Nets",
+          "titleJa": "洞窟と網を引き揚げる漁師のいる港の風景",
+          "artist": "Joseph Vernet",
+          "bio": "French, late 18th century",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "",
+          "medium": "Oil on canvas",
+          "dims": "22 3/4 x 42 1/8 in. (57.8 x 107 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Catherine D. Wentworth, 1948",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437886",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP312862.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP312862.jpg",
+          "h": 57.8,
+          "w": 107,
+          "ratio": 0.5402,
+          "tags": [
+            "Harbors",
+            "Men",
+            "Fishing",
+            "Boats"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437587,
+          "title": "Marine",
+          "titleJa": "海景",
+          "artist": "Salomon van Ruysdael",
+          "bio": "Dutch, Naarden, born ca. 1600–1603, died 1670 Haarlem",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1650",
+          "medium": "Oil on wood",
+          "dims": "13 5/8 x 17 1/8 in. (34.6 x 43.5 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, 1871",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437587",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145942.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145942.jpg",
+          "h": 34.6,
+          "w": 43.5,
+          "ratio": 0.7954,
+          "tags": [
+            "Seascapes",
+            "Ships"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437854,
+          "title": "Whalers",
+          "titleJa": "捕鯨船",
+          "artist": "Joseph Mallord William Turner",
+          "bio": "British, London 1775–1851 London",
+          "nationality": "British",
+          "role": "Artist",
+          "date": "ca. 1845",
+          "medium": "Oil on canvas",
+          "dims": "36 1/8 x 48 1/4 in. (91.8 x 122.6 cm)",
+          "dept": "European Paintings",
+          "credit": "Catharine Lorillard Wolfe Collection, Wolfe Fund, 1896",
+          "gallery": "808",
+          "url": "https://www.metmuseum.org/art/collection/search/437854",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-13360-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-13360-001.jpg",
+          "h": 91.8,
+          "w": 122.6,
+          "ratio": 0.7488,
+          "tags": [
+            "Whales",
+            "Seascapes",
+            "Boats"
+          ],
+          "highlight": true
         }
       ]
     },
@@ -198,6 +346,59 @@
             "Seascapes"
           ],
           "highlight": true
+        },
+        {
+          "id": 11981,
+          "title": "The Toilers of the Sea",
+          "titleJa": "海の労働者たち",
+          "artist": "Albert Pinkham Ryder",
+          "bio": "American, New Bedford, Massachusetts 1847–1917 Elmhurst, New York",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "ca. 1880–85",
+          "medium": "Oil on wood",
+          "dims": "11 1/2 x 12 in. (29.2 x 30.5 cm)",
+          "dept": "The American Wing",
+          "credit": "George A. Hearn Fund, 1915",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/11981",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT228023.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT228023.jpg",
+          "h": 58.1,
+          "w": 59.8,
+          "ratio": 0.9716,
+          "tags": [
+            "Seascapes",
+            "Boats"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 13001,
+          "title": "Seascape Fantasy",
+          "titleJa": "海景幻想",
+          "artist": "",
+          "bio": "",
+          "nationality": "",
+          "role": "",
+          "date": "1770–1800",
+          "medium": "Oil on wood",
+          "dims": "17 1/2 x 35 1/2 in. (43.7 x 89.4 cm)",
+          "dept": "The American Wing",
+          "credit": "Gift of Edgar William and Bernice Chrysler Garbisch, 1972",
+          "gallery": "774",
+          "url": "https://www.metmuseum.org/art/collection/search/13001",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/ap1972.263.2.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/ap1972.263.2.jpg",
+          "h": 44.5,
+          "w": 90.2,
+          "ratio": 0.4933,
+          "tags": [
+            "Seascapes",
+            "Boats",
+            "Ships"
+          ],
+          "highlight": false
         }
       ]
     },
@@ -290,9 +491,37 @@
             "Landscapes"
           ],
           "highlight": true
+        },
+        {
+          "id": 437975,
+          "title": "Sunset after a Storm on the Coast of Sicily",
+          "titleJa": "シチリア沿岸の嵐の後の夕日",
+          "artist": "Andreas Achenbach",
+          "bio": "German, Kassel 1815–1910 Düsseldorf",
+          "nationality": "German",
+          "role": "Artist",
+          "date": "1853",
+          "medium": "Oil on canvas",
+          "dims": "32 3/4 x 42 1/4 in. (83.2 x 107.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Catharine Lorillard Wolfe Collection, Bequest of Catharine Lorillard Wolfe, 1887",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437975",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT12075.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT12075.jpg",
+          "h": 83.2,
+          "w": 107.3,
+          "ratio": 0.7754,
+          "tags": [
+            "Seas",
+            "Landscapes",
+            "Evening",
+            "Boats"
+          ],
+          "highlight": false
         }
       ]
     }
   ],
-  "totalWorks": 9
+  "totalWorks": 17
 }

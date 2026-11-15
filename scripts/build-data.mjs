@@ -26,6 +26,35 @@ const CONTENT = path.join(ROOT, "src/content");
 const EXDIR = path.join(CONTENT, "exhibitions");
 const PUBLIC_DATA = path.join(ROOT, "public/data");
 const OVERRIDES_PATH = path.join(ROOT, "data/image-overrides.json");
+const AUTO_TITLES_PATH = path.join(ROOT, "data/titles-ja-auto.json");
+
+/**
+ * 自動翻訳（英語タイトル → 日本語）のキャッシュ。
+ * scripts/translate-ja.mjs が生成する。まだ無ければ空で動く。
+ */
+function loadAutoTitles() {
+  if (!fs.existsSync(AUTO_TITLES_PATH)) {
+    console.warn("[build-data] data/titles-ja-auto.json がありません（自動訳なしで続行）");
+    return {};
+  }
+  try {
+    return JSON.parse(fs.readFileSync(AUTO_TITLES_PATH, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+const autoTitles = loadAutoTitles();
+
+/**
+ * 作品の日本語題を決める。
+ *   1. 手書きの訳（scripts/titles-ja.mjs）— 展示会で使う作品はこちらが優先
+ *   2. 自動訳（英語タイトルをキーにしたキャッシュ）
+ *   3. 空文字 → 表示側で英語へフォールバック
+ */
+function titleJaOf(o) {
+  return titlesJa[o.objectID] || autoTitles[o.title] || "";
+}
 
 /**
  * Met は画像ファイル名を後から差し替えることがある。
@@ -79,7 +108,7 @@ function slim(o, overrides = {}) {
     id: o.objectID,
     title: o.title || "",
     // 日本語の題。訳が無ければ空文字にして、表示側で英語へフォールバックさせる
-    titleJa: titlesJa[o.objectID] || "",
+    titleJa: titleJaOf(o),
     artist: o.artistDisplayName || "",
     bio: o.artistDisplayBio || "",
     nationality: o.artistNationality || "",
@@ -123,6 +152,30 @@ function main() {
   fs.writeFileSync(catalogPath, JSON.stringify(catalog));
   console.log(
     `[build-data] catalog.json: ${catalog.length} works, ${(fs.statSync(catalogPath).size / 1024).toFixed(0)}KB`
+  );
+
+  // 書庫（全収蔵品の一覧・検索）用の軽量インデックス。
+  // キー名は1文字にして、3,000件でも転送量を抑える（gzip 後 約260KB）。
+  const library = catalog.map(o => ({
+    i: o.id,
+    t: o.title,
+    j: o.titleJa || "",
+    a: o.artist,
+    d: o.date,
+    m: o.medium,
+    p: o.dept,
+    w: o.w,
+    h: o.h,
+    s: o.credit,
+    g: o.gallery,
+    u: o.url,
+    im: o.img,
+    hl: o.highlight ? 1 : 0,
+  }));
+  const libraryPath = path.join(PUBLIC_DATA, "library.json");
+  fs.writeFileSync(libraryPath, JSON.stringify(library));
+  console.log(
+    `[build-data] library.json: ${library.length} works, ${(fs.statSync(libraryPath).size / 1024).toFixed(0)}KB`
   );
 
   const errors = [];
@@ -180,7 +233,7 @@ function main() {
           ? {
               id: coverWork.objectID,
               title: coverWork.title,
-              titleJa: titlesJa[coverWork.objectID] || "",
+              titleJa: titleJaOf(coverWork),
               artist: coverWork.artistDisplayName || "",
               date: coverWork.objectDate || "",
               img: coverImg,

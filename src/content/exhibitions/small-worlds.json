@@ -105,6 +105,63 @@
             "Still Life"
           ],
           "highlight": false
+        },
+        {
+          "id": 11737,
+          "title": "Still Life with Cake",
+          "titleJa": "ケーキのある静物",
+          "artist": "Raphaelle Peale",
+          "bio": "1774–1825",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1818",
+          "medium": "Oil on wood",
+          "dims": "10 3/4 x 15 1/4 in. (27.3 x 38.7 cm)",
+          "dept": "The American Wing",
+          "credit": "Maria DeWitt Jesup Fund, 1959",
+          "gallery": "756",
+          "url": "https://www.metmuseum.org/art/collection/search/11737",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT64.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT64.jpg",
+          "h": 27.3,
+          "w": 38.7,
+          "ratio": 0.7054,
+          "tags": [
+            "Fruit",
+            "Grapes",
+            "Wine",
+            "Still Life",
+            "Cakes"
+          ],
+          "highlight": true
+        },
+        {
+          "id": 10997,
+          "title": "Still Life—Violin and Music",
+          "titleJa": "ヴァイオリンと楽譜のある静物",
+          "artist": "William Michael Harnett",
+          "bio": "1848–1892",
+          "nationality": "American",
+          "role": "Artist",
+          "date": "1888",
+          "medium": "Oil on canvas",
+          "dims": "40 x 30 in. (101.6 x 76.2 cm)",
+          "dept": "The American Wing",
+          "credit": "Catharine Lorillard Wolfe Collection, Wolfe Fund, 1963",
+          "gallery": "763",
+          "url": "https://www.metmuseum.org/art/collection/search/10997",
+          "img": "https://images.metmuseum.org/CRDImages/ad/web-large/DT2046.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ad/original/DT2046.jpg",
+          "h": 129.9,
+          "w": 104.5,
+          "ratio": 1.2431,
+          "tags": [
+            "Music",
+            "Flutes",
+            "Violins",
+            "Still Life"
+          ],
+          "highlight": true
         }
       ]
     },
@@ -196,9 +253,286 @@
             "Still Life"
           ],
           "highlight": false
+        },
+        {
+          "id": 437867,
+          "title": "A Bouquet of Flowers in a Crystal Vase",
+          "titleJa": "水晶の花瓶に生けた花束",
+          "artist": "Nicolaes van Veerendael",
+          "bio": "Flemish, 1640–1691",
+          "nationality": "Flemish",
+          "role": "Artist",
+          "date": "1662",
+          "medium": "Oil on canvas",
+          "dims": "19 1/2 x 15 7/8 in. (49.5 x 40.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Stephen Whitney Phoenix, 1881",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437867",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DT202022.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DT202022.jpg",
+          "h": 49.5,
+          "w": 40.3,
+          "ratio": 1.2283,
+          "tags": [
+            "Flowers",
+            "Still Life",
+            "Vases"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436634,
+          "title": "A Vase of Flowers",
+          "titleJa": "花瓶の花",
+          "artist": "Margareta Haverman",
+          "bio": "Dutch, Breda 1693–1722 or later",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1716",
+          "medium": "Oil on wood",
+          "dims": "31 1/4 x 23 3/4 in. (79.4 x 60.3 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, 1871",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436634",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-15788-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-15788-001.jpg",
+          "h": 79.4,
+          "w": 60.3,
+          "ratio": 1.3167,
+          "tags": [
+            "Grapes",
+            "Flowers",
+            "Still Life"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436121,
+          "title": "A Woman Seated beside a Vase of Flowers (Madame Paul Valpinçon?)",
+          "titleJa": "花瓶のそばに座る女性（ポール・ヴァルパンソン夫人？）",
+          "artist": "Edgar Degas",
+          "bio": "French, Paris 1834–1917 Paris",
+          "nationality": "French",
+          "role": "Artist",
+          "date": "1865",
+          "medium": "Oil on canvas",
+          "dims": "29 x 36 1/2 in. (73.7 x 92.7 cm)",
+          "dept": "European Paintings",
+          "credit": "H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929",
+          "gallery": "899",
+          "url": "https://www.metmuseum.org/art/collection/search/436121",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-25460-001.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP-25460-001.jpg",
+          "h": 73.7,
+          "w": 92.7,
+          "ratio": 0.795,
+          "tags": [
+            "Pitchers",
+            "Women",
+            "Flowers"
+          ],
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "狩りのあと",
+        "en": "After the Hunt"
+      },
+      "note": {
+        "ja": "獲物は、もう動きません。だからこそ画家は、羽毛の一枚まで描き込めます。",
+        "en": "The quarry no longer moves. That is exactly why a painter can describe every single feather."
+      },
+      "works": [
+        {
+          "id": 437238,
+          "title": "Still Life of Fruit and Game",
+          "titleJa": "果物と狩猟獣の静物",
+          "artist": "Pieter van Overschee",
+          "bio": "Flemish, active ca. 1645–61",
+          "nationality": "Flemish",
+          "role": "Artist",
+          "date": "1645",
+          "medium": "Oil on wood",
+          "dims": "32 7/8 x 46 3/4 in. (83.5 x 118.7 cm)",
+          "dept": "European Paintings",
+          "credit": "Bequest of Grace Wilkes, 1921",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437238",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/ep22.45.10.bw.R.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/ep22.45.10.bw.R.jpg",
+          "h": 83.5,
+          "w": 118.7,
+          "ratio": 0.7035,
+          "tags": [
+            "Birds",
+            "Fruit",
+            "Still Life",
+            "Grapes",
+            "Rabbits"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 437937,
+          "title": "Gamepiece with a Dead Heron",
+          "titleJa": "死んだサギのある狩猟静物",
+          "artist": "Jan Weenix",
+          "bio": "Dutch, Amsterdam ca. 1641?–1719 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1695",
+          "medium": "Oil on canvas",
+          "dims": "52 3/4 x 43 3/4 in. (134 x 111.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Rogers Fund, 1950",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/437937",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145930.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145930.jpg",
+          "h": 134,
+          "w": 111.1,
+          "ratio": 1.2061,
+          "tags": [
+            "Birds",
+            "Flowers",
+            "Death"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 436805,
+          "title": "Still Life with Fruit, Glassware, and a Wanli Bowl",
+          "titleJa": "果物、ガラス器、万暦の鉢のある静物",
+          "artist": "Willem Kalf",
+          "bio": "Dutch, Rotterdam 1619–1693 Amsterdam",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1659",
+          "medium": "Oil on canvas",
+          "dims": "23 x 20 in. (58.4 x 50.8 cm)",
+          "dept": "European Paintings",
+          "credit": "Maria DeWitt Jesup Fund, 1953",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/436805",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145932.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145932.jpg",
+          "h": 58.4,
+          "w": 50.8,
+          "ratio": 1.1496,
+          "tags": [
+            "Lemons",
+            "Fruit",
+            "Still Life",
+            "Bowls"
+          ],
+          "highlight": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "ja": "うつろい",
+        "en": "Passing"
+      },
+      "note": {
+        "ja": "頭蓋骨、砂時計、消えかけの蝋燭。静物画はときどき、時間そのものを描きます。",
+        "en": "A skull, an hourglass, a guttering candle. Still life sometimes paints time itself."
+      },
+      "works": [
+        {
+          "id": 435904,
+          "title": "Still Life with a Skull and a Writing Quill",
+          "titleJa": "頭蓋骨と羽根ペンのある静物",
+          "artist": "Pieter Claesz",
+          "bio": "Dutch, Berchem? 1596/97–1660 Haarlem",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1628",
+          "medium": "Oil on wood",
+          "dims": "9 1/2 x 14 1/8 in. (24.1 x 35.9 cm)",
+          "dept": "European Paintings",
+          "credit": "Rogers Fund, 1949",
+          "gallery": "520",
+          "url": "https://www.metmuseum.org/art/collection/search/435904",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP145929.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP145929.jpg",
+          "h": 24.1,
+          "w": 35.9,
+          "ratio": 0.6713,
+          "tags": [
+            "Books",
+            "Skulls",
+            "Still Life",
+            "Drinking Glasses",
+            "Lamps"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 435918,
+          "title": "Vanitas Still Life",
+          "titleJa": "ヴァニタスの静物",
+          "artist": "Edwaert Collier",
+          "bio": "Dutch, Breda ca. 1640?–after 1707 London or Leiden",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1662",
+          "medium": "Oil on wood",
+          "dims": "37 x 44 1/8 in. (94 x 112.1 cm)",
+          "dept": "European Paintings",
+          "credit": "Purchase, 1871",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/435918",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP146494.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP146494.jpg",
+          "h": 94,
+          "w": 112.1,
+          "ratio": 0.8385,
+          "tags": [
+            "Books",
+            "Jewelry",
+            "Skulls",
+            "Music",
+            "Violins",
+            "Still Life",
+            "Globes"
+          ],
+          "highlight": false
+        },
+        {
+          "id": 438376,
+          "title": "Still Life with Oysters, a Silver Tazza, and Glassware",
+          "titleJa": "牡蠣、銀製タッツァ、ガラス器のある静物",
+          "artist": "Willem Claesz Heda",
+          "bio": "Dutch, Haarlem? 1594–1680 Haarlem",
+          "nationality": "Dutch",
+          "role": "Artist",
+          "date": "1635",
+          "medium": "Oil on wood",
+          "dims": "19 5/8 x 31 3/4 in. (49.8 x 80.6 cm)",
+          "dept": "European Paintings",
+          "credit": "From the Collection of Rita and Frits Markus, Bequest of Rita Markus, 2005",
+          "gallery": "",
+          "url": "https://www.metmuseum.org/art/collection/search/438376",
+          "img": "https://images.metmuseum.org/CRDImages/ep/web-large/DP120415.jpg",
+          "imgFull": "https://images.metmuseum.org/CRDImages/ep/original/DP120415.jpg",
+          "h": 49.8476,
+          "w": 80.6452,
+          "ratio": 0.6181,
+          "tags": [
+            "Still Life",
+            "Lemons",
+            "Drinking Glasses",
+            "Oysters"
+          ],
+          "highlight": false
         }
       ]
     }
   ],
-  "totalWorks": 6
+  "totalWorks": 17
 }

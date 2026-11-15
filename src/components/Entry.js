@@ -175,6 +175,20 @@ export default function Entry({ exhibitions }) {
             ))}
           </ul>
         </section>
+
+        <section className={styles.librarySection}>
+          <Link href="/library/" className={styles.libraryCard}>
+            <div className={styles.libraryText}>
+              <span className={styles.eyebrow}>{t("library.eyebrow")}</span>
+              <h2 className={styles.libraryTitle}>{t("library.title")}</h2>
+              <p className={styles.libraryLede}>{t("library.lede")}</p>
+            </div>
+            <span className={styles.libraryCta}>
+              {t("library.open")}
+              <span aria-hidden="true">→</span>
+            </span>
+          </Link>
+        </section>
       </main>
 
       <footer className={styles.footer}>

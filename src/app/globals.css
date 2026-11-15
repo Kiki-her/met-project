@@ -1,3 +1,7 @@
+/* 書体の読み込み（@import は必ずファイルの先頭に置く）
+   英語 = Slabo 27px / 日本語 = Shippori Mincho B1 */
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Slabo+27px&display=swap");
+
 /* ============================================================
    夜の美術館 — design tokens
    ============================================================ */
@@ -18,11 +22,17 @@
   --line-strong: rgba(240, 233, 221, 0.24);
   --glass: rgba(16, 14, 12, 0.78);
 
-  /* 書体 */
-  --serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype",
-    "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", "Hiragino Sans",
-    "Noto Sans JP", "Yu Gothic", sans-serif;
+  /* 書体
+     欧文 = Slabo 27px / 和文 = Shippori Mincho B1。
+     Slabo は Latin のみを持つので、和文は自動的に次の Shippori が拾う。
+     汎用ファミリ（serif など）は必ずリストの最後に置くこと。前に置くと
+     和文が Shippori まで届かず、OS の既定書体で描かれてしまう。 */
+  --latin: "Slabo 27px";
+  --jp: "Shippori Mincho B1";
+  --serif: "Slabo 27px", "Shippori Mincho B1", "Hiragino Mincho ProN",
+    "Yu Mincho", "Times New Roman", serif;
+  --sans: "Slabo 27px", "Shippori Mincho B1", "Hiragino Sans", "Noto Sans JP",
+    "Yu Gothic", sans-serif;
 
   /* 動き */
   --dur: 0.72s;

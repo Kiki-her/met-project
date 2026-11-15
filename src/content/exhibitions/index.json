@@ -9,7 +9,7 @@
       "ja": "光が消えていく時間",
       "en": "The hour when light leaves"
     },
-    "totalWorks": 11,
+    "totalWorks": 17,
     "chapters": [
       {
         "title": {
@@ -20,17 +20,24 @@
       },
       {
         "title": {
+          "ja": "月光の港",
+          "en": "Moonlit Harbor"
+        },
+        "count": 4
+      },
+      {
+        "title": {
           "ja": "灯をともす",
           "en": "Kindling a Light"
         },
-        "count": 4
+        "count": 5
       },
       {
         "title": {
           "ja": "沈む光",
           "en": "The Sinking Light"
         },
-        "count": 3
+        "count": 4
       }
     ],
     "cover": {
@@ -53,28 +60,35 @@
       "ja": "水平線の向こう側",
       "en": "Beyond the horizon line"
     },
-    "totalWorks": 9,
+    "totalWorks": 17,
     "chapters": [
       {
         "title": {
           "ja": "荒れる海",
           "en": "The Restless Sea"
         },
-        "count": 3
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "港",
+          "en": "Harbors"
+        },
+        "count": 4
       },
       {
         "title": {
           "ja": "静かな入り江",
           "en": "The Quiet Cove"
         },
-        "count": 3
+        "count": 5
       },
       {
         "title": {
           "ja": "ひかりの海",
           "en": "A Sea of Light"
         },
-        "count": 3
+        "count": 4
       }
     ],
     "cover": {
@@ -97,28 +111,35 @@
       "ja": "部屋という小さな世界",
       "en": "The room as a small world"
     },
-    "totalWorks": 8,
+    "totalWorks": 17,
     "chapters": [
       {
         "title": {
           "ja": "読む",
           "en": "Reading"
         },
-        "count": 3
+        "count": 4
       },
       {
         "title": {
           "ja": "集う",
           "en": "Gathering"
         },
-        "count": 3
+        "count": 5
       },
       {
         "title": {
           "ja": "窓辺",
           "en": "By the Window"
         },
-        "count": 2
+        "count": 4
+      },
+      {
+        "title": {
+          "ja": "手しごと",
+          "en": "Hands at Work"
+        },
+        "count": 4
       }
     ],
     "cover": {
@@ -141,19 +162,33 @@
       "ja": "動かないものの物語",
       "en": "The story of things that do not move"
     },
-    "totalWorks": 6,
+    "totalWorks": 17,
     "chapters": [
       {
         "title": {
           "ja": "卓上の秩序",
           "en": "Order on a Table"
         },
-        "count": 3
+        "count": 5
       },
       {
         "title": {
           "ja": "咲くということ",
           "en": "Being in Bloom"
+        },
+        "count": 6
+      },
+      {
+        "title": {
+          "ja": "狩りのあと",
+          "en": "After the Hunt"
+        },
+        "count": 3
+      },
+      {
+        "title": {
+          "ja": "うつろい",
+          "en": "Passing"
         },
         "count": 3
       }
@@ -178,26 +213,33 @@
       "ja": "こちらを見る人々",
       "en": "Those who look back"
     },
-    "totalWorks": 8,
+    "totalWorks": 17,
     "chapters": [
       {
         "title": {
           "ja": "自分を描く",
           "en": "Painting the Self"
         },
-        "count": 2
+        "count": 4
       },
       {
         "title": {
           "ja": "学識と威厳",
           "en": "Learning and Bearing"
         },
-        "count": 3
+        "count": 5
       },
       {
         "title": {
           "ja": "笑う人",
           "en": "The Laughing Face"
+        },
+        "count": 5
+      },
+      {
+        "title": {
+          "ja": "見つめかえす",
+          "en": "Looking Back"
         },
         "count": 3
       }
