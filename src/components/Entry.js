@@ -11,40 +11,31 @@ import SettingsPanel from "./SettingsPanel";
 import styles from "./Entry.module.css";
 
 /**
- * 書庫の入口に描く本棚の背表紙。
+ * 書庫の入口に描く「壁に掛かった空の額縁」。
  *
- * render 中に Math.random() を使うとサーバーとクライアントで高さが食い違い、
+ * 収蔵庫の壁に、額装だけが掛かっていて中身は空——という見え方にしたい。
+ * 画像を持たず、框とガラス面だけで組む。
+ *   w/h: 大きさ(px) / t: 框の色 / y: 壁の上端からの吊り下げ位置(px)
+ *   o: 彫り物（金泥）のある框か / p: 小さな作品票を添えるか
+ *
+ * 吊り位置は揃えず、下端も揃えない。額は上のほうで吊られていて、
+ * 大きさの違いがそのまま下端の違いになる——という並べ方にする。
+ * 縦長ばかりだと扉に見えるので、横長を混ぜる。
+ *
+ * 6点の合計幅(約 418px)は挿絵の箱(約 320px)より広い。列を箱の中央に置き、
+ * wallScene の overflow: hidden で切ることで、両端の額が画面の外へ
+ * 続いているように見える（写真の構図に寄せる）。
+ *
+ * render 中に Math.random() を使うとサーバーとクライアントで形が食い違い、
  * ハイドレーションが壊れるので、固定の並びから描く。
- *   h: 棚の高さに対する割合(%) / w: 太さ(px) / t: 色の種類 / b: 金の帯を入れるか
  */
-const SHELF_ROWS = [
-  [
-    { h: 74, w: 9, t: 0, b: 1 },
-    { h: 88, w: 12, t: 1, b: 0 },
-    { h: 66, w: 8, t: 2, b: 0 },
-    { h: 92, w: 14, t: 3, b: 1 },
-    { h: 80, w: 10, t: 0, b: 0 },
-    { h: 58, w: 7, t: 1, b: 0 },
-    { h: 86, w: 11, t: 2, b: 1 },
-  ],
-  [
-    { h: 90, w: 11, t: 2, b: 0 },
-    { h: 62, w: 8, t: 0, b: 0 },
-    { h: 96, w: 13, t: 1, b: 1 },
-    { h: 72, w: 9, t: 3, b: 0 },
-    { h: 84, w: 10, t: 2, b: 1 },
-    { h: 54, w: 7, t: 1, b: 0 },
-    { h: 78, w: 12, t: 0, b: 0 },
-    { h: 68, w: 8, t: 3, b: 1 },
-  ],
-  [
-    { h: 70, w: 10, t: 1, b: 0 },
-    { h: 86, w: 12, t: 3, b: 1 },
-    { h: 58, w: 7, t: 0, b: 0 },
-    { h: 94, w: 14, t: 2, b: 0 },
-    { h: 76, w: 9, t: 1, b: 1 },
-    { h: 64, w: 8, t: 0, b: 0 },
-  ],
+const FRAMES = [
+  { w: 42, h: 122, t: 2, y: 14, o: 0 }, // 左端：画面外で切れている
+  { w: 92, h: 72, t: 0, y: 4, o: 1, p: 1 }, // 横長
+  { w: 62, h: 140, t: 1, y: 0, o: 1 }, // いちばん背の高い縦長
+  { w: 54, h: 100, t: 3, y: 20, o: 0, p: 1 },
+  { w: 74, h: 62, t: 2, y: 8, o: 0 }, // 小ぶりの横長
+  { w: 44, h: 126, t: 0, y: 16, o: 1 }, // 右端：画面外で切れている
 ];
 
 /** 日替わりの展示（日付から決まるので、同じ日は同じ展示になる） */
@@ -264,8 +255,8 @@ export default function Entry({ exhibitions }) {
 
         {/*
           書庫への入口。
-          扉と同じく「文字だけの案内」で終わらせず、奥の書架を挿絵として置く。
-          灯りを落とした収蔵庫に棚だけが浮かんでいる、という見え方にしたいので
+          扉と同じく「文字だけの案内」で終わらせず、収蔵庫の壁を挿絵として置く。
+          中身の空いた額縁だけが掛かっている——という見え方にしたいので、
           画像ではなく CSS で組む（読み込みも著作権の確認も要らない）。
         */}
         <section className={styles.librarySection}>
@@ -280,28 +271,27 @@ export default function Entry({ exhibitions }) {
               </span>
             </div>
 
-            <div className={styles.shelfScene} aria-hidden="true">
-              <span className={styles.shelfGlow} />
-              <div className={styles.shelfUnit}>
-                {SHELF_ROWS.map((row, r) => (
-                  <div className={styles.shelfStack} key={r}>
-                    <div className={styles.shelfRow}>
-                      {row.map((b, i) => (
-                        <span
-                          key={i}
-                          className={styles.spine}
-                          data-tone={b.t}
-                          style={{ width: `${b.w}px`, height: `${b.h}%` }}
-                        >
-                          {b.b ? <span className={styles.spineBand} /> : null}
-                        </span>
-                      ))}
-                    </div>
-                    <span className={styles.shelfBoard} />
-                  </div>
+            <div className={styles.wallScene} aria-hidden="true">
+              <span className={styles.wallGlow} />
+              <div className={styles.wallHang}>
+                {FRAMES.map((f, i) => (
+                  <span
+                    key={i}
+                    className={styles.frame}
+                    data-tone={f.t}
+                    data-carved={f.o ? "1" : undefined}
+                    style={{
+                      width: `${f.w}px`,
+                      height: `${f.h}px`,
+                      "--y": `${f.y}px`,
+                    }}
+                  >
+                    <span className={styles.frameGlass} />
+                    {f.p ? <span className={styles.framePlate} /> : null}
+                  </span>
                 ))}
               </div>
-              <span className={styles.shelfPlaque}>{t("library.plaque")}</span>
+              <span className={styles.wallPlaque}>{t("library.plaque")}</span>
             </div>
           </Link>
         </section>
